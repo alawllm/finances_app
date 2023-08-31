@@ -7,7 +7,7 @@ const Navigation = () => {
                 <div className="bg-teal-300 w-full top-0 fixed">
                     <Link className="px-5" to='/'>Here Home Logo</Link>
                     <Link className="px-5" to='/authentication'>Sign In / Sign up</Link>
-                    <Link className="px-5" to='/records'>Records</Link>
+                    <Link className="px-5" to='/records'>See records</Link>
                 </div>
                 <div className="flex items-center justify-center flex-col h-full">
                     <Outlet />

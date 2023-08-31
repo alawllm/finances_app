@@ -11,6 +11,7 @@ function App() {
 
   return (
     <Routes>
+      {/* every route is rendered inside of the navigation route  */}
       <Route path='/' element={<Navigation />}>
         <Route index element={<Home />} />
         <Route path='/authentication' element={<Authentication />} />
@@ -20,5 +21,4 @@ function App() {
 
   )
 }
-
 export default App

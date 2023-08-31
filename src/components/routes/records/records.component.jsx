@@ -24,8 +24,8 @@ const Records = () => {
         <>
             <h1 className="m-5">Here you can see all the beautiful Records</h1>
             <div className=" grid grid-cols-4 gap-10">
-                {categories.map(({ title, amount }) => (
-                    <div className="bg-blue-400 p-3 text-center">
+                {categories.map(({ title, amount, id }) => (
+                    <div key={id} className="bg-blue-400 p-3 text-center">
                         <h2 className="text-bold">{title}</h2>
                         <h3>{amount} €</h3>
                     </div>))}

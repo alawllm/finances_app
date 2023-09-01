@@ -4,12 +4,12 @@ import Button from "../../helper-components/button/button.component";
 
 const defaultRecords = {
     amount: '',
-    category: ''
+    name: ''
 }
 const AddRecords = () => {
     const [records, setRecords] = useState(defaultRecords);
     const [isSubmitted, setIsSubmitted] = useState(false)
-    const { amount, category } = records;
+    const { amount, name } = records;
 
     console.log(records)
 
@@ -50,12 +50,12 @@ const AddRecords = () => {
                     value={amount} />
 
                 <FormInput
-                    label="category"
+                    label="Name"
                     type="text"
                     required
                     onChange={handleChange}
-                    name="category"
-                    value={category}
+                    name="name"
+                    value={name}
                 />
                 <div className="flex flex-col">
                     <Button type="submit">Add record</Button>

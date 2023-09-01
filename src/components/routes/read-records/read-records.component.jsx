@@ -1,36 +1,31 @@
+import { MOCK_DATA } from "../../../mock-data";
+
 const ReadRecords = () => {
 
-    const categories = [
-        {
-            id: 1,
-            title: 'grocery',
-            amount: 45
-        },
-        {
-            id: 2,
-            title: 'travel',
-            amount: 66
-        }, {
-            id: 3,
-            title: 'eating out',
-            amount: 10
-        }, {
-            id: 4,
-            title: 'clothing',
-            amount: 78
-        }
-    ]
     return (
         <>
-            <h1 className="m-5">Here you can see all the beautiful Records</h1>
-            <div className=" grid grid-cols-4 gap-10">
-                {categories.map(({ title, amount, id }) => (
-                    <div key={id} className="bg-blue-400 p-3 text-center">
-                        <h2 className="text-bold">{title}</h2>
-                        <h3>{amount} €</h3>
-                    </div>))}
+            <h1 className="m-30">Here you can see all the beautiful hardcoded Records</h1>
+            <table className="table-auto m-5">
+                <thead>
+                    <tr>
+                        <th className="px-4 py-2">Category</th>
+                        <th className="px-4 py-2">Item</th>
+                        <th className="px-4 py-2">Price (€)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {MOCK_DATA.map(({ title, items }) => (
+                        items.map(({ id, name, price }) => (
+                            <tr key={id}>
+                                <td className="border px-4 py-2 bg-blue-400">{title}</td>
+                                <td className="border px-4 py-2">{name}</td>
+                                <td className="border px-4 py-2">{price} €</td>
+                            </tr>
+                        ))
+                    ))}
+                </tbody>
 
-            </div>
+            </table>
         </>
     )
 }

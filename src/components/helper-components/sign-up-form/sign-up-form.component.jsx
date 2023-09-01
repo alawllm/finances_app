@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../../utils/firebase.utils";
 import FormInput from "../form-input/form-input.component";
+import Button from "../button/button.component";
 
 const defaultFormFields = {
     displayName: '',
@@ -53,12 +54,16 @@ const SignUpForm = () => {
     }
 
     return (
-        <div className="p-2 bg-cyan-300 m-5">
-            <h1>Sign up with your email and password</h1>
+        <div className="p-2 m-5 rounded shadow-md">
+            {/* block text-gray-700 text-sm font-bold mb-2 */}
+            <h2 className=" text-gray-700 font-bold text-sm mb-2 mt-2">Don't have an account?</h2>
+            <span className=" text-gray-700 font-bold text-sm mb-2">Sign up with your email and password</span>
             {/* form should not be submitable until the fields are filled  */}
-            <form action=""
+            <form
+                className="flex flex-col items-center rounded px-8"
+                action=""
                 onSubmit={handleSubmit}
-                className="flex flex-col items-center">
+            >
                 <FormInput
                     label="Display name"
                     type="text"
@@ -81,7 +86,8 @@ const SignUpForm = () => {
                     required
                     onChange={handleChange}
                     name="password"
-                    value={password} />
+                    value={password}
+                />
 
                 <FormInput
                     label="Confirm password"
@@ -89,8 +95,10 @@ const SignUpForm = () => {
                     required
                     onChange={handleChange}
                     name="confirmPassword"
-                    value={confirmPassword} />
-                <button type="submit" className="bg-white m-2">Sign Up</button>
+                    value={confirmPassword}
+
+                />
+                <Button type="submit">Sign Up</Button>
             </form>
         </div >
     )

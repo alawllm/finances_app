@@ -7,7 +7,11 @@ import {
     signInWithRedirect,
     signInWithPopup,
     GoogleAuthProvider,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    //observable listener - hooking in into a stream of events
+    onAuthStateChanged
 } from 'firebase/auth'
 
 //FIRESTORE
@@ -93,3 +97,16 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 
     return createUserWithEmailAndPassword(auth, email, password);
 }
+
+//signing auth user with email and password
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) return;
+
+    return signInWithEmailAndPassword(auth, email, password);
+}
+
+
+export const signOutUser = async () => await signOut(auth);
+
+//returns observer listener
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);

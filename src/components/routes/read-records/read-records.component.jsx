@@ -1,4 +1,4 @@
-const Records = () => {
+const ReadRecords = () => {
 
     const categories = [
         {
@@ -35,4 +35,4 @@ const Records = () => {
     )
 }
 
-export default Records;
+export default ReadRecords;

@@ -54,6 +54,10 @@ export const auth = getAuth();
 
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
+export const signInWithGoogleRedirect = () => {
+    signInWithRedirect(auth, provider);
+}
+
 //direct pointer to the database
 export const db = getFirestore();
 
@@ -66,8 +70,6 @@ export const createUserDocumentFromAuth = async (
     //checking if there is an existing user reference
     //takes in database, collection and unique id
     const userDocRef = doc(db, 'users', userAuth.uid);
-
-    console.log(userDocRef);
 
     //get user data from the firestore database
     const userSnapshot = await getDoc(userDocRef);

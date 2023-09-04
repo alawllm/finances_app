@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../../utils/firebase.utils";
 import FormInput from "../form-input/form-input.component";
@@ -15,7 +15,6 @@ const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { displayName, email, password, confirmPassword } = formFields;
 
-    console.log(formFields)
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
@@ -46,7 +45,7 @@ const SignUpForm = () => {
             resetFormFields();
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
-                alert('cannot create user, try another data');
+                alert('cannot create user');
             } else {
                 console.log('user creation encountered an error', error)
             }
@@ -56,7 +55,7 @@ const SignUpForm = () => {
     return (
         <div className="p-2 m-5 rounded shadow-md">
             {/* block text-gray-700 text-sm font-bold mb-2 */}
-            <h2 className=" text-gray-700 font-bold text-sm mb-2 mt-2">Don't have an account?</h2>
+            <h2 className=" text-gray-700 font-bold text-sm mb-2 mt-2">Don`t have an account?</h2>
             <span className=" text-gray-700 font-bold text-sm mb-2">Sign up with your email and password</span>
             {/* form should not be submitable until the fields are filled  */}
             <form

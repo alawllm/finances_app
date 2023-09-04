@@ -1,26 +1,4 @@
-// import { signInWithGooglePopup, createUserDocumentFromAuth } from "../../../utils/firebase.utils";
-// import Button from "../button/button.component";
-
-// const SignIn = () => {
-//     const logGoogleUser = async () => {
-//         //response - user credentials, access token
-//         //access token is used to create CRUD requests
-//         const { user } = await signInWithGooglePopup();
-//         //create document reference
-//         const userDocRef = await createUserDocumentFromAuth(user)
-//     }
-
-//     return (
-//         <div className=" flex flex-col  bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 text-center">
-//             <span className="text-left text-gray-700 font-bold text-base mb-2">Sign In Component</span>
-//             <Button type="button" onClick={logGoogleUser}>Sign in with Google Popup</Button>
-//         </div>
-//     )
-// }
-
-// export default SignIn;
-
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
     signInWithGooglePopup,
     createUserDocumentFromAuth,
@@ -30,25 +8,29 @@ import {
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
+import { UserContext } from "../../../contexts/user.context";
+
 const defaultFormFields = {
     email: '',
-    password: ''
-}
-
-const signInWithGoogle = async () => {
-    //response - user credentials, access token
-    //access token is used to create CRUD requests
-    const { user } = await signInWithGooglePopup();
-    //create document reference
-    const userDocRef = await createUserDocumentFromAuth(user)
-}
+    password: ''}
 
 const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
 
+    //taking the function off of the context
+    const {setCurrentUser} = useContext(UserContext);
+
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
+    }
+
+    const signInWithGoogle = async () => {
+        //response - user credentials, access token
+        //access token is used to create CRUD requests
+        const { user } = await signInWithGooglePopup();
+        //create document reference in the database
+       await createUserDocumentFromAuth(user)
     }
 
     const handleChange = (event) => {
@@ -61,11 +43,11 @@ const SignInForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log(response)
+            const {user} = await signInAuthUserWithEmailAndPassword(email, password);
+            setCurrentUser(user);
             resetFormFields();
         } catch (error) {
-            if (error.code === "auth/wrong-password") {
+            if (error.code === "auth/wrong-password" || error.code==="auth/user-not-found") {
                 alert('incorrect password or email')
             }
         }

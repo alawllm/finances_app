@@ -1,7 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import { useContext } from "react";
 
-import { signOutUser } from "../../../utils/firebase.utils";
+import { signOutUser } from "../../../firebase_config/firebase.config";
 import { UserContext } from "../../../contexts/user.context";
 
 const Navigation = () => {

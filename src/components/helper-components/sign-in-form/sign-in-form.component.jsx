@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signInAuthUserWithEmailAndPassword } from "../../../utils/firebase.utils";
+import { signInAuthUserWithEmailAndPassword } from "../../../firebase_config/firebase.config";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";

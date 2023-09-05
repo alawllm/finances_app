@@ -1,8 +1,41 @@
-# React + Vite
+# 💸 moniez
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a moniez app.
+It is an app for managing personal finances.
 
-Currently, two official plugins are available:
+The app is in continuous development.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Users should be able to:**
+
+- create their own accounts with email and password and log in
+- see their records
+- edit their records
+
+After connecting with the API, the users are redirected to the planets info page.
+
+**Main planned features MVP:**
+
+- firebase authentication
+- storing records in firestore database
+- choosing records depending on a category
+- basic CRUD functionality
+- hover and focus states for the interactive elements on the page;
+- working mobile version
+
+## 👨‍💻 Tech Stack
+
+- React
+- app build React Vite
+- Tailwind CSS
+- Firebase
+- React Router
+- React Context
+
+## 🖇️ Links
+
+- Solution URL: [GitHub](https://github.com/alawllm/moniez)
+- Live URL: [https://moniez.netlify.app]
+
+## 👧🏻 Author
+
+- GitHub - [@alawllm](https://github.com/alawllm)

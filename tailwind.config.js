@@ -7,13 +7,10 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      //colors can be customized here 
-      // colors: {
-      //   primary: ..
-      //   secondary: ..
-      // }
-    },
+   fontFamily: {
+    'adlam': ['ADLaM Display', 'cursive'],
+    'lato': ['Lato', 'sans-serif']
+   }
   },
   plugins: [],
 }

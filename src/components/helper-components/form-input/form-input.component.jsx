@@ -4,7 +4,7 @@ const FormInput = ({ label, ...otherProps }) => {
             {label && (
                 // add effect if no length then shrink 
                 < label
-                    className="block text-gray-700 text-sm font-bold mb-2"
+                    className="block text-gray-700 font-bold mb-2"
                 > {label}</label>
             )}
             <input

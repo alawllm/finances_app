@@ -61,10 +61,10 @@ const SignUpForm = () => {
   return (
     <div className="p-2 m-5 rounded shadow-md">
       {/* block text-gray-700 text-sm font-bold mb-2 */}
-      <h2 className=" text-gray-700 font-bold text-sm mb-2 mt-2">
+      <h2 className=" text-gray-700 font-bold mb-2 mt-2">
         Don`t have an account?
       </h2>
-      <span className=" text-gray-700 font-bold text-sm mb-2">
+      <span className=" text-gray-700 font-bold mb-2">
         Sign up with your email and password
       </span>
       {/* form should not be submitable until the fields are filled  */}

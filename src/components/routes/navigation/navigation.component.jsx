@@ -9,17 +9,17 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="flex flex-col h-full bg-blue-30 ">
-        <div className="bg-blue-200 -300 w-full top-0 fixed py-3 text-2xl">
+      <div className="flex flex-col h-full bg-blue-30 font-lato text-lg">
+        <div className="bg-blue-200 -300 w-full top-0 fixed py-3">
           <Link className="px-5" to="/">
             💸
           </Link>
           {currentUser ? (
             <>
-              <Link className="px-5 text-gray-700 text-lg" to="/read-records">
+              <Link className="px-5 text-gray-700" to="/read-records">
                 See records
               </Link>
-              <Link className="px-5 text-gray-700 text-lg" to="/add-records">
+              <Link className="px-5 text-gray-700" to="/add-records">
                 Add records
               </Link>
             </>
@@ -30,11 +30,11 @@ const Navigation = () => {
           {currentUser ? (
             <span
               onClick={signOutUser}
-              className="cursor-pointer text-gray-700 text-lg">
+              className="cursor-pointer text-gray-700">
               Sign out
             </span>
           ) : (
-            <Link className="px-5 text-gray-700 text-lg" to="/authentication">
+            <Link className="px-5 text-gray-700" to="/authentication">
               Sign In
             </Link>
           )}

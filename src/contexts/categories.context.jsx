@@ -13,7 +13,7 @@ export const CategoriesProvider = ({ children }) => {
     const getCategoriesMap = async () => {
       const categoryMap = await getCategoriesAndDocuments();
       console.log(categoryMap);
-      setCategoriesMap(categoryMap)
+      setCategoriesMap(categoryMap);
     };
     getCategoriesMap();
   }, []);
@@ -21,6 +21,8 @@ export const CategoriesProvider = ({ children }) => {
   const value = { categoriesMap };
 
   return (
-    <CategoriesContext.Provider value={value}>{children}</CategoriesContext.Provider>
+    <CategoriesContext.Provider value={value}>
+      {children}
+    </CategoriesContext.Provider>
   );
 };

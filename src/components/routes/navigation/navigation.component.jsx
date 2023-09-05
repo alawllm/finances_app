@@ -12,22 +12,25 @@ const Navigation = () => {
       <div className="flex flex-col h-full bg-blue-30 ">
         <div className="bg-blue-200 -300 w-full top-0 fixed py-3 text-2xl">
           <Link className="px-5" to="/">
-          💸
+            💸
           </Link>
           {currentUser ? (
             <>
-           <Link className="px-5 text-gray-700 text-lg" to="/read-records">
-           See records
-         </Link>
-         <Link className="px-5 text-gray-700 text-lg" to="/add-records">
-           Add records
-         </Link>
-         </>
-          ) : (''
+              <Link className="px-5 text-gray-700 text-lg" to="/read-records">
+                See records
+              </Link>
+              <Link className="px-5 text-gray-700 text-lg" to="/add-records">
+                Add records
+              </Link>
+            </>
+          ) : (
+            ""
           )}
-          
+
           {currentUser ? (
-            <span onClick={signOutUser} className="cursor-pointer text-gray-700 text-lg">
+            <span
+              onClick={signOutUser}
+              className="cursor-pointer text-gray-700 text-lg">
               Sign out
             </span>
           ) : (

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { signInAuthUserWithEmailAndPassword } from "../../../firebase_config/firebase.config";
+import { useNavigate } from "react-router-dom";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
@@ -12,6 +13,8 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+
+  const navigateTo = useNavigate();
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -27,11 +30,9 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
+      navigateTo("/read-records");
     } catch (error) {
       if (
         error.code === "auth/wrong-password" ||

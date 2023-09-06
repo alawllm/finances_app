@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 
-import { getCategoriesAndDocuments } from "../firebase_config/firebase.config";
+import { getCategoriesAndDocuments } from "../firebase_config/firebase-auth.config";
 
 export const CategoriesContext = createContext({
   categories: [],

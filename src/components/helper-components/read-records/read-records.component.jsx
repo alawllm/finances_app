@@ -6,15 +6,13 @@ const ReadRecords = () => {
   const { categoriesMap } = useContext(CategoriesContext);
   return (
     <>
-      <h1 className="m-30 mb-10">
-        Here you can see all the records from the database
-      </h1>
       <table className="table-auto m-5">
         <thead>
           <tr>
             <th className="px-4 py-2">Category</th>
             <th className="px-4 py-2">Item</th>
             <th className="px-4 py-2">Price (€)</th>
+            <th className="px-4 py-2">Action</th>
           </tr>
         </thead>
         <tbody>

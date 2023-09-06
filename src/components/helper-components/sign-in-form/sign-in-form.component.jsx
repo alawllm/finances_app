@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signInAuthUserWithEmailAndPassword } from "../../../firebase_config/firebase.config";
+import { signInAuthUserWithEmailAndPassword } from "../../../firebase_config/firebase-auth.config";
 import { useNavigate } from "react-router-dom";
 
 import FormInput from "../form-input/form-input.component";

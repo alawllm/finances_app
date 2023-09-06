@@ -1,7 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import { useContext } from "react";
 
-import { signOutUser } from "../../../firebase_config/firebase.config";
+import { signOutUser } from "../../../firebase_config/firebase-auth.config";
 import { UserContext } from "../../../contexts/user.context";
 
 const Navigation = () => {
@@ -16,11 +16,8 @@ const Navigation = () => {
           </Link>
           {currentUser ? (
             <>
-              <Link className="px-5 text-gray-700" to="/read-records">
-                See records
-              </Link>
-              <Link className="px-5 text-gray-700" to="/add-records">
-                Add records
+              <Link className="px-5 text-gray-700" to="/records">
+                Records
               </Link>
             </>
           ) : (
@@ -35,7 +32,7 @@ const Navigation = () => {
             </span>
           ) : (
             <Link className="px-5 text-gray-700" to="/authentication">
-              Sign In
+              Sign In & Sign out
             </Link>
           )}
         </div>

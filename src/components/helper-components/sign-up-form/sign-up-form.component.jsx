@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
-} from "../../../firebase_config/firebase.config";
+} from "../../../firebase_config/firebase-auth.config";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 

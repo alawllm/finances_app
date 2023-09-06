@@ -18,15 +18,15 @@ import {
   getFirestore,
   //retrieves documents from the database
   doc,
-  //getting the document's data - data ON the document
+  //getting one doc from firestore
   getDoc,
   //setting the document's data
   setDoc,
+  //gives the collection
   collection,
   writeBatch,
   query,
   getDocs,
-  QueryStartAtConstraint,
 } from "firebase/firestore";
 
 //firebase configuration - connecting database to my app
@@ -63,7 +63,7 @@ export const signInWithGoogleRedirect = () => {
 };
 
 //direct pointer to the database
-export const db = getFirestore();
+export const db = getFirestore(firebaseApp);
 
 //creating a collection
 export const addCollectionAndDocuments = async (
@@ -86,7 +86,7 @@ export const addCollectionAndDocuments = async (
 
 //retrieving categories and documents from firebase
 export const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, "collections");
+  const collectionRef = collection(db, "records");
   const q = query(collectionRef);
 
   //getDocs - fetching document snapshots
@@ -140,7 +140,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
 
-//signing auth user with email and password
+//signing in auth user with email and password
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 

@@ -1,6 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
 import { useContext } from "react";
-
 import { signOutUser } from "../../../firebase_config/firebase-auth.config";
 import { UserContext } from "../../../contexts/user.context";
 

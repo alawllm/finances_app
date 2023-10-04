@@ -12,10 +12,17 @@ export const CategoriesProvider = ({ children }) => {
   useEffect(() => {
     const getCategoriesMap = async () => {
       const categoryMap = await getCategoriesAndDocuments();
-      console.log(categoryMap);
+      console.log("category map", categoryMap);
       setCategoriesMap(categoryMap);
     };
     getCategoriesMap();
+
+    //adding initial data
+    // const addCollections = async() => {
+    //   const add = await addCollectionAndDocuments('records', MOCK_DATA);
+    //   setCategoriesMap(add)
+    // }
+    // addCollections();
   }, []);
 
   const value = { categoriesMap };

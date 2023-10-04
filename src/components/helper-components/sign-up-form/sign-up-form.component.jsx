@@ -28,10 +28,12 @@ const SignUpForm = () => {
   const handleChange = (event) => {
     //target gives the input
     const { name, value } = event.target;
-
     setFormFields({ ...formFields, [name]: value });
   };
 
+  //on submit try to create authorized user with email and password
+  //then create user document and redirect to records
+  //if error display error
   const handleSubmit = async (event) => {
     event.preventDefault();
 

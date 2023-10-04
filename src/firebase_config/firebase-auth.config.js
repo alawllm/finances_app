@@ -1,11 +1,8 @@
 //AUTHENTICATION
 import { initializeApp } from "firebase/app";
-//importing firebase microlibrarie
 
 import {
   getAuth,
-  signInWithRedirect,
-  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -29,7 +26,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-//firebase configuration - connecting database to my app
+//firebase configuration object
 const firebaseConfig = {
   //this API key is not a secret one - can be exposed
   apiKey: "AIzaSyDGegtdlP2c5ylHlvSrhfaf5v8RbTmqBws",
@@ -44,28 +41,17 @@ const firebaseConfig = {
 //every CRUD action happens using this firebaseApp instance
 const firebaseApp = initializeApp(firebaseConfig);
 
-//gives back provider instance
-const provider = new GoogleAuthProvider();
-
-//telling GoogleAuthProvider how to behave
-provider.setCustomParameters({
-  //every time someone interacts with the provider, they should select the account
-  prompt: "select_account",
-});
-
-//always just one case of authentication
-export const auth = getAuth();
-
-// export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
-
-export const signInWithGoogleRedirect = () => {
-  signInWithRedirect(auth, provider);
-};
-
-//direct pointer to the database
+//inizializing user auth
+//auth objects - provides methods for managing user authentication states
+export const auth = getAuth(firebaseApp);
+console.log("auth", auth);
+//initializing database
+//returns auth object of the firestore database
 export const db = getFirestore(firebaseApp);
+console.log("db", db);
 
 //creating a collection
+//adding initial data
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
@@ -91,26 +77,30 @@ export const getCategoriesAndDocuments = async () => {
 
   //getDocs - fetching document snapshots
   const querySnapshot = await getDocs(q);
+  console.log('querySnapshot', querySnapshot)
   //turning array of elements into the categoryMap object
   const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
     const { title, items } = docSnapshot.data();
+    console.log(title);
     acc[title.toLowerCase()] = items;
     return acc;
   }, {});
   return categoryMap;
 };
 
-//creating user reference in the database
+//creating user reference in the firestore database
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation = {}
 ) => {
   if (!userAuth) return;
+
   //checking if there is an existing user reference
-  //takes in database, collection and unique id
+  //doc - document reference
   const userDocRef = doc(db, "users", userAuth.uid);
 
   //get user data from the firestore database
+  //getDoc - reads the document pointed by document reference
   const userSnapshot = await getDoc(userDocRef);
 
   //if userData does not exist, create/ set the document with the data from userAuth
@@ -144,7 +134,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
-  return signInWithEmailAndPassword(auth, email, password);
+  return await signInWithEmailAndPassword(auth, email, password);
 };
 
 //returns back signout

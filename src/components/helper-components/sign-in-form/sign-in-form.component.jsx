@@ -23,10 +23,12 @@ const SignInForm = () => {
   const handleChange = (event) => {
     //target gives the input
     const { name, value } = event.target;
-
     setFormFields({ ...formFields, [name]: value });
   };
 
+  //on submit - try to log in authorized user with email and password
+  //when success redirect to records
+  //when error display error
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

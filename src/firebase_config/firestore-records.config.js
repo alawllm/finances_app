@@ -10,26 +10,25 @@ import {
   doc,
 } from "firebase/firestore";
 
-const recordsCollectionRef = collection(db, "records");
+const collectionRef = collection(db, "collections");
 
 //basic CRUD methods
-//pass new record to the collection
 export const addRecord = (newRecord) => {
-  return addDoc(recordsCollectionRef, newRecord);
+  return addDoc(collectionRef, newRecord);
 };
 export const updateRecord = (id, updatedRecord) => {
-  const recordDoc = doc(db, "records", id);
+  const recordDoc = doc(db, "collections", id);
   return updateDoc(recordDoc, updatedRecord);
 };
 export const deleteRecord = (id) => {
-  const recordDoc = doc(db, "records", id);
+  const recordDoc = doc(db, "collections", id);
   return deleteDoc(recordDoc);
 };
 export const getAllRecords = () => {
-  return getDocs(recordsCollectionRef);
+  return getDocs(collectionRef);
 };
 
 export const getRecord = (id) => {
-  const recordsDoc = doc(db, "records", id);
+  const recordsDoc = doc(db, "collections", id);
   return getDoc(recordsDoc);
 };

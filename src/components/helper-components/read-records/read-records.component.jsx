@@ -3,6 +3,7 @@ import { CategoriesContext } from "../../../contexts/categories.context";
 import { Fragment } from "react";
 
 const ReadRecords = () => {
+  //retrieving downloaded data from the database
   const { categoriesMap } = useContext(CategoriesContext);
   return (
     <>
@@ -16,8 +17,8 @@ const ReadRecords = () => {
           </tr>
         </thead>
         <tbody>
-          {/* Object.keys gives an array from the object  */}
-          {Object.keys(categoriesMap).map((title) => (
+          {/* //Object.keys makes an array out of the object  */}
+           {Object.keys(categoriesMap).map((title) => (
             <Fragment key={title}>
               {categoriesMap[title].map((record) => (
                 <tr key={record.id}>

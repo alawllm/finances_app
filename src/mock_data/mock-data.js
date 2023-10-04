@@ -4,17 +4,17 @@ export const MOCK_DATA = [
     items: [
       {
         id: 1,
-        name: "Jacket",
+        item: "Jacket",
         price: 25,
       },
       {
         id: 2,
-        name: "T-Shirt",
+        item: "T-Shirt",
         price: 18,
       },
       {
         id: 3,
-        name: "Socks",
+        item: "Socks",
         price: 35,
       },
     ],
@@ -24,12 +24,12 @@ export const MOCK_DATA = [
     items: [
       {
         id: 4,
-        name: "Udemy course",
+        item: "Udemy course",
         price: 220,
       },
       {
         id: 5,
-        name: "Programming book",
+        item: "Programming book",
         price: 280,
       },
     ],
@@ -39,12 +39,12 @@ export const MOCK_DATA = [
     items: [
       {
         id: 8,
-        name: "Carrots",
+        item: "Carrots",
         price: 2,
       },
       {
         id: 9,
-        name: "Burgers",
+        item: "Burgers",
         price: 20,
       },
     ],
@@ -54,17 +54,17 @@ export const MOCK_DATA = [
     items: [
       {
         id: 10,
-        name: "Toilet paper",
+        item: "Toilet paper",
         price: 25,
       },
       {
         id: 11,
-        name: "Cleaning supplies",
+        item: "Cleaning supplies",
         price: 20,
       },
       {
         id: 12,
-        name: "Washing supplies",
+        item: "Washing supplies",
         price: 80,
       },
     ],
@@ -74,12 +74,12 @@ export const MOCK_DATA = [
     items: [
       {
         id: 13,
-        name: "Plane tickets",
+        item: "Plane tickets",
         price: 325,
       },
       {
         id: 14,
-        name: "Bus tickets",
+        item: "Bus tickets",
         price: 20,
       },
     ],

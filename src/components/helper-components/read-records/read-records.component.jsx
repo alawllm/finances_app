@@ -7,7 +7,7 @@ const ReadRecords = () => {
   const { categoriesMap } = useContext(CategoriesContext);
   return (
     <>
-      <table className="table-auto m-5">
+      <table className="table-auto mb-20">
         <thead>
           <tr>
             <th className="px-4 py-2">Category</th>
@@ -24,7 +24,7 @@ const ReadRecords = () => {
                 <tr key={record.id}>
                   <td className="border px-4 py-2 bg-blue-100">{title}</td>
                   <td className="border px-4 py-2  bg-blue-50">
-                    {record.name}
+                    {record.item}
                   </td>
                   <td className="border px-4 py-2 bg-blue-50">
                     {record.price} €

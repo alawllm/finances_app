@@ -8,7 +8,7 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="flex flex-col h-full bg-blue-30 font-lato text-lg">
+      <div className="flex flex-col bg-blue-30 font-lato text-lg">
         <div className="bg-blue-200 -300 w-full top-0 fixed py-3">
           <Link className="px-5" to="/">
             💸
@@ -35,7 +35,7 @@ const Navigation = () => {
             </Link>
           )}
         </div>
-        <div className="flex items-center justify-center flex-col h-full">
+        <div className="flex  flex-col items-center justify-center h-full mt-20">
           <Outlet />
         </div>
       </div>

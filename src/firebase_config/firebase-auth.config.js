@@ -67,7 +67,6 @@ export const addCollectionAndDocuments = async (
     batch.set(docRef, object);
   });
   await batch.commit();
-  console.log("done");
 };
 
 //retrieving categories and documents from firebase
@@ -77,11 +76,9 @@ export const getCategoriesAndDocuments = async () => {
 
   //getDocs - fetching document snapshots
   const querySnapshot = await getDocs(q);
-  console.log('querySnapshot', querySnapshot)
   //turning array of elements into the categoryMap object
   const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
     const { title, items } = docSnapshot.data();
-    console.log(title);
     acc[title.toLowerCase()] = items;
     return acc;
   }, {});

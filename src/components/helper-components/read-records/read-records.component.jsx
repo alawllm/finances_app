@@ -12,7 +12,7 @@ const ReadRecords = () => {
   const {uid} = useContext(UserContext);
 
   const handleClick = async(id) => {
-    deleteDocument(id);
+    await deleteDocument(id);
     const updatedRecords = await getDocuments(uid);
     setRecords(updatedRecords);
   };

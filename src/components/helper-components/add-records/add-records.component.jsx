@@ -3,25 +3,26 @@ import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import { addRecord } from "../../../firebase_config/firestore-records.config";
 import DropdownCategories from "../dropdown/dropdown.component";
+import { useContext } from "react";
+import { UserContext } from "../../../contexts/user.context";
 
 const defaultRecord = {
+  category: "clothes",
   item: "",
   price: 0,
 };
-
-const defaultCategory = "";
 
 const categoriesList = ["clothes", "food", "education", "household", "travel"];
 
 const AddRecords = () => {
   const [record, setRecord] = useState(defaultRecord);
-  const [category, setCategory] = useState("");
   const [message, setMessage] = useState({ error: false, msg: "" });
-  const { item, price } = record;
+  const { category, item, price } = record;
+
+  const { uid } = useContext(UserContext);
 
   const resetRecord = () => {
     setRecord(defaultRecord);
-    setCategory(defaultCategory);
   };
 
   const handleChange = (event) => {
@@ -31,11 +32,6 @@ const AddRecords = () => {
     setRecord({ ...record, [name]: value });
   };
 
-  const handleChangeCategory = (event) => {
-    const {category} = event.target
-    setCategory(category);
-  }
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (record.item === "" || record.price <= 0) {
@@ -43,13 +39,14 @@ const AddRecords = () => {
     } else {
       try {
         const newRecord = {
-          id: 7,
+          uid: uid,
           item: record.item,
           price: record.price,
+          category: record.category,
         };
         //updating entry in the firestore
         //takes id and updated record
-        await addRecord(category, newRecord);
+        await addRecord(newRecord);
         setMessage({ error: false, msg: "New record added succesfully" });
       } catch (err) {
         setMessage({ error: true, msg: "an error occured" });
@@ -75,7 +72,7 @@ const AddRecords = () => {
           categoryOptions={categoriesList}
           value={category}
           name="category"
-          onChange={handleChangeCategory}
+          onChange={handleChange}
           required
         />
 

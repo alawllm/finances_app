@@ -22,8 +22,6 @@ import {
   //gives the collection
   collection,
   writeBatch,
-  query,
-  getDocs,
 } from "firebase/firestore";
 
 //firebase configuration object
@@ -69,22 +67,6 @@ export const addCollectionAndDocuments = async (
   await batch.commit();
 };
 
-//retrieving categories and documents from firebase
-export const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, "records");
-  const q = query(collectionRef);
-
-  //getDocs - fetching document snapshots
-  const querySnapshot = await getDocs(q);
-  //turning array of elements into the categoryMap object
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-  return categoryMap;
-};
-
 //creating user reference in the firestore database
 export const createUserDocumentFromAuth = async (
   userAuth,
@@ -103,7 +85,7 @@ export const createUserDocumentFromAuth = async (
   //if userData does not exist, create/ set the document with the data from userAuth
   //data saved in the collection in the firestore database
   if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
+    const { displayName, email, uid } = userAuth;
     //new date object
     const createdAt = new Date();
     try {
@@ -111,6 +93,7 @@ export const createUserDocumentFromAuth = async (
         displayName,
         email,
         createdAt,
+        uid,
         ...additionalInformation,
       });
     } catch (error) {

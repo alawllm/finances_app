@@ -1,7 +1,8 @@
-import { Outlet, Link } from "react-router-dom";
 import { useContext } from "react";
-import { signOutUser } from "../../../firebase_config/firebase-auth.config";
+import { Link,Outlet } from "react-router-dom";
+
 import { UserContext } from "../../../contexts/user.context";
+import { signOutUser } from "../../../firebase_config/firebase-auth.config";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);

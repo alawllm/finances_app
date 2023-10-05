@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { CategoriesContext } from "../../../contexts/records.context";
-import { Fragment } from "react";
+
+import { RecordsContext } from "../../../contexts/records.context";
 
 const ReadRecords = () => {
   //retrieving downloaded data from the database
-  // const { categoriesMap } = useContext(CategoriesContext);
+  const {recordsMap } = useContext(RecordsContext);
   return (
     <>
-      {/* <table className="table-auto mb-20">
+      <table className="table-auto mb-20">
         <thead>
           <tr>
             <th className="px-4 py-2">Category</th>
@@ -16,13 +16,11 @@ const ReadRecords = () => {
             <th className="px-4 py-2">Action</th>
           </tr>
         </thead>
-        <tbody> */}
+        <tbody> 
           {/* //Object.keys makes an array out of the object  */}
-           {/* {Object.keys(categoriesMap).map((title) => (
-            <Fragment key={title}>
-              {categoriesMap[title].map((record) => (
+         {recordsMap.map((record) => (
                 <tr key={record.id}>
-                  <td className="border px-4 py-2 bg-blue-100">{title}</td>
+                  <td className="border px-4 py-2 bg-blue-100">{record.category}</td>
                   <td className="border px-4 py-2  bg-blue-50">
                     {record.item}
                   </td>
@@ -30,13 +28,31 @@ const ReadRecords = () => {
                     {record.price} €
                   </td>
                 </tr>
-              ))}
-            </Fragment>
-          ))}
+         )
+          )}
         </tbody>
-      </table> */}
+      </table>
     </>
   );
 };
 
 export default ReadRecords;
+
+{/* <tbody> 
+{/* //Object.keys makes an array out of the object  */}
+// {Object.keys(recordsMap).map((item) => (
+//   <Fragment key={item}>
+//     {recordsMap[item].map((record) => (
+//       <tr key={record.id}>
+//         <td className="border px-4 py-2 bg-blue-100">{item}</td>
+//         <td className="border px-4 py-2  bg-blue-50">
+//           {record.item}
+//         </td>
+//         <td className="border px-4 py-2 bg-blue-50">
+//           {record.price} €
+//         </td>
+//       </tr>
+//     ))}
+//   </Fragment>
+// ))}
+// </tbody> */}

@@ -1,15 +1,14 @@
-import { db } from "./firebase-auth.config";
-
 import {
-  collection,
-  getDocs,
-  getDoc,
   addDoc,
-  updateDoc,
+  collection,
   deleteDoc,
   doc,
-  query
-} from "firebase/firestore";
+  getDoc,
+  getDocs,
+  query,
+  updateDoc} from "firebase/firestore";
+
+import { db } from "./firebase-auth.config";
 
 const collectionRef = collection(db, "records");
 
@@ -37,17 +36,17 @@ export const getRecord = (id) => {
 };
 
 //retrieving categories and documents from firebase
-export const getCategoriesAndDocuments = async () => {
+export const getDocuments = async () => {
   const collectionRef = collection(db, "records");
   const q = query(collectionRef);
 
   //getDocs - fetching document snapshots
   const querySnapshot = await getDocs(q);
   //turning array of elements into the categoryMap object
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-  return categoryMap;
+  const recordsMap = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }))
+
+  return recordsMap;
 };

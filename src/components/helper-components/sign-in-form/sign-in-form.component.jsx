@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { signInAuthUserWithEmailAndPassword } from "../../../firebase_config/firebase-auth.config";
 import { useNavigate } from "react-router-dom";
 
-import FormInput from "../form-input/form-input.component";
+import { signInAuthUserWithEmailAndPassword } from "../../../firebase_config/firebase-auth.config";
 import Button from "../button/button.component";
+import FormInput from "../form-input/form-input.component";
 
 const defaultFormFields = {
   email: "",
@@ -77,7 +77,7 @@ const SignInForm = () => {
           value={password}
         />
         <div className="flex flex-col">
-          <Button type="submit">Sign In</Button>
+          <Button>Sign In</Button>
         </div>
       </form>
     </div>

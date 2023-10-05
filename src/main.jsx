@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
-import { CategoriesProvider} from './contexts/categories.context.jsx'
+import { RecordsProvider} from './contexts/records.context.jsx'
 import { UserProvider } from './contexts/user.context.jsx'
 import App from './App.jsx'
 
@@ -12,9 +12,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
     <UserProvider>
-      <CategoriesProvider>
+      <RecordsProvider>
       <App />
-      </CategoriesProvider>
+      </RecordsProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,

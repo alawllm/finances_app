@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { UserContext } from "../../../contexts/user.context";
 import { Navigate, Outlet} from "react-router-dom";
+
+import { UserContext } from "../../../contexts/user.context";
 
 const PrivateRoutes = () => {
   const { currentUser } = useContext(UserContext);

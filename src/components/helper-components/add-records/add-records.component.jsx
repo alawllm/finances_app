@@ -1,10 +1,11 @@
 import { useState } from "react";
-import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
-import { addRecord } from "../../../firebase_config/firestore-records.config";
-import DropdownCategories from "../dropdown/dropdown.component";
 import { useContext } from "react";
+
 import { UserContext } from "../../../contexts/user.context";
+import { addRecord } from "../../../firebase_config/firestore-records.config";
+import Button from "../button/button.component";
+import DropdownCategories from "../dropdown/dropdown.component";
+import FormInput from "../form-input/form-input.component";
 
 const defaultRecord = {
   category: "clothes",
@@ -93,7 +94,7 @@ const AddRecords = () => {
           value={price}
         />
         <div className="flex flex-col">
-          <Button type="submit">Add record</Button>
+          <Button>Add record</Button>
         </div>
       </form>
     </div>

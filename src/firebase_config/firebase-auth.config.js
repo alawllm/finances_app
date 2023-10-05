@@ -1,26 +1,24 @@
 //AUTHENTICATION
 import { initializeApp } from "firebase/app";
-
 import {
-  getAuth,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
+  getAuth,
   //observable listener - hooking in into a stream of events
   onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
-
 //FIRESTORE
 import {
-  getFirestore,
+  //gives the collection
+  collection,
   //retrieves documents from the database
   doc,
   //getting one doc from firestore
   getDoc,
+  getFirestore,
   //setting the document's data
   setDoc,
-  //gives the collection
-  collection,
   writeBatch,
 } from "firebase/firestore";
 

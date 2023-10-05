@@ -1,21 +1,21 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useEffect,useState } from "react";
 
-import { getCategoriesAndDocuments } from "../firebase_config/firebase-auth.config";
+import { getDocuments } from "../firebase_config/firestore-records.config";
 
-export const CategoriesContext = createContext({
+export const RecordsContext = createContext({
   categories: [],
 });
 
-export const CategoriesProvider = ({ children }) => {
+export const RecordsProvider = ({ children }) => {
   const [recordsMap, setRecordsMap] = useState({});
 
   useEffect(() => {
-    const getCategoriesMap = async () => {
-      const recordsMap = await getCategoriesAndDocuments();
-      console.log("category map", recordsMap);
+    const getRecordsMap = async () => {
+      const recordsMap = await getDocuments();
+      console.log("records map", recordsMap);
       setRecordsMap(recordsMap);
     };
-    getCategoriesMap();
+    getRecordsMap();
 
     //adding initial data
     // const addCollections = async() => {
@@ -28,8 +28,8 @@ export const CategoriesProvider = ({ children }) => {
   const value = { recordsMap };
 
   return (
-    <CategoriesContext.Provider value={value}>
+    <RecordsContext.Provider value={value}>
       {children}
-    </CategoriesContext.Provider>
+    </RecordsContext.Provider>
   );
 };

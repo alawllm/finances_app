@@ -6,7 +6,9 @@ import {
   getDoc,
   getDocs,
   query,
-  updateDoc} from "firebase/firestore";
+  updateDoc,
+  where,
+} from "firebase/firestore";
 
 import { db } from "./firebase-auth.config";
 
@@ -36,17 +38,20 @@ export const getRecord = (id) => {
 };
 
 //retrieving categories and documents from firebase
-export const getDocuments = async () => {
+//for the current user id
+export const getDocuments = async (uid) => {
   const collectionRef = collection(db, "records");
-  const q = query(collectionRef);
-
-  //getDocs - fetching document snapshots
-  const querySnapshot = await getDocs(q);
-  //turning array of elements into the categoryMap object
-  const recordsMap = querySnapshot.docs.map((doc) => ({
-    ...doc.data(),
-    id: doc.id,
-  }))
-
-  return recordsMap;
+  const q = query(collectionRef ,where("uid", "==", uid));
+  try {
+    //getDocs - fetching document snapshots
+    const querySnapshot = await getDocs(q);
+    //turning array of elements into the categoryMap object
+    const recordsMap = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    return recordsMap;
+  } catch (error) {
+    console.log("error getting documents", error);
+  }
 };

@@ -40,7 +40,7 @@ const AddRecords = () => {
   //update the map every time a new record has been added
   const handleRecordAddition = async (newRecord) => {
     await addRecord(newRecord);
-    const updatedRecords = await getDocuments();
+    const updatedRecords = await getDocuments(uid);
     setRecords(updatedRecords)
   } 
 

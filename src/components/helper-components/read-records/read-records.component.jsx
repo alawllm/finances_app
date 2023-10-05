@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 
 import { RecordsContext } from "../../../contexts/records.context";
+import { UserContext } from "../../../contexts/user.context";
 import { deleteDocument } from "../../../firebase_config/firestore-records.config";
 import { getDocuments } from "../../../firebase_config/firestore-records.config";
 import ButtonDelete from "../button-delete/button-delete.component";
@@ -8,21 +9,22 @@ import ButtonDelete from "../button-delete/button-delete.component";
 const ReadRecords = () => {
   //retrieving downloaded data from the database
   const { records, setRecords } = useContext(RecordsContext);
+  const {uid} = useContext(UserContext);
 
   const handleClick = async(id) => {
     deleteDocument(id);
-    const updatedRecords = await getDocuments();
+    const updatedRecords = await getDocuments(uid);
     setRecords(updatedRecords);
   };
 
   //useEffect runs every time the setRecordsMap changes
   useEffect(() => {
     const updateRec = async () => {
-      const updatedRecords = await getDocuments();
+      const updatedRecords = await getDocuments(uid);
       setRecords(updatedRecords);
     };
     updateRec();
-  }, [setRecords]);
+  }, [setRecords, uid]);
 
   return (
     <>

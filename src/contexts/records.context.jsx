@@ -1,19 +1,20 @@
-import { createContext, useEffect,useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import { getDocuments } from "../firebase_config/firestore-records.config";
 
 export const RecordsContext = createContext({
-  categories: [],
+  records: [],
+  setRecords: () => {},
 });
 
 export const RecordsProvider = ({ children }) => {
-  const [recordsMap, setRecordsMap] = useState({});
+  const [records, setRecords] = useState([]);
 
+  //download the records initially
   useEffect(() => {
     const getRecordsMap = async () => {
       const recordsMap = await getDocuments();
-      console.log("records map", recordsMap);
-      setRecordsMap(recordsMap);
+      setRecords(recordsMap);
     };
     getRecordsMap();
 
@@ -25,11 +26,9 @@ export const RecordsProvider = ({ children }) => {
     // addCollections();
   }, []);
 
-  const value = { recordsMap };
+  const value = { records, setRecords };
 
   return (
-    <RecordsContext.Provider value={value}>
-      {children}
-    </RecordsContext.Provider>
+    <RecordsContext.Provider value={value}>{children}</RecordsContext.Provider>
   );
 };

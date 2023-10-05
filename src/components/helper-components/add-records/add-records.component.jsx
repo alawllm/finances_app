@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useContext } from "react";
 
+import { RecordsContext } from "../../../contexts/records.context";
 import { UserContext } from "../../../contexts/user.context";
 import { addRecord } from "../../../firebase_config/firestore-records.config";
+import { getDocuments } from "../../../firebase_config/firestore-records.config";
 import Button from "../button/button.component";
 import DropdownCategories from "../dropdown/dropdown.component";
 import FormInput from "../form-input/form-input.component";
@@ -22,6 +24,8 @@ const AddRecords = () => {
 
   const { uid } = useContext(UserContext);
 
+  const {setRecords} = useContext(RecordsContext);
+
   const resetRecord = () => {
     setRecord(defaultRecord);
   };
@@ -32,6 +36,13 @@ const AddRecords = () => {
 
     setRecord({ ...record, [name]: value });
   };
+
+  //update the map every time a new record has been added
+  const handleRecordAddition = async (newRecord) => {
+    await addRecord(newRecord);
+    const updatedRecords = await getDocuments();
+    setRecords(updatedRecords)
+  } 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -47,7 +58,7 @@ const AddRecords = () => {
         };
         //updating entry in the firestore
         //takes id and updated record
-        await addRecord(newRecord);
+        handleRecordAddition(newRecord)
         setMessage({ error: false, msg: "New record added succesfully" });
       } catch (err) {
         setMessage({ error: true, msg: "an error occured" });

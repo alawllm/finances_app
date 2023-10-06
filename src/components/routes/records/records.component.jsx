@@ -4,8 +4,10 @@ import ReadRecords from "../../helper-components/read-records/read-records.compo
 const Records = () => {
     return(
         <>
+        <div className="flex flex-col sm:flex-row ">
         <AddRecords/>
         <ReadRecords/>
+        </div>
         </>
     )
 }

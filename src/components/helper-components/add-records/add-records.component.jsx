@@ -11,6 +11,7 @@ import FormInput from "../form-input/form-input.component";
 
 const defaultRecord = {
   category: "clothes",
+  date: "",
   item: "",
   price: 0,
 };
@@ -20,11 +21,11 @@ const categoriesList = ["clothes", "food", "education", "household", "travel"];
 const AddRecords = () => {
   const [record, setRecord] = useState(defaultRecord);
   const [message, setMessage] = useState({ error: false, msg: "" });
-  const { category, item, price } = record;
+  const { category, item, price, date } = record;
 
   const { uid } = useContext(UserContext);
 
-  const {setRecords} = useContext(RecordsContext);
+  const { setRecords } = useContext(RecordsContext);
 
   const resetRecord = () => {
     setRecord(defaultRecord);
@@ -41,25 +42,26 @@ const AddRecords = () => {
   const handleRecordAddition = async (newRecord) => {
     await addRecord(newRecord);
     const updatedRecords = await getDocuments(uid);
-    setRecords(updatedRecords)
-  } 
+    setRecords(updatedRecords);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (record.item === "" || record.price <= 0) {
+    if (record.item === "" || record.price <= 0 || record.date==='') {
       setMessage({ error: true, msg: "All fields are mandatory" });
     } else {
       try {
         const newRecord = {
-          uid: uid,
+          category: record.category,
+          date: record.date,
           item: record.item,
           price: record.price,
-          category: record.category,
+          uid: uid,
         };
         //updating entry in the firestore
         //takes id and updated record
-        handleRecordAddition(newRecord)
-        setMessage({ error: false, msg: "New record added succesfully" });
+        handleRecordAddition(newRecord);
+        setMessage({ error: false, msg: "Added succesfully" });
       } catch (err) {
         setMessage({ error: true, msg: "an error occured" });
         console.log(err);
@@ -69,8 +71,8 @@ const AddRecords = () => {
   };
 
   return (
-    <div className="m-10">
-      <h1 className="m-5">Here you can add your records</h1>
+    <div className="m-10 text-center flex flex-col justify-start">
+      <h1 className="text-center font-bold text-2xl text-blue-700 mb-5">Add records</h1>
       {message && (
         <>
           <span className="text-sky-500 text-center">{message.msg}</span>
@@ -104,8 +106,16 @@ const AddRecords = () => {
           name="price"
           value={price}
         />
+           <FormInput
+          label="date"
+          type="date" // Use type="date" for date input
+          required
+          onChange={handleChange}
+          name="date"
+          value={date}
+        />
         <div className="flex flex-col">
-          <Button>Add record</Button>
+          <Button>+</Button>
         </div>
       </form>
     </div>

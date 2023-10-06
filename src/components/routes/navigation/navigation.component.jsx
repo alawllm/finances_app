@@ -10,7 +10,7 @@ const Navigation = () => {
   return (
     <>
       <div className="flex flex-col bg-blue-30 font-lato text-lg">
-        <div className="bg-blue-200 -300 w-full top-0 fixed py-3">
+        <div className="bg-blue-100 -300 w-full top-0 fixed py-3">
           <Link className="px-5" to="/">
             💸
           </Link>

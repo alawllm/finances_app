@@ -24,6 +24,7 @@ export const updateDocument = (id, updatedRecord) => {
   const recordDoc = doc(db, "records", id);
   return updateDoc(recordDoc, updatedRecord);
 };
+
 export const deleteDocument = (id) => {
   const recordDoc = doc(db, "records", id);
   return deleteDoc(recordDoc);

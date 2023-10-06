@@ -23,6 +23,7 @@ const AddRecords = () => {
   const [message, setMessage] = useState({ error: false, msg: "" });
   const { category, item, price, date } = record;
 
+  //id of the current user
   const { uid } = useContext(UserContext);
 
   const { setRecords } = useContext(RecordsContext);
@@ -41,13 +42,18 @@ const AddRecords = () => {
   //update the map every time a new record has been added
   const handleRecordAddition = async (newRecord) => {
     await addRecord(newRecord);
+    //get documents of the current user
     const updatedRecords = await getDocuments(uid);
     setRecords(updatedRecords);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (record.item === "" || record.price <= 0 || record.date==='') {
+    if (
+      record.item === "" ||
+      record.price <= 0 ||
+      record.date === "dd.mm.yyyy"
+    ) {
       setMessage({ error: true, msg: "All fields are mandatory" });
     } else {
       try {
@@ -72,7 +78,9 @@ const AddRecords = () => {
 
   return (
     <div className="m-10 text-center flex flex-col justify-start">
-      <h1 className="text-center font-bold text-2xl text-blue-700 mb-5">Add records</h1>
+      <h1 className="text-center font-bold text-2xl text-blue-700 mb-5">
+        Add records
+      </h1>
       {message && (
         <>
           <span className="text-sky-500 text-center">{message.msg}</span>
@@ -82,40 +90,41 @@ const AddRecords = () => {
         className="flex flex-col items-center rounded px-8"
         onSubmit={handleSubmit}>
         <DropdownCategories
-          label="category"
-          categoryOptions={categoriesList}
-          value={category}
+          required
           name="category"
+          label="category"
+          value={category}
+          categoryOptions={categoriesList}
           onChange={handleChange}
-          required
         />
-
         <FormInput
-          label="item"
-          type="text"
           required
-          onChange={handleChange}
+          type="text"
+          label="item"
           name="item"
           value={item}
+          placeholder="item"
+          onChange={handleChange}
         />
         <FormInput
-          label="price"
-          type="number"
           required
-          onChange={handleChange}
+          type="number"
+          label="price"
           name="price"
           value={price}
-        />
-           <FormInput
-          label="date"
-          type="date" // Use type="date" for date input
-          required
+          placeholder="0"
           onChange={handleChange}
+        />
+        <FormInput
+          required
+          type="date"
+          label="date"
           name="date"
           value={date}
+          onChange={handleChange}
         />
         <div className="flex flex-col">
-          <Button>+</Button>
+          <Button type="submit" >+</Button>
         </div>
       </form>
     </div>

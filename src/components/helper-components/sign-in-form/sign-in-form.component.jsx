@@ -60,21 +60,21 @@ const SignInForm = () => {
         action=""
         onSubmit={handleSubmit}>
         <FormInput
+          required
           label="Email"
           type="email"
-          required
-          onChange={handleChange}
           name="email"
           value={email}
+          onChange={handleChange}
         />
 
         <FormInput
+          required
           label="Password"
           type="password"
-          required
-          onChange={handleChange}
           name="password"
           value={password}
+          onChange={handleChange}
         />
         <div className="flex flex-col">
           <Button>Sign In</Button>

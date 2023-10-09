@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { RecordsContext } from "../../../contexts/records.context";
 import { UserContext } from "../../../contexts/user.context";
@@ -8,8 +8,12 @@ import { updateDocument } from "../../../firebase_config/firestore-records.confi
 import TableRow from "../table-row/table-row.component";
 
 const ReadRecords = () => {
+  //is the update button clicked?
+  const [clicked, setClicked] = useState(false);
+  const [clickedRecord, setClickedRecord] = useState(null);
   //retrieving downloaded data from the database
   const { records, setRecords } = useContext(RecordsContext);
+  //user id
   const { uid } = useContext(UserContext);
 
   //delete document by id
@@ -17,15 +21,26 @@ const ReadRecords = () => {
     await deleteDocument(id);
     //get documents for the current user
     const updatedRecords = await getDocuments(uid);
+    //setRecords communicated with the context
     setRecords(updatedRecords);
   };
 
+  //set clicked to true when the update button is clicked
+  const handleClickUpdate = (record) => {
+    setClicked(true);
+    setClickedRecord(record);
+  };
   //update document by id
-  const handleClickUpdate = async (id, updatedDocument) => {
+  const handleUpdate = async (id, updatedDocument) => {
+    if (!clickedRecord) {
+      return;
+    }
     await updateDocument(id, updatedDocument);
     //get documents for the current user
     const updatedRecords = await getDocuments(uid);
     setRecords(updatedRecords);
+    setClicked(false);
+    setClickedRecord(null);
   };
 
   //useEffect runs every time the setRecordsMap or user id changes
@@ -35,6 +50,7 @@ const ReadRecords = () => {
       setRecords(updatedRecords);
     };
     updateRec();
+    //new records fetched every time the user changes or the records are updated
   }, [setRecords, uid]);
 
   return (
@@ -55,16 +71,16 @@ const ReadRecords = () => {
             </tr>
           </thead>
           <tbody>
-            {/* //Object.keys makes an array out of the object  */}
             <></>
             {records.map((record) => (
               <TableRow
                 key={record.id}
                 record={record}
-                onDelete={handleClickDelete}
-                onUpdate={handleClickUpdate}
+                handleClickDelete={handleClickDelete}
+                handleClickUpdate={handleClickUpdate}
               />
             ))}
+            {clicked && clickedRecord && <div>clicked true! record: {clickedRecord}</div>}
           </tbody>
         </table>
       </div>

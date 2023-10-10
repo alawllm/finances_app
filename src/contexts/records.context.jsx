@@ -1,4 +1,4 @@
-import { createContext, useContext,useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { getDocuments } from "../firebase_config/firestore-records.config";
 
@@ -11,7 +11,7 @@ export const RecordsContext = createContext({
 
 export const RecordsProvider = ({ children }) => {
   const [records, setRecords] = useState([]);
-  const {uid} = useContext(UserContext);
+  const { uid } = useContext(UserContext);
 
   //download the records initially
   useEffect(() => {
@@ -28,7 +28,7 @@ export const RecordsProvider = ({ children }) => {
     // }
     // addCollections();
   }, [uid]);
-
+  //value that is stored on the context
   const value = { records, setRecords };
 
   return (

@@ -2,17 +2,22 @@ import { useContext, useEffect, useState } from "react";
 
 import { RecordsContext } from "../../../contexts/records.context";
 import { UserContext } from "../../../contexts/user.context";
-import { deleteDocument } from "../../../firebase_config/firestore-records.config";
-import { getDocuments } from "../../../firebase_config/firestore-records.config";
-import { updateDocument } from "../../../firebase_config/firestore-records.config";
+import {
+  deleteDocument,
+  getDocuments,
+  updateDocument,
+} from "../../../firebase_config/firestore-records.config";
 import TableRow from "../table-row/table-row.component";
+import UpdateRow from "../update-row/update-row.component";
+
 
 const ReadRecords = () => {
   //is the update button clicked?
-  const [clicked, setClicked] = useState(false);
-  const [clickedRecord, setClickedRecord] = useState(null);
+  const [isClicked, setIsClicked] = useState(false);
+  const [clickedRecord, setClickedRecord] = useState({});
   //retrieving downloaded data from the database
   const { records, setRecords } = useContext(RecordsContext);
+  console.log("records", records);
   //user id
   const { uid } = useContext(UserContext);
 
@@ -26,20 +31,24 @@ const ReadRecords = () => {
   };
 
   //set clicked to true when the update button is clicked
-  const handleClickUpdate = (record) => {
-    setClicked(true);
-    setClickedRecord(record);
+  //retrieve document by id, pass to handleUpdate
+  const handleClickUpdate = async (clickedRecord) => {
+    setIsClicked(true);
+    //pass the id of the clicked record, download the record
+    setClickedRecord(clickedRecord);
+    console.log("handleClickUpdate", clickedRecord);
   };
+  
   //update document by id
-  const handleUpdate = async (id, updatedDocument) => {
+  const handleUpdate = async (clickedRecord) => {
     if (!clickedRecord) {
       return;
     }
-    await updateDocument(id, updatedDocument);
+    await updateDocument(clickedRecord.id, clickedRecord);
     //get documents for the current user
     const updatedRecords = await getDocuments(uid);
     setRecords(updatedRecords);
-    setClicked(false);
+    setIsClicked(false);
     setClickedRecord(null);
   };
 
@@ -66,8 +75,8 @@ const ReadRecords = () => {
               <th className="px-4 py-2">Item</th>
               <th className="px-4 py-2">Price (€)</th>
               <th className="px-4 py-2">Purchased</th>
-              <th className="px-4 py-2">Delete</th>
-              <th className="px-4 py-2">Update</th>
+              <th className="px-4 py-2 text-gray-500">Update</th>
+              <th className="px-4 py-2 text-gray-500">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -76,14 +85,20 @@ const ReadRecords = () => {
               <TableRow
                 key={record.id}
                 record={record}
-                handleClickDelete={handleClickDelete}
                 handleClickUpdate={handleClickUpdate}
+                handleClickDelete={handleClickDelete}
               />
             ))}
-            {clicked && clickedRecord && <div>clicked true! record: {clickedRecord}</div>}
+            {isClicked && (
+              <>
+                <UpdateRow clickedRecord={clickedRecord} handleUpdate={handleUpdate} />
+              </>
+            )}
           </tbody>
         </table>
+        
       </div>
+     
     </>
   );
 };

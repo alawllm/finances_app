@@ -31,6 +31,10 @@ The app is in continuous development.
 - React Router
 - React Context
 
+## 🖇️ Useful Resources
+
+- [How to use and pass functions as react props](https://medium.com/@kkm2059/how-to-use-and-pass-functions-as-props-react-ff677f5bca0b)
+
 ## 🖇️ Links
 
 - Solution URL: [GitHub](https://github.com/alawllm/moniez)

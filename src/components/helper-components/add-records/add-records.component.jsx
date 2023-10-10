@@ -13,7 +13,7 @@ const defaultRecord = {
   category: "clothes",
   date: "",
   item: "",
-  price: 0,
+  price: '',
 };
 
 const categoriesList = ["clothes", "food", "education", "household", "travel"];
@@ -121,10 +121,11 @@ const AddRecords = () => {
           label="date"
           name="date"
           value={date}
+          placeholder="dd.mm.yyyy"
           onChange={handleChange}
         />
         <div className="flex flex-col">
-          <Button type="submit" >+</Button>
+          <Button type="submit">+</Button>
         </div>
       </form>
     </div>

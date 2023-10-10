@@ -33,8 +33,10 @@ export const getAllDocuments = () => {
   return getDocs(collectionRef);
 };
 
-export const getRecord = (id) => {
+//get document snapshot
+export const getDocSnapshot = (id) => {
   const recordsDoc = doc(db, "records", id);
+  //fetching document snapshot
   return getDoc(recordsDoc);
 };
 

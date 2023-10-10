@@ -13,7 +13,7 @@ const defaultRecord = {
   category: "clothes",
   date: "",
   item: "",
-  price: '',
+  price: "",
 };
 
 const categoriesList = ["clothes", "food", "education", "household", "travel"];
@@ -77,18 +77,19 @@ const AddRecords = () => {
   };
 
   return (
-    <div className="m-10 text-center flex flex-col justify-start">
-      <h1 className="text-center font-bold text-2xl text-blue-700 mb-5">
+    <div className="m-10 flex flex-col justify-start text-center">
+      <h1 className="mb-5 text-center text-2xl font-bold text-blue-700">
         Add records
       </h1>
       {message && (
         <>
-          <span className="text-sky-500 text-center">{message.msg}</span>
+          <span className="text-center text-sky-500">{message.msg}</span>
         </>
       )}
       <form
         className="flex flex-col items-center rounded px-8"
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+      >
         <DropdownCategories
           required
           name="category"

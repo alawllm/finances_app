@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link,Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 import { UserContext } from "../../../contexts/user.context";
 import { signOutUser } from "../../../firebase_config/firebase-auth.config";
@@ -9,8 +9,8 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="flex flex-col bg-blue-30 font-lato text-lg">
-        <div className="bg-blue-100 -300 w-full top-0 fixed py-3">
+      <div className="bg-blue-30 flex flex-col font-lato text-lg">
+        <div className="-300 fixed top-0 w-full bg-blue-100 py-3">
           <Link className="px-5" to="/">
             💸
           </Link>
@@ -27,7 +27,8 @@ const Navigation = () => {
           {currentUser ? (
             <span
               onClick={signOutUser}
-              className="cursor-pointer text-gray-700">
+              className="cursor-pointer text-gray-700"
+            >
               Sign out
             </span>
           ) : (
@@ -36,7 +37,7 @@ const Navigation = () => {
             </Link>
           )}
         </div>
-        <div className="flex  flex-col items-center justify-center h-full mt-20">
+        <div className="mt-20  flex h-full flex-col items-center justify-center">
           <Outlet />
         </div>
       </div>

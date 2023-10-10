@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const UpdateRow = ({ clickedRecord, handleUpdate }) => {
-
   const initialValue = {
     id: clickedRecord.id,
     category: clickedRecord.category,
@@ -19,38 +18,38 @@ const UpdateRow = ({ clickedRecord, handleUpdate }) => {
     setUpdatedRecord((initialValue) => ({ ...initialValue, [name]: value }));
   };
   return (
-    <tr key={id} className="m-0">
-      <td className="border m-0 p-0">
+    <tr key={id} className="">
+      <td className="border">
         <input
-          className=" bg-green-200 text-center m-0 w-max-sm p-0"
+          className=" w-30bg-green-200 text-center"
           type="text"
           name="category"
           value={category}
           onChange={handleChange}
         />
       </td>
-      <td className="border m-0 p-0">
+      <td className="m-0 border p-0">
         <input
-          className="border  bg-green-100 text-center m-0 p-0"
+          className="w-30 border bg-green-100 text-center"
           type="text"
           name="item"
           value={item}
           onChange={handleChange}
         />
       </td>
-      <td className="border m-0 p-0">
+      <td className="border ">
         <input
-          className="border  bg-green-100 text-center m-0 p-0"
+          className="w-30 border bg-green-100 text-center"
           type="text"
           name="price"
           value={price}
           onChange={handleChange}
         />
       </td>
-      <td className="border m-0 p-0">
+      <td className="border">
         <input
-          className="border  bg-green-100 text-center m-0 p-0"
-          type="text"
+          className="w-30 border bg-green-100 text-center"
+          type="date"
           name="date"
           value={date}
           onChange={handleChange}
@@ -58,9 +57,10 @@ const UpdateRow = ({ clickedRecord, handleUpdate }) => {
       </td>
       <td className="text-center">
         <button
-          className=" bg-blue-500 text-white hover:bg-blue-200 border-solid
-         border-2  rounded-full w-8 h-8 text-center"
-          onClick={() => handleUpdate(updatedRecord)}>
+          className=" w-30 h-8 w-8 rounded-full
+         border-2  border-solid bg-blue-500 text-center text-white  hover:bg-blue-200"
+          onClick={() => handleUpdate(updatedRecord)}
+        >
           +
         </button>
       </td>

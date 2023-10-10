@@ -1,5 +1,9 @@
+import { useMediaQuery } from "react-responsive";
+
 const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
   const { id, category, item, price, date } = record;
+
+  const isSmallScreen = useMediaQuery({ maxWidth: 750 });
 
   const categoryColors = {
     clothes: "bg-blue-200",
@@ -10,26 +14,39 @@ const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
   };
 
   const categoryColor = categoryColors[category] || "bg-white";
+  const categoryContent = isSmallScreen ? category.charAt(0) : category;
   // button - separate component?
   return (
     <tr key={id}>
-      <td className={`border border-slate-400 py-1 px-2 ${categoryColor} w-auto`}>{category}</td>
-      <td className="border border-slate-400 py-1  px-2 bg-white w-auto">{item}</td>
-      <td className="border border-slate-400 py-1 px-2 bg-white w-auto">{price} €</td>
-      <td className="border border-slate-400 py-1 px-2 bg-white w-auto">{date}</td>
-      <td className="text-center w-auto py-1">
+      <td
+        className={`border border-slate-400 px-2 py-1 ${categoryColor} w-auto text-left`}
+      >
+        {categoryContent}
+      </td>
+      <td className="w-auto border border-slate-400  bg-white px-2 py-1 text-left">
+        {item}
+      </td>
+      <td className="w-auto border border-slate-400 bg-white px-2 py-1">
+        {price} €
+      </td>
+      <td className="w-auto border border-slate-400 bg-white px-2 py-1">
+        {date}
+      </td>
+      <td className="w-auto py-1 text-center">
         <button
-          className=" bg-white text-gray-500 hover:text-blue-600 hover:bg-blue-100 border-solid
-       border-2 border-slate-500 rounded-full w-8 h-8 text-center"
-          onClick={() => handleClickUpdate(record)}>
+          className=" h-8 w-8 rounded-full border-2 border-solid
+       border-slate-500 bg-white text-center text-gray-500 hover:bg-blue-100 hover:text-blue-600"
+          onClick={() => handleClickUpdate(record)}
+        >
           u
         </button>
       </td>
-      <td className="text-center w-auto py-1">
+      <td className="w-auto py-1 text-center">
         <button
-          className=" bg-white text-gray-500 hover:text-red-500 hover:bg-red-100 border-solid
-       border-2 border-slate-500 rounded-full w-8 h-8 text-center"
-          onClick={() => handleClickDelete(record.id)}>
+          className=" h-8 w-8 rounded-full border-2 border-solid
+       border-slate-500 bg-white text-center text-gray-500 hover:bg-red-100 hover:text-red-500"
+          onClick={() => handleClickDelete(record.id)}
+        >
           -
         </button>
       </td>

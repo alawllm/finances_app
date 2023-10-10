@@ -1,13 +1,14 @@
 const DropdownCategories = ({ label, categoryOptions, value, onChange }) => {
   return (
-    <div className="flex flex-col items-center m-2">
-      <label className="block text-gray-700 font-bold m-2">{label}</label>
-      
+    <div className="m-2 flex flex-col items-center">
+      <label className="m-2 block font-bold text-gray-700">{label}</label>
+
       <select
-        className="border rounded py-0.5 px-3 focus:outline-none focus:shadow-outline w-48"
+        className="focus:shadow-outline w-48 rounded-md border px-3 py-0.5 focus:outline-none"
         name={label}
         value={value}
-        onChange={onChange}>
+        onChange={onChange}
+      >
         {categoryOptions.map((categoryOption) => (
           <option key={categoryOption} value={categoryOption}>
             {categoryOption}

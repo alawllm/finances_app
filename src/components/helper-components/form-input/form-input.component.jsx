@@ -1,15 +1,15 @@
 const FormInput = ({ label, placeholder, ...otherProps }) => {
   return (
-    <div className="flex flex-col items-center m-2">
+    <div className="m-2 flex flex-col items-center">
       {label && (
         // add effect if no length then shrink
-        <label className="block text-gray-700 font-bold mb-2 text-center">
+        <label className="mb-2 block text-center font-bold text-gray-700">
           {" "}
           {label}
         </label>
       )}
       <input
-        className="appearance-none border rounded py-0.5 px-3 leading-tight focus:outline-none focus:shadow-outline w-48 text-center"
+        className="focus:shadow-outline w-48 appearance-none rounded-md border px-3 py-0.5 text-center leading-tight focus:outline-none"
         placeholder={placeholder}
         {...otherProps}
       />

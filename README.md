@@ -27,6 +27,7 @@ The app is in continuous development.
 - Tailwind CSS
 - Firebase
 - Firestore
+- React Responsive NPM Package
 
 ## 🖇️ Useful Resources
 

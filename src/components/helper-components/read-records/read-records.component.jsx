@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import { RecordsContext } from "../../../contexts/records.context";
 import { UserContext } from "../../../contexts/user.context";
@@ -10,7 +11,6 @@ import {
 import TableRow from "../table-row/table-row.component";
 import UpdateRow from "../update-row/update-row.component";
 
-
 const ReadRecords = () => {
   //is the update button clicked?
   const [isClicked, setIsClicked] = useState(false);
@@ -20,6 +20,8 @@ const ReadRecords = () => {
   console.log("records", records);
   //user id
   const { uid } = useContext(UserContext);
+
+  const isSmallScreen = useMediaQuery({ maxWidth: 750 });
 
   //delete document by id
   const handleClickDelete = async (id) => {
@@ -38,7 +40,7 @@ const ReadRecords = () => {
     setClickedRecord(clickedRecord);
     console.log("handleClickUpdate", clickedRecord);
   };
-  
+
   //update document by id
   const handleUpdate = async (updatedRecord) => {
     if (!clickedRecord) {
@@ -64,19 +66,23 @@ const ReadRecords = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-start text-center h-full m-10">
-        <h1 className="text-center font-bold text-2xl text-blue-700 mb-5">
+      <div className="m-10 flex h-full flex-col justify-start text-center">
+        <h1 className="mb-5 text-center text-2xl font-bold text-blue-700">
           Review records
         </h1>
-        <table className="table-auto">
+        <table className="table-fixed">
           <thead>
             <tr>
-              <th className="px-4 py-2">Category</th>
+              <th className="px-4 py-2">
+                {isSmallScreen ? "Cat" : "Category"}
+              </th>
               <th className="px-4 py-2">Item</th>
               <th className="px-4 py-2">Price (€)</th>
-              <th className="px-4 py-2">Purchased</th>
-              <th className="px-2 py-2 text-gray-500">Update</th>
-              <th className="px-2 py-2 text-gray-500">Delete</th>
+              <th className="px-4 py-2">Date</th>
+              <th className="px-2 py-2 text-gray-500">Edit</th>
+              <th className="px-2 py-2 text-gray-500">
+                {isSmallScreen ? "Del" : "Delete"}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -89,16 +95,17 @@ const ReadRecords = () => {
                 handleClickDelete={handleClickDelete}
               />
             ))}
-             {isClicked && (
+            {isClicked && (
               <>
-                <UpdateRow clickedRecord={clickedRecord} handleUpdate={handleUpdate} />
+                <UpdateRow
+                  clickedRecord={clickedRecord}
+                  handleUpdate={handleUpdate}
+                />
               </>
             )}
           </tbody>
         </table>
-        
       </div>
-     
     </>
   );
 };

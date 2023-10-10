@@ -89,12 +89,13 @@ const ReadRecords = () => {
                 handleClickDelete={handleClickDelete}
               />
             ))}
-            {isClicked && (
+           
+          </tbody>
+          {isClicked && (
               <>
                 <UpdateRow clickedRecord={clickedRecord} handleUpdate={handleUpdate} />
               </>
             )}
-          </tbody>
         </table>
         
       </div>

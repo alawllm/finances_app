@@ -7,16 +7,14 @@ The app is in continuous development.
 
 **Implemented features:**
 
-- create their own account with email and password
-- log in
-- create records
-- see all records
-- delete records
-
-**Main planned features MVP:**
-
 - firebase authentication and authorization
 - storing records in firestore database
+- showing records only to users who created them
+- creating, reading, deleting records
+
+**Further planned features MVP:**
+
+- possibility to create ledgers with access for more than one user
 - choosing records depending on a category
 - CRUD functionality
 - hover and focus states for the interactive elements on the page;
@@ -24,12 +22,11 @@ The app is in continuous development.
 
 ## 👨‍💻 Tech Stack
 
-- React
+- React (Router, Context)
 - app build React Vite
 - Tailwind CSS
 - Firebase
-- React Router
-- React Context
+- Firestore
 
 ## 🖇️ Useful Resources
 

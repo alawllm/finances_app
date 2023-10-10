@@ -5,9 +5,9 @@ import { RecordsContext } from "../../../contexts/records.context";
 import { UserContext } from "../../../contexts/user.context";
 import { addRecord } from "../../../firebase_config/firestore-records.config";
 import { getDocuments } from "../../../firebase_config/firestore-records.config";
-import Button from "../button/button.component";
-import DropdownCategories from "../dropdown/dropdown.component";
-import FormInput from "../form-input/form-input.component";
+import Button from "../../helper-components/button/button.component";
+import DropdownCategories from "../../helper-components/dropdown/dropdown.component";
+import FormInput from "../../helper-components/form-input/form-input.component";
 
 const defaultRecord = {
   category: "clothes",

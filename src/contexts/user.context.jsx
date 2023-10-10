@@ -1,8 +1,9 @@
-import { createContext, useEffect,useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import {
   createUserDocumentFromAuth,
-  onAuthStateChangedListener} from "../firebase_config/firebase-auth.config";
+  onAuthStateChangedListener,
+} from "../firebase_config/firebase-auth.config";
 
 //the value
 export const UserContext = createContext({
@@ -19,17 +20,17 @@ export const UserProvider = ({ children }) => {
   const [uid, setUserId] = useState(null);
   //current user - userDocRef from the Firestore database
   const value = { currentUser, setCurrentUser, uid, setUserId };
-  console.log('current user',currentUser)
-  console.log('user id',uid)
+  console.log("current user", currentUser);
+  console.log("user id", uid);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
-        if(user){
-            createUserDocumentFromAuth()
-        }
+      if (user) {
+        createUserDocumentFromAuth();
+      }
       //set to either authenticated user or null
       setCurrentUser(user);
-      setUserId(user.uid)
+      setUserId(user.uid);
     });
     return unsubscribe;
   }, []);

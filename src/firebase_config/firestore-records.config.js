@@ -44,7 +44,7 @@ export const getDocSnapshot = (id) => {
 //for the current user id
 export const getDocuments = async (uid) => {
   const collectionRef = collection(db, "records");
-  const q = query(collectionRef ,where("uid", "==", uid));
+  const q = query(collectionRef, where("uid", "==", uid));
   try {
     //getDocs - fetching document snapshots
     const querySnapshot = await getDocs(q);

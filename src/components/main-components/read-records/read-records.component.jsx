@@ -8,8 +8,8 @@ import {
   getDocuments,
   updateDocument,
 } from "../../../firebase_config/firestore-records.config";
-import TableRow from "../table-row/table-row.component";
-import UpdateRow from "../update-row/update-row.component";
+import TableRow from "../../helper-components/table-row/table-row.component";
+import UpdateRow from "../../helper-components/update-row/update-row.component";
 
 const ReadRecords = () => {
   //is the update button clicked?

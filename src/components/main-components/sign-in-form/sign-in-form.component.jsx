@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { signInAuthUserWithEmailAndPassword } from "../../../firebase_config/firebase-auth.config";
-import Button from "../button/button.component";
-import FormInput from "../form-input/form-input.component";
+import Button from "../../helper-components/button/button.component";
+import FormInput from "../../helper-components/form-input/form-input.component";
 
 const defaultFormFields = {
   email: "",
@@ -46,19 +46,20 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="p-2 m-5 rounded shadow-md">
+    <div className="m-5 rounded p-2 shadow-md">
       {/* block text-gray-700 text-sm font-bold mb-2 */}
-      <h2 className=" text-gray-700 font-bold mb-2 mt-2">
+      <h2 className=" mb-2 mt-2 font-bold text-gray-700">
         Already have an account?
       </h2>
-      <span className=" text-gray-700 font-bold mb-2">
+      <span className=" mb-2 font-bold text-gray-700">
         Sign in with your email and password
       </span>
       {/* form should not be submitable until the fields are filled  */}
       <form
         className="flex flex-col items-center rounded px-8"
         action=""
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+      >
         <FormInput
           required
           label="Email"

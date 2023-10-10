@@ -50,7 +50,7 @@ console.log("db", db);
 //adding initial data
 export const addCollectionAndDocuments = async (
   collectionKey,
-  objectsToAdd
+  objectsToAdd,
 ) => {
   const collectionRef = collection(db, collectionKey);
   //storing collections as separate documents
@@ -68,7 +68,7 @@ export const addCollectionAndDocuments = async (
 //creating user reference in the firestore database
 export const createUserDocumentFromAuth = async (
   userAuth,
-  additionalInformation = {}
+  additionalInformation = {},
 ) => {
   if (!userAuth) return;
 

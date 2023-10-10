@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 const UpdateRow = ({ clickedRecord, handleUpdate }) => {
+
   const initialValue = {
     id: clickedRecord.id,
     category: clickedRecord.category,
@@ -17,38 +19,38 @@ const UpdateRow = ({ clickedRecord, handleUpdate }) => {
     setUpdatedRecord((initialValue) => ({ ...initialValue, [name]: value }));
   };
   return (
-    <tr key={id} className="w-auto">
-      <td className="border m-0">
+    <tr key={id} className="m-0">
+      <td className="border m-0 p-0">
         <input
-          className=" bg-blue-100 w-auto text-center m-0"
+          className=" bg-green-200 text-center m-0 w-max-sm p-0"
           type="text"
           name="category"
           value={category}
           onChange={handleChange}
         />
       </td>
-      <td className="border m-0">
+      <td className="border m-0 p-0">
         <input
-          className="border  bg-blue-100 w-auto text-center m-0"
+          className="border  bg-green-100 text-center m-0 p-0"
           type="text"
           name="item"
           value={item}
           onChange={handleChange}
         />
       </td>
-      <td className="border m-0">
+      <td className="border m-0 p-0">
         <input
-          className="border  bg-blue-100 w-auto text-center m-0"
+          className="border  bg-green-100 text-center m-0 p-0"
           type="text"
           name="price"
           value={price}
           onChange={handleChange}
         />
       </td>
-      <td className="border m-0">
+      <td className="border m-0 p-0">
         <input
-          className="border  bg-blue-100 w-auto text-center m-0"
-          type="date"
+          className="border  bg-green-100 text-center m-0 p-0"
+          type="text"
           name="date"
           value={date}
           onChange={handleChange}

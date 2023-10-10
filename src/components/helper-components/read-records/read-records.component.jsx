@@ -40,11 +40,11 @@ const ReadRecords = () => {
   };
   
   //update document by id
-  const handleUpdate = async (clickedRecord) => {
+  const handleUpdate = async (updatedRecord) => {
     if (!clickedRecord) {
       return;
     }
-    await updateDocument(clickedRecord.id, clickedRecord);
+    await updateDocument(updatedRecord.id, updatedRecord);
     //get documents for the current user
     const updatedRecords = await getDocuments(uid);
     setRecords(updatedRecords);
@@ -75,8 +75,8 @@ const ReadRecords = () => {
               <th className="px-4 py-2">Item</th>
               <th className="px-4 py-2">Price (€)</th>
               <th className="px-4 py-2">Purchased</th>
-              <th className="px-4 py-2 text-gray-500">Update</th>
-              <th className="px-4 py-2 text-gray-500">Delete</th>
+              <th className="px-2 py-2 text-gray-500">Update</th>
+              <th className="px-2 py-2 text-gray-500">Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -89,13 +89,12 @@ const ReadRecords = () => {
                 handleClickDelete={handleClickDelete}
               />
             ))}
-           
-          </tbody>
-          {isClicked && (
+             {isClicked && (
               <>
                 <UpdateRow clickedRecord={clickedRecord} handleUpdate={handleUpdate} />
               </>
             )}
+          </tbody>
         </table>
         
       </div>

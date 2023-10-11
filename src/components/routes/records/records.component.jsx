@@ -4,7 +4,7 @@ import ReadRecords from "../../main-components/read-records/read-records.compone
 const Records = () => {
   return (
     <>
-      <div className="flex flex-col lg:flex-row ">
+      <div className="flex flex-col ">
         <AddRecords />
         <ReadRecords />
       </div>

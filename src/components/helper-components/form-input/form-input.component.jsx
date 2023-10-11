@@ -2,7 +2,6 @@ const FormInput = ({ label, placeholder, ...otherProps }) => {
   return (
     <div className="m-2 flex flex-col items-center">
       {label && (
-        // add effect if no length then shrink
         <label className="mb-2 block text-center font-bold text-gray-700">
           {" "}
           {label}

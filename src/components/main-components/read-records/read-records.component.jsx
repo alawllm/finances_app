@@ -12,42 +12,31 @@ import ModalUpdate from "../../helper-components/modal-update/modal-update.compo
 import TableRow from "../../helper-components/table-row/table-row.component";
 
 const ReadRecords = () => {
-  //is the update button clicked?
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickedRecord, setClickedRecord] = useState({});
-  //retrieving downloaded data from the database
   const { records, setRecords } = useContext(RecordsContext);
   console.log("records", records);
-  //user id
   const { uid } = useContext(UserContext);
 
   const isSmallScreen = useMediaQuery({ maxWidth: 750 });
 
-  //delete document by id
   const handleClickDelete = async (id) => {
     await deleteDocument(id);
-    //get documents for the current user
     const updatedRecords = await getDocuments(uid);
-    //setRecords communicated with the context
     setRecords(updatedRecords);
   };
 
-  //set clicked to true when the update button is clicked
-  //retrieve document by id, pass to handleUpdate
   const handleClickUpdate = async (clickedRecord) => {
     setIsModalOpen(true);
-    //pass the id of the clicked record, download the record
     setClickedRecord(clickedRecord);
     console.log("handleClickUpdate", clickedRecord);
   };
 
-  //update document by id
   const handleUpdate = async (updatedRecord) => {
     if (!clickedRecord) {
       return;
     }
     await updateDocument(updatedRecord.id, updatedRecord);
-    //get documents for the current user
     const updatedRecords = await getDocuments(uid);
     setRecords(updatedRecords);
     setClickedRecord(null);
@@ -57,14 +46,12 @@ const ReadRecords = () => {
     setIsModalOpen(false);
   };
 
-  //useEffect runs every time the setRecordsMap or user id changes
   useEffect(() => {
     const updateRec = async () => {
       const updatedRecords = await getDocuments(uid);
       setRecords(updatedRecords);
     };
     updateRec();
-    //new records fetched every time the user changes or the records are updated
   }, [setRecords, uid]);
 
   return (

@@ -21,14 +21,12 @@ const SignInForm = () => {
   };
 
   const handleChange = (event) => {
-    //target gives the input
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
 
   //on submit - try to log in authorized user with email and password
   //when success redirect to records
-  //when error display error
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -47,14 +45,12 @@ const SignInForm = () => {
 
   return (
     <div className="m-5 rounded p-2 shadow-md">
-      {/* block text-gray-700 text-sm font-bold mb-2 */}
       <h2 className=" mb-2 mt-2 font-bold text-gray-700">
         Already have an account?
       </h2>
       <span className=" mb-2 font-bold text-gray-700">
         Sign in with your email and password
       </span>
-      {/* form should not be submitable until the fields are filled  */}
       <form
         className="flex flex-col items-center rounded px-8"
         action=""

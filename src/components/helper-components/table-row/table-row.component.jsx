@@ -15,7 +15,6 @@ const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
 
   const categoryColor = categoryColors[category] || "bg-white";
   const categoryContent = isSmallScreen ? category.charAt(0) : category;
-  // button - separate component?
   return (
     <tr key={id}>
       <td

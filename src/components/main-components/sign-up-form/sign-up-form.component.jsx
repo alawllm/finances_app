@@ -26,14 +26,12 @@ const SignUpForm = () => {
   };
 
   const handleChange = (event) => {
-    //target gives the input
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
 
   //on submit try to create authorized user with email and password
   //then create user document and redirect to records
-  //if error display error
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -62,14 +60,12 @@ const SignUpForm = () => {
 
   return (
     <div className="m-5 rounded p-2 shadow-md">
-      {/* block text-gray-700 text-sm font-bold mb-2 */}
       <h2 className=" mb-2 mt-2 font-bold text-gray-700">
         Don`t have an account?
       </h2>
       <span className=" mb-2 font-bold text-gray-700">
         Sign up with your email and password
       </span>
-      {/* form should not be submitable until the fields are filled  */}
       <form
         className="flex flex-col items-center rounded px-8"
         action=""

@@ -23,7 +23,6 @@ const AddRecords = () => {
   const [message, setMessage] = useState({ error: false, msg: "" });
   const { category, item, price, date } = record;
 
-  //id of the current user
   const { uid } = useContext(UserContext);
 
   const { setRecords } = useContext(RecordsContext);
@@ -33,16 +32,13 @@ const AddRecords = () => {
   };
 
   const handleChange = (event) => {
-    //target gives the input
     const { name, value } = event.target;
 
     setRecord({ ...record, [name]: value });
   };
 
-  //update the map every time a new record has been added
   const handleRecordAddition = async (newRecord) => {
     await addRecord(newRecord);
-    //get documents of the current user
     const updatedRecords = await getDocuments(uid);
     setRecords(updatedRecords);
   };
@@ -64,8 +60,7 @@ const AddRecords = () => {
           price: record.price,
           uid: uid,
         };
-        //updating entry in the firestore
-        //takes id and updated record
+
         handleRecordAddition(newRecord);
         setMessage({ error: false, msg: "Added succesfully" });
       } catch (err) {

@@ -59,7 +59,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="m-5 rounded p-2 shadow-md">
+    <div className="m-10 rounded p-2 shadow-md">
       <h2 className=" mb-2 mt-2 font-bold text-gray-700">
         Don`t have an account?
       </h2>

@@ -37,7 +37,7 @@ const Navigation = () => {
             </Link>
           )}
         </div>
-        <div className="mt-20  flex h-full flex-col items-center justify-center">
+        <div className="flex min-h-screen flex-col items-center justify-center">
           <Outlet />
         </div>
       </div>

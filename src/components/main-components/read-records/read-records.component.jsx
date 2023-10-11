@@ -14,8 +14,10 @@ import TableRow from "../../helper-components/table-row/table-row.component";
 const ReadRecords = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickedRecord, setClickedRecord] = useState({});
+
   const { records, setRecords } = useContext(RecordsContext);
   console.log("records", records);
+
   const { uid } = useContext(UserContext);
 
   const isSmallScreen = useMediaQuery({ maxWidth: 750 });
@@ -63,14 +65,14 @@ const ReadRecords = () => {
         <table className="table-auto">
           <thead>
             <tr>
-              <th className="px-2 py-2">
+              <th className="text-md p-2 font-bold text-black">
                 {isSmallScreen ? "Cat" : "Category"}
               </th>
-              <th className="px-2 py-2">Item</th>
-              <th className="px-2 py-2">Price (€)</th>
-              <th className="px-2 py-2">Date</th>
-              <th className="px-2 py-2 text-gray-500">Edit</th>
-              <th className="px-2 py-2 text-gray-500">
+              <th className="text-md p-2 font-bold text-black">Item</th>
+              <th className="text-md p-2 font-bold text-black">Price (€)</th>
+              <th className="text-md p-2 font-bold text-black">Date</th>
+              <th className="text-md p-2 font-bold text-gray-600">Edit</th>
+              <th className="text-md p-2 font-bold text-gray-600">
                 {isSmallScreen ? "Del" : "Delete"}
               </th>
             </tr>

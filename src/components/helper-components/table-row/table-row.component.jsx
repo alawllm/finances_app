@@ -6,11 +6,11 @@ const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
   const isSmallScreen = useMediaQuery({ maxWidth: 750 });
 
   const categoryColors = {
-    clothes: "bg-blue-200",
-    food: "bg-teal-200",
-    household: "bg-purple-200",
-    education: "bg-cyan-200",
-    travel: "bg-emerald-300",
+    clothes: "bg-blue-100",
+    food: "bg-teal-100",
+    household: "bg-purple-100",
+    education: "bg-cyan-100",
+    travel: "bg-orange-100",
   };
 
   const categoryColor = categoryColors[category] || "bg-white";
@@ -18,32 +18,32 @@ const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
   return (
     <tr key={id}>
       <td
-        className={`border border-slate-400 px-2 py-1 ${categoryColor} w-auto text-left`}
+        className={`border border-slate-300 px-2 py-1 ${categoryColor} w-auto text-left`}
       >
         {categoryContent}
       </td>
-      <td className="w-auto border border-slate-400  bg-white px-2 py-1 text-left">
+      <td className="w-auto border border-slate-300  bg-white px-2 py-1 text-left">
         {item}
       </td>
-      <td className="w-auto border border-slate-400 bg-white px-2 py-1">
+      <td className="w-auto border border-slate-300 bg-white px-2 py-1">
         {price} €
       </td>
-      <td className="w-auto border border-slate-400 bg-white px-2 py-1">
+      <td className="w-auto border border-slate-300 bg-white px-2 py-1">
         {date}
       </td>
       <td className="w-auto py-1 text-center">
         <button
-          className=" h-8 w-8 rounded-full border-2 border-solid
-       border-slate-400 bg-white text-center text-gray-500 hover:bg-blue-100 hover:text-blue-600"
+          className=" ml-2 h-8 w-8 cursor-pointer rounded-full border-2
+       border-solid border-slate-400 bg-white text-center text-gray-800 hover:bg-blue-100 hover:text-blue-600"
           onClick={() => handleClickUpdate(record)}
         >
-          u
+          &#187;
         </button>
       </td>
       <td className="w-auto py-1 text-center">
         <button
-          className=" h-8 w-8 rounded-full border-2 border-solid
-       border-slate-400 bg-white text-center text-gray-500 hover:bg-red-100 hover:text-red-500"
+          className=" h-8 w-8 cursor-pointer rounded-full border-2
+       border-solid border-slate-400 bg-white text-center text-gray-800 hover:bg-red-100 hover:text-red-500"
           onClick={() => handleClickDelete(record.id)}
         >
           -

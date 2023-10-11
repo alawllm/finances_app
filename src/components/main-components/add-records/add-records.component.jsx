@@ -16,14 +16,11 @@ const defaultRecord = {
   price: "",
 };
 
-const categoriesList = ["clothes", "food", "education", "household", "travel"];
-
 const AddRecords = () => {
   const [record, setRecord] = useState(defaultRecord);
   const [message, setMessage] = useState({ error: false, msg: "" });
   const { category, item, price, date } = record;
 
-  //id of the current user
   const { uid } = useContext(UserContext);
 
   const { setRecords } = useContext(RecordsContext);
@@ -33,16 +30,13 @@ const AddRecords = () => {
   };
 
   const handleChange = (event) => {
-    //target gives the input
     const { name, value } = event.target;
 
     setRecord({ ...record, [name]: value });
   };
 
-  //update the map every time a new record has been added
   const handleRecordAddition = async (newRecord) => {
     await addRecord(newRecord);
-    //get documents of the current user
     const updatedRecords = await getDocuments(uid);
     setRecords(updatedRecords);
   };
@@ -64,8 +58,6 @@ const AddRecords = () => {
           price: record.price,
           uid: uid,
         };
-        //updating entry in the firestore
-        //takes id and updated record
         handleRecordAddition(newRecord);
         setMessage({ error: false, msg: "Added succesfully" });
       } catch (err) {
@@ -78,7 +70,7 @@ const AddRecords = () => {
 
   return (
     <div className="m-10 flex flex-col justify-start text-center">
-      <h1 className="mb-5 text-center text-2xl font-bold text-blue-700">
+      <h1 className="mb-4 text-center text-2xl font-bold text-blue-800">
         Add records
       </h1>
       {message && (
@@ -93,15 +85,14 @@ const AddRecords = () => {
         <DropdownCategories
           required
           name="category"
-          label="category"
+          label="Category"
           value={category}
-          categoryOptions={categoriesList}
           onChange={handleChange}
         />
         <FormInput
           required
           type="text"
-          label="item"
+          label="Item"
           name="item"
           value={item}
           placeholder="item"
@@ -110,7 +101,7 @@ const AddRecords = () => {
         <FormInput
           required
           type="number"
-          label="price"
+          label="Price"
           name="price"
           value={price}
           placeholder="0"
@@ -119,7 +110,7 @@ const AddRecords = () => {
         <FormInput
           required
           type="date"
-          label="date"
+          label="Date"
           name="date"
           value={date}
           placeholder="dd.mm.yyyy"

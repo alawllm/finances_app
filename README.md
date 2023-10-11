@@ -9,14 +9,13 @@ The app is in continuous development.
 
 - firebase authentication and authorization
 - storing records in firestore database
-- showing records only to users who created them
-- creating, reading, deleting records
+- CRUD Functionality
+- Private Routes
 
 **Further planned features MVP:**
 
 - possibility to create ledgers with access for more than one user
-- choosing records depending on a category
-- CRUD functionality
+- records sorting
 - hover and focus states for the interactive elements on the page;
 - working mobile version
 

@@ -1,15 +1,24 @@
-const DropdownCategories = ({ label, categoryOptions, value, onChange }) => {
+const DropdownCategories = ({ label, value, onChange }) => {
+  const categoriesList = [
+    "clothes",
+    "food",
+    "education",
+    "household",
+    "travel",
+  ];
   return (
     <div className="m-2 flex flex-col items-center">
-      <label className="m-2 block font-bold text-gray-700">{label}</label>
+      <label className="mb-2 block text-base font-medium text-black">
+        {label}
+      </label>
 
       <select
-        className="focus:shadow-outline w-48 rounded-md border px-3 py-0.5 focus:outline-none"
+        className="focus:shadow-outline w-60 rounded-md border border-stone-500 px-3 py-2 text-center leading-tight focus:outline-none"
         name={label}
         value={value}
         onChange={onChange}
       >
-        {categoryOptions.map((categoryOption) => (
+        {categoriesList.map((categoryOption) => (
           <option key={categoryOption} value={categoryOption}>
             {categoryOption}
           </option>

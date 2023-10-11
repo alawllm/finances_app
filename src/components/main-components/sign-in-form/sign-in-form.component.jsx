@@ -46,18 +46,15 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="m-5 rounded p-2 shadow-md">
-      {/* block text-gray-700 text-sm font-bold mb-2 */}
+    <div className="m-10 rounded p-2 shadow-md">
       <h2 className=" mb-2 mt-2 font-bold text-gray-700">
         Already have an account?
       </h2>
       <span className=" mb-2 font-bold text-gray-700">
         Sign in with your email and password
       </span>
-      {/* form should not be submitable until the fields are filled  */}
       <form
-        className="flex flex-col items-center rounded px-8"
-        action=""
+        className="flex flex-col items-center rounded px-12"
         onSubmit={handleSubmit}
       >
         <FormInput

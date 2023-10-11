@@ -35,7 +35,7 @@ const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
       <td className="w-auto py-1 text-center">
         <button
           className=" h-8 w-8 rounded-full border-2 border-solid
-       border-slate-500 bg-white text-center text-gray-500 hover:bg-blue-100 hover:text-blue-600"
+       border-slate-400 bg-white text-center text-gray-500 hover:bg-blue-100 hover:text-blue-600"
           onClick={() => handleClickUpdate(record)}
         >
           u
@@ -44,7 +44,7 @@ const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
       <td className="w-auto py-1 text-center">
         <button
           className=" h-8 w-8 rounded-full border-2 border-solid
-       border-slate-500 bg-white text-center text-gray-500 hover:bg-red-100 hover:text-red-500"
+       border-slate-400 bg-white text-center text-gray-500 hover:bg-red-100 hover:text-red-500"
           onClick={() => handleClickDelete(record.id)}
         >
           -

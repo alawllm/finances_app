@@ -70,15 +70,15 @@ const ReadRecords = () => {
         <h1 className="mb-5 text-center text-2xl font-bold text-blue-700">
           Review records
         </h1>
-        <table className="table-fixed">
+        <table className="table-auto">
           <thead>
             <tr>
-              <th className="px-4 py-2">
+              <th className="px-2 py-2">
                 {isSmallScreen ? "Cat" : "Category"}
               </th>
-              <th className="px-4 py-2">Item</th>
-              <th className="px-4 py-2">Price (€)</th>
-              <th className="px-4 py-2">Date</th>
+              <th className="px-2 py-2">Item</th>
+              <th className="px-2 py-2">Price (€)</th>
+              <th className="px-2 py-2">Date</th>
               <th className="px-2 py-2 text-gray-500">Edit</th>
               <th className="px-2 py-2 text-gray-500">
                 {isSmallScreen ? "Del" : "Delete"}
@@ -95,16 +95,16 @@ const ReadRecords = () => {
                 handleClickDelete={handleClickDelete}
               />
             ))}
-            {isClicked && (
-              <>
-                <UpdateRow
-                  clickedRecord={clickedRecord}
-                  handleUpdate={handleUpdate}
-                />
-              </>
-            )}
           </tbody>
         </table>
+        {isClicked && (
+          <>
+            <UpdateRow
+              clickedRecord={clickedRecord}
+              handleUpdate={handleUpdate}
+            />
+          </>
+        )}
       </div>
     </>
   );

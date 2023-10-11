@@ -18,53 +18,65 @@ const UpdateRow = ({ clickedRecord, handleUpdate }) => {
     setUpdatedRecord((initialValue) => ({ ...initialValue, [name]: value }));
   };
   return (
-    <tr key={id} className="">
-      <td className="border">
-        <input
-          className=" w-30bg-green-200 text-center"
-          type="text"
-          name="category"
-          value={category}
-          onChange={handleChange}
-        />
-      </td>
-      <td className="m-0 border p-0">
-        <input
-          className="w-30 border bg-green-100 text-center"
-          type="text"
-          name="item"
-          value={item}
-          onChange={handleChange}
-        />
-      </td>
-      <td className="border ">
-        <input
-          className="w-30 border bg-green-100 text-center"
-          type="text"
-          name="price"
-          value={price}
-          onChange={handleChange}
-        />
-      </td>
-      <td className="border">
-        <input
-          className="w-30 border bg-green-100 text-center"
-          type="date"
-          name="date"
-          value={date}
-          onChange={handleChange}
-        />
-      </td>
-      <td className="text-center">
-        <button
-          className=" w-30 h-8 w-8 rounded-full
+    <table className="mt-10 table-fixed">
+      <thead>
+        <tr>
+          <th className="w-20 px-2 py-2">Cat</th>
+          <th className="w-20 px-2 py-2">Item</th>
+          <th className="w-20 px-2 py-2">Price (€)</th>
+          <th className="w-20 px-2 py-2">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr key={id} className="box-content">
+          <td className="m-0 w-min border p-0">
+            <input
+              className="m-0 w-min bg-green-200 p-0 text-center"
+              type="text"
+              name="category"
+              value={category}
+              onChange={handleChange}
+            />
+          </td>
+          <td className="m-0 w-min border p-0">
+            <input
+              className="m-0 w-min bg-green-100 p-0 text-center"
+              type="text"
+              name="item"
+              value={item}
+              onChange={handleChange}
+            />
+          </td>
+          <td className="m-0 w-min border p-0">
+            <input
+              className="m-0 w-min bg-green-100 p-0 text-center"
+              type="text"
+              name="price"
+              value={price}
+              onChange={handleChange}
+            />
+          </td>
+          <td className="m-0 w-min border p-0">
+            <input
+              className="m-0 w-min bg-green-100 p-0 text-center"
+              type="date"
+              name="date"
+              value={date}
+              onChange={handleChange}
+            />
+          </td>
+          <td className="text-center">
+            <button
+              className="h-8 w-8 rounded-full
          border-2  border-solid bg-blue-500 text-center text-white  hover:bg-blue-200"
-          onClick={() => handleUpdate(updatedRecord)}
-        >
-          +
-        </button>
-      </td>
-    </tr>
+              onClick={() => handleUpdate(updatedRecord)}
+            >
+              +
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 

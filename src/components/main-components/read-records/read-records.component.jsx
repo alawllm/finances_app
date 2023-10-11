@@ -8,12 +8,12 @@ import {
   getDocuments,
   updateDocument,
 } from "../../../firebase_config/firestore-records.config";
+import ModalUpdate from "../../helper-components/modal-update/modal-update.component";
 import TableRow from "../../helper-components/table-row/table-row.component";
-import UpdateRow from "../../helper-components/update-row/update-row.component";
 
 const ReadRecords = () => {
   //is the update button clicked?
-  const [isClicked, setIsClicked] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickedRecord, setClickedRecord] = useState({});
   //retrieving downloaded data from the database
   const { records, setRecords } = useContext(RecordsContext);
@@ -35,7 +35,7 @@ const ReadRecords = () => {
   //set clicked to true when the update button is clicked
   //retrieve document by id, pass to handleUpdate
   const handleClickUpdate = async (clickedRecord) => {
-    setIsClicked(true);
+    setIsModalOpen(true);
     //pass the id of the clicked record, download the record
     setClickedRecord(clickedRecord);
     console.log("handleClickUpdate", clickedRecord);
@@ -50,8 +50,11 @@ const ReadRecords = () => {
     //get documents for the current user
     const updatedRecords = await getDocuments(uid);
     setRecords(updatedRecords);
-    setIsClicked(false);
     setClickedRecord(null);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   //useEffect runs every time the setRecordsMap or user id changes
@@ -97,11 +100,12 @@ const ReadRecords = () => {
             ))}
           </tbody>
         </table>
-        {isClicked && (
+        {isModalOpen && (
           <>
-            <UpdateRow
+            <ModalUpdate
               clickedRecord={clickedRecord}
               handleUpdate={handleUpdate}
+              closeModal={closeModal}
             />
           </>
         )}

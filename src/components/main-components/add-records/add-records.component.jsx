@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useContext } from "react";
 
+import { categoriesList } from "../../../categoriesList/categoriesList";
 import { RecordsContext } from "../../../contexts/records.context";
 import { UserContext } from "../../../contexts/user.context";
 import { addRecord } from "../../../firebase_config/firestore-records.config";
@@ -15,12 +16,10 @@ const defaultRecord = {
   item: "",
   price: "",
 };
-
 const AddRecords = () => {
   const [record, setRecord] = useState(defaultRecord);
   const [message, setMessage] = useState({ error: false, msg: "" });
   const { category, item, price, date } = record;
-
   const { uid } = useContext(UserContext);
 
   const { setRecords } = useContext(RecordsContext);
@@ -53,12 +52,12 @@ const AddRecords = () => {
       try {
         const newRecord = {
           category: record.category,
-          date: record.date,
+          date: record.date.slice(2),
           item: record.item,
           price: record.price,
           uid: uid,
         };
-        handleRecordAddition(newRecord);
+        await handleRecordAddition(newRecord);
         setMessage({ error: false, msg: "Added succesfully" });
       } catch (err) {
         setMessage({ error: true, msg: "an error occured" });
@@ -85,8 +84,9 @@ const AddRecords = () => {
         <DropdownCategories
           required
           name="category"
-          label="Category"
+          label="category"
           value={category}
+          categoriesList={categoriesList}
           onChange={handleChange}
         />
         <FormInput

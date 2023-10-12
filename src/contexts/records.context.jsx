@@ -17,7 +17,7 @@ export const RecordsProvider = ({ children }) => {
   useEffect(() => {
     const getRecordsMap = async () => {
       const recordsMap = await getDocuments(uid);
-      setRecords(recordsMap);
+      await setRecords(recordsMap);
     };
     getRecordsMap();
 

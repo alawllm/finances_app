@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { categoriesList } from "../../../categoriesList/categoriesList";
 import Button from "../button/button.component";
 import DropdownCategories from "../dropdown/dropdown.component";
 import FormInput from "../form-input/form-input.component";
@@ -19,7 +20,10 @@ const ModalUpdate = ({ clickedRecord, handleUpdate, closeModal }) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setUpdatedRecord((initialValue) => ({ ...initialValue, [name]: value }));
+    setUpdatedRecord((initialValue) => ({
+      ...initialValue,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (event) => {
@@ -49,6 +53,7 @@ const ModalUpdate = ({ clickedRecord, handleUpdate, closeModal }) => {
             name="category"
             value={category}
             onChange={handleChange}
+            categoriesList={categoriesList}
           />
           <FormInput
             label="Item"
@@ -66,7 +71,7 @@ const ModalUpdate = ({ clickedRecord, handleUpdate, closeModal }) => {
           />
           <FormInput
             label="Date"
-            type="date"
+            type="text"
             name="date"
             value={date}
             onChange={handleChange}

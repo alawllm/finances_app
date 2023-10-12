@@ -1,11 +1,4 @@
-const DropdownCategories = ({ label, value, onChange }) => {
-  const categoriesList = [
-    "clothes",
-    "food",
-    "education",
-    "household",
-    "travel",
-  ];
+const DropdownCategories = ({ label, value, onChange, categoriesList }) => {
   return (
     <div className="m-2 flex flex-col items-center">
       <label className="mb-2 block text-base font-medium text-black">

@@ -31,7 +31,7 @@ const ReadRecords = () => {
   const handleClickUpdate = async (clickedRecord) => {
     setIsModalOpen(true);
     setClickedRecord(clickedRecord);
-    console.log("handleClickUpdate", clickedRecord);
+    console.log("update click, open modal");
   };
 
   const handleUpdate = async (updatedRecord) => {
@@ -46,6 +46,7 @@ const ReadRecords = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+    console.log("close modal");
   };
 
   useEffect(() => {
@@ -95,6 +96,7 @@ const ReadRecords = () => {
               clickedRecord={clickedRecord}
               handleUpdate={handleUpdate}
               closeModal={closeModal}
+              isModalOpen={isModalOpen}
             />
           </>
         )}

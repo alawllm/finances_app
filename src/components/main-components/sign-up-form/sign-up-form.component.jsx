@@ -34,21 +34,18 @@ const SignUpForm = () => {
   //then create user document and redirect to records
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     if (password !== confirmPassword) {
       alert("passwords do not match!");
       return;
     }
-
     try {
       const { user } = await createAuthUserWithEmailAndPassword(
         email,
         password,
       );
-
       await createUserDocumentFromAuth(user, { displayName });
-      resetFormFields();
       navigateTo("/records");
+      resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("cannot create user");

@@ -31,8 +31,8 @@ const SignInForm = () => {
     event.preventDefault();
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
-      resetFormFields();
       navigateTo("/records");
+      resetFormFields();
     } catch (error) {
       if (
         error.code === "auth/wrong-password" ||

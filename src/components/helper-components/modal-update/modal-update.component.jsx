@@ -28,12 +28,19 @@ const ModalUpdate = ({ clickedRecord, handleUpdate, closeModal }) => {
     closeModal();
   };
 
+  const handleClickOutside = (e) => {
+    if (e.target.id === "background" && e.target.id !== "modal") {
+      closeModal();
+    }
+  };
+
   return (
     <div
       className="fixed inset-0 flex items-center justify-center bg-slate-300 bg-opacity-60 backdrop-blur-sm"
-      onClick={closeModal}
+      onClick={handleClickOutside}
+      id="background"
     >
-      <div className="w-96 rounded-lg bg-white p-10 shadow-lg">
+      <div className="w-96 rounded-lg bg-white p-10 shadow-lg" id="modal">
         <h2 className="mb-8 text-2xl font-bold text-blue-800">Edit Record</h2>
         <form onSubmit={handleSubmit}>
           <DropdownCategories

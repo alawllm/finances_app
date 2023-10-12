@@ -31,6 +31,8 @@ The app is in continuous development.
 ## 🖇️ Useful Resources
 
 - [How to use and pass functions as react props](https://medium.com/@kkm2059/how-to-use-and-pass-functions-as-props-react-ff677f5bca0b)
+- [Code sandbox example - close modal on click outside](https://codesandbox.io/s/modal-example-in-react-with-close-on-click-outside-oz8wb?file=/src/index.js)
+- [5 methods to persist state between page reloads in React](https://blog.bitsrc.io/5-methods-to-persisting-state-between-page-reloads-in-react-8fc9abd3fa2f)
 
 ## 🖇️ Links
 

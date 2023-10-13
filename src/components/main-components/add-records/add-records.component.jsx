@@ -52,7 +52,7 @@ const AddRecords = () => {
       try {
         const newRecord = {
           category: record.category,
-          date: record.date.slice(2),
+          date: record.date,
           item: record.item,
           price: record.price,
           uid: uid,

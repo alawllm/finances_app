@@ -71,7 +71,7 @@ const ModalUpdate = ({ clickedRecord, handleUpdate, closeModal }) => {
           />
           <FormInput
             label="Date"
-            type="text"
+            type="date"
             name="date"
             value={date}
             onChange={handleChange}

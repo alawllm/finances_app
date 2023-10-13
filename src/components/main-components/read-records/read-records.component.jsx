@@ -8,6 +8,7 @@ import {
   getDocuments,
   updateDocument,
 } from "../../../firebase_config/firestore-records.config";
+import Header from "../../helper-components/header/header.component";
 import ModalUpdate from "../../helper-components/modal-update/modal-update.component";
 import TableRow from "../../helper-components/table-row/table-row.component";
 
@@ -60,9 +61,7 @@ const ReadRecords = () => {
   return (
     <>
       <div className="m-10 flex h-full flex-col justify-start text-center">
-        <h1 className="mb-5 text-center text-2xl font-bold text-blue-700">
-          Review records
-        </h1>
+        <Header text={"All records"} />
         <table className="table-auto">
           <thead>
             <tr>
@@ -72,8 +71,8 @@ const ReadRecords = () => {
               <th className="text-md p-2 font-bold text-black">Item</th>
               <th className="text-md p-2 font-bold text-black">Price (€)</th>
               <th className="text-md p-2 font-bold text-black">Date</th>
-              <th className="text-md p-2 font-bold text-gray-600">Edit</th>
-              <th className="text-md p-2 font-bold text-gray-600">
+              <th className="text-md p-2 font-bold text-blue-400">Edit</th>
+              <th className="text-md p-2 font-bold text-blue-400">
                 {isSmallScreen ? "Del" : "Delete"}
               </th>
             </tr>

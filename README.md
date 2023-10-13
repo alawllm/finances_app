@@ -13,7 +13,7 @@ The app is in continuous development.
 - Private Routes,
 - popup modal for updating the record;
 
-**Further planned features MVP:**
+**Further planned features:**
 
 - possibility to create ledgers with access for more than one user,
 - records sorting,

@@ -16,7 +16,7 @@ const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
   const categoryColor = categoryColors[category] || "bg-white";
   const categoryContent = isSmallScreen ? category.charAt(0) : category;
   return (
-    <tr key={id}>
+    <tr key={id} className="text-base">
       <td
         className={`border border-slate-300 px-2 py-1 ${categoryColor} w-auto text-left`}
       >

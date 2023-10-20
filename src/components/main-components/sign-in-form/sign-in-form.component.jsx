@@ -44,15 +44,10 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="m-10 rounded p-2 shadow-md">
-      <h2 className=" mb-2 mt-2 font-bold text-gray-700">
-        Already have an account?
-      </h2>
-      <span className=" mb-2 font-bold text-gray-700">
-        Sign in with your email and password
-      </span>
+    <div className="mb-2 rounded p-2 text-left shadow-md">
+      <span className="mb-2 px-8 text-left text-gray-700">Sign in</span>
       <form
-        className="flex flex-col items-center rounded px-12"
+        className="flex flex-col items-center rounded px-5"
         onSubmit={handleSubmit}
       >
         <FormInput
@@ -60,6 +55,7 @@ const SignInForm = () => {
           label="Email"
           type="email"
           name="email"
+          placeholder="email"
           value={email}
           onChange={handleChange}
         />
@@ -69,6 +65,7 @@ const SignInForm = () => {
           label="Password"
           type="password"
           name="password"
+          placeholder="password"
           value={password}
           onChange={handleChange}
         />

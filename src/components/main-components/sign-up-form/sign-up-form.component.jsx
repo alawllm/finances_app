@@ -44,7 +44,7 @@ const SignUpForm = () => {
         password,
       );
       await createUserDocumentFromAuth(user, { displayName });
-      navigateTo("/records");
+      await navigateTo("/records");
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
@@ -57,14 +57,11 @@ const SignUpForm = () => {
 
   return (
     <div className="m-10 rounded p-2 shadow-md">
-      <h2 className=" mb-2 mt-2 font-bold text-gray-700">
-        Don`t have an account?
-      </h2>
-      <span className=" mb-2 font-bold text-gray-700">
+      <span className="mb-10 font-bold text-gray-700">
         Sign up with your email and password
       </span>
       <form
-        className="flex flex-col items-center rounded px-8"
+        className="flex flex-col items-center rounded px-5"
         action=""
         onSubmit={handleSubmit}
       >
@@ -73,6 +70,7 @@ const SignUpForm = () => {
           type="text"
           label="Display name"
           name="displayName"
+          placeholder="name"
           value={displayName}
           onChange={handleChange}
         />
@@ -82,6 +80,7 @@ const SignUpForm = () => {
           type="email"
           label="Email"
           name="email"
+          placeholder="email"
           value={email}
           onChange={handleChange}
         />
@@ -91,6 +90,7 @@ const SignUpForm = () => {
           type="password"
           label="Password"
           name="password"
+          placeholder="password"
           value={password}
           onChange={handleChange}
         />
@@ -100,6 +100,7 @@ const SignUpForm = () => {
           type="password"
           label="Confirm password"
           name="confirmPassword"
+          placeholder="confirm password"
           value={confirmPassword}
           onChange={handleChange}
         />

@@ -1,4 +1,4 @@
-import { Route,Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import PrivateRoutes from "./components/helper-components/private-routes/private-routes";
 import Authentication from "./components/routes/authentication/authentication.component";
@@ -11,8 +11,8 @@ import "./App.css";
 function App() {
   return (
     <Routes>
+      <Route index element={<Home />} />
       <Route path="/" element={<Navigation />}>
-        <Route index element={<Home />} />
         <Route path="/authentication" element={<Authentication />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/records" element={<Records />} />

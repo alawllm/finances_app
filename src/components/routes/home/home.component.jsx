@@ -9,8 +9,8 @@ const Home = () => {
   const { currentUser } = useContext(UserContext);
   return (
     <>
-      <div className="justify-baseline top-0 flex w-full flex-col items-center text-center">
-        <div className="w-full bg-white p-4 text-right">
+      <div className="top-0 flex w-full flex-col items-center text-center">
+        <div className="w-full max-w-xl bg-white p-4 text-right">
           {currentUser && (
             <span
               onClick={signOutUser}

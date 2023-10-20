@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../../contexts/user.context";
 import { signOutUser } from "../../../firebase_config/firebase-auth.config";
@@ -7,6 +8,12 @@ import { signOutUser } from "../../../firebase_config/firebase-auth.config";
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
 
+  const navigateTo = useNavigate();
+
+  const signOut = async () => {
+    await signOutUser();
+    navigateTo("/");
+  };
   return (
     <>
       <div className="bg-blue-30 flex flex-col font-lato text-lg">
@@ -16,18 +23,18 @@ const Navigation = () => {
           </Link>
           {currentUser ? (
             <>
+              <Link className="px-5 text-gray-700" to="/collections">
+                Collections
+              </Link>
               <Link className="px-5 text-gray-700" to="/records">
-                Records
+                All Records
               </Link>
             </>
           ) : (
             ""
           )}
           {currentUser && (
-            <span
-              onClick={signOutUser}
-              className="cursor-pointer text-gray-700"
-            >
+            <span onClick={signOut} className="cursor-pointer text-gray-700">
               Sign out
             </span>
           )}

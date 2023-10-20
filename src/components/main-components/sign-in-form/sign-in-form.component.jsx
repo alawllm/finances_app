@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { signInAuthUserWithEmailAndPassword } from "../../../firebase_config/firebase-auth.config";
 import Button from "../../helper-components/button/button.component";
@@ -13,8 +12,6 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-
-  const navigateTo = useNavigate();
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -31,7 +28,6 @@ const SignInForm = () => {
     event.preventDefault();
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
-      navigateTo("/records");
       resetFormFields();
     } catch (error) {
       if (

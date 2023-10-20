@@ -116,7 +116,9 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 };
 
 //returns back signout
-export const signOutUser = async () => await signOut(auth);
+export const signOutUser = async () => {
+  await signOut(auth);
+};
 
 //returns observer listener
 //if the user has signed in, its a auth change

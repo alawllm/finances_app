@@ -24,13 +24,15 @@ export const UserProvider = ({ children }) => {
   console.log("user id", uid);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
+    const unsubscribe = onAuthStateChangedListener(async (user) => {
       if (user) {
-        createUserDocumentFromAuth();
+        await createUserDocumentFromAuth();
       }
       //set to either authenticated user or null
       setCurrentUser(user);
-      setUserId(user.uid);
+      if (user) {
+        setUserId(user.uid);
+      }
     });
     return unsubscribe;
   }, []);

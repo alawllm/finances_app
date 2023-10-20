@@ -1,10 +1,16 @@
-const DropdownCategories = ({ label, value, onChange, categoriesList }) => {
+const DropdownCategories = ({
+  label,
+  value,
+  onChange,
+  categoriesList,
+  name,
+}) => {
   return (
     <div className="m-2 flex flex-col items-center">
       <label className="mb-2 block text-base font-medium">{label}</label>
       <select
         className="focus:shadow-outline w-60 rounded-md border border-stone-500 px-3 py-2 text-center leading-tight focus:outline-none"
-        name={label}
+        name={name}
         value={value}
         onChange={onChange}
       >

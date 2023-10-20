@@ -69,7 +69,7 @@ const ReadRecords = () => {
                 {isSmallScreen ? "Cat" : "Category"}
               </th>
               <th className="text-md p-2 font-bold text-black">Item</th>
-              <th className="text-md p-2 font-bold text-black">Price (€)</th>
+              <th className="text-md p-2 font-bold text-black">Cost</th>
               <th className="text-md p-2 font-bold text-black">Date</th>
               <th className="text-md p-2 font-bold text-blue-400">Edit</th>
               <th className="text-md p-2 font-bold text-blue-400">
@@ -78,7 +78,6 @@ const ReadRecords = () => {
             </tr>
           </thead>
           <tbody>
-            <></>
             {records.map((record) => (
               <TableRow
                 key={record.id}

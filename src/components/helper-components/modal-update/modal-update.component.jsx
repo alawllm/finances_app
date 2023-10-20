@@ -49,7 +49,6 @@ const ModalUpdate = ({ clickedRecord, handleUpdate, closeModal }) => {
         <form onSubmit={handleSubmit}>
           <DropdownCategories
             label="Category"
-            type="text"
             name="category"
             value={category}
             onChange={handleChange}

@@ -2,6 +2,7 @@ import { useMediaQuery } from "react-responsive";
 
 const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
   const { id, category, item, price, date } = record;
+  const shortDate = date.slice(2);
 
   const isSmallScreen = useMediaQuery({ maxWidth: 750 });
 
@@ -29,7 +30,7 @@ const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
         {price} €
       </td>
       <td className="w-auto border border-slate-300 bg-white px-2 py-1">
-        {date}
+        {shortDate}
       </td>
       <td className="w-auto py-1 text-center">
         <button

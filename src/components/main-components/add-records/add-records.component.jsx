@@ -18,23 +18,27 @@ const defaultRecord = {
 };
 
 const AddRecords = () => {
-  const [record, setRecord] = useState(defaultRecord);
+  const [addedRecord, setAddedRecord] = useState(defaultRecord);
   const { setRecords } = useContext(RecordsContext);
 
-  const { category, item, price, date } = record;
+  const { category, item, price, date } = addedRecord;
   const { uid } = useContext(UserContext);
 
   const [type, setType] = useState("text");
   const [message, setMessage] = useState({ error: false, msg: "" });
 
   const resetRecord = () => {
-    setRecord(defaultRecord);
+    setAddedRecord(defaultRecord);
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setRecord({ ...record, [name]: value });
+    setAddedRecord((prevRecord) => ({
+      ...prevRecord,
+      [name]: value,
+    }));
+    console.log(name, value);
   };
 
   const handleRecordAddition = async (newRecord) => {
@@ -46,18 +50,19 @@ const AddRecords = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (
-      record.item === "" ||
-      record.price <= 0 ||
-      record.date === "dd.mm.yyyy"
+      addedRecord.category === "" ||
+      addedRecord.item === "" ||
+      addedRecord.price <= 0 ||
+      addedRecord.date === "dd.mm.yyyy"
     ) {
       setMessage({ error: true, msg: "All fields are mandatory" });
     } else {
       try {
         const newRecord = {
-          category: record.category,
-          date: record.date,
-          item: record.item,
-          price: record.price,
+          category: addedRecord.category,
+          date: addedRecord.date,
+          item: addedRecord.item,
+          price: addedRecord.price,
           uid: uid,
         };
         await handleRecordAddition(newRecord);

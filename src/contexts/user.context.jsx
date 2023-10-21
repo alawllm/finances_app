@@ -4,7 +4,7 @@ import {
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
 } from "../firebase_config/firebase-auth.config";
-import { getUserData } from "../firebase_config/firestore-records.config";
+import { getUserData } from "../firebase_config/firestore-methods.config";
 
 //the value
 export const UserContext = createContext({
@@ -12,7 +12,7 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
   uid: null,
   setUid: () => null,
-  userData: null,
+  userName: null,
 });
 
 //the component
@@ -34,10 +34,12 @@ export const UserProvider = ({ children }) => {
       }
       //set to either authenticated user or null
       setCurrentUser(user);
-      setUserId(user.uid);
-      const userMap = await getUserData(user.uid);
-      setUserData(userMap[0]);
-      console.log("user map", userMap[0]);
+      if (user) {
+        setUserId(user.uid);
+        const userMap = await getUserData(user.uid);
+        setUserData(userMap[0]);
+        console.log("user map", userMap);
+      }
     });
     return unsubscribe;
   }, []);

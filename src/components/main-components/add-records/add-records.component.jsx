@@ -3,8 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import { categoriesList } from "../../../categoriesList/categoriesList";
 import { RecordsContext } from "../../../contexts/records.context";
 import { UserContext } from "../../../contexts/user.context";
-import { addRecord } from "../../../firebase_config/firestore-records.config";
-import { getDocuments } from "../../../firebase_config/firestore-records.config";
+import {
+  addRecord,
+  getRecordsData,
+} from "../../../firebase_config/firestore-methods.config";
 import Button from "../../helper-components/button/button.component";
 import DropdownCategories from "../../helper-components/dropdown/dropdown.component";
 import FormInput from "../../helper-components/form-input/form-input.component";
@@ -43,7 +45,8 @@ const AddRecords = () => {
 
   const handleRecordAddition = async (newRecord) => {
     await addRecord(newRecord);
-    const updatedRecords = await getDocuments(uid);
+    //update current documents after adding the new one
+    const updatedRecords = await getRecordsData(uid);
     setRecords(updatedRecords);
   };
 

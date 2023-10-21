@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { getDocuments } from "../firebase_config/firestore-records.config";
+import { getRecordsData } from "../firebase_config/firestore-methods.config";
 
 import { UserContext } from "./user.context";
 
@@ -16,7 +16,7 @@ export const RecordsProvider = ({ children }) => {
   //download the records initially
   useEffect(() => {
     const getRecordsMap = async () => {
-      const recordsMap = await getDocuments(uid);
+      const recordsMap = await getRecordsData(uid);
       setRecords(recordsMap);
     };
     getRecordsMap();

@@ -16,7 +16,7 @@ const Navigation = () => {
   };
   return (
     <>
-      <div className="bg-blue-30 flex flex-col font-lato text-lg">
+      <div className="bg-blue-30 flex flex-col font-lato  text-lg">
         <div className="fixed top-0 w-full bg-blue-100 py-3">
           <Link className="px-5" to="/">
             💸

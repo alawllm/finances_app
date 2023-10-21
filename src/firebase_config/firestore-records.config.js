@@ -12,12 +12,13 @@ import {
 
 import { db } from "./firebase-auth.config";
 
-const collectionRef = collection(db, "records");
+const recordsRef = collection(db, "records");
+// const collectionsRef = collection(db, "collections");
 
 //basic CRUD methods
 //adds a collection
 export const addRecord = (newDocument) => {
-  return addDoc(collectionRef, newDocument);
+  return addDoc(recordsRef, newDocument);
 };
 
 export const updateDocument = (id, updatedRecord) => {
@@ -30,7 +31,7 @@ export const deleteDocument = (id) => {
   return deleteDoc(recordDoc);
 };
 export const getAllDocuments = () => {
-  return getDocs(collectionRef);
+  return getDocs(recordsRef);
 };
 
 //get document snapshot
@@ -43,8 +44,8 @@ export const getDocSnapshot = (id) => {
 //retrieving categories and documents from firebase
 //for the current user id
 export const getDocuments = async (uid) => {
-  const collectionRef = collection(db, "records");
-  const q = query(collectionRef, where("uid", "==", uid));
+  const recordsRef = collection(db, "records");
+  const q = query(recordsRef, where("uid", "==", uid));
   try {
     //getDocs - fetching document snapshots
     const querySnapshot = await getDocs(q);
@@ -56,5 +57,22 @@ export const getDocuments = async (uid) => {
     return recordsMap;
   } catch (error) {
     console.log("error getting documents", error);
+  }
+};
+
+export const getUserData = async (uid) => {
+  const recordsRef = collection(db, "users");
+  const q = query(recordsRef, where("uid", "==", uid));
+  try {
+    const querySnapshot = await getDocs(q);
+    console.log(querySnapshot);
+    const userMap = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    console.log(userMap);
+    return userMap;
+  } catch (error) {
+    console.log("error getting user data", error);
   }
 };

@@ -5,10 +5,15 @@ import { UserContext } from "../../../contexts/user.context";
 //collection -> uid of the user that created the collection
 //collection -> title of the collection
 //items -> id of the collection they are in
+//this component - create new collection, delete existing collection
+//retrieve the id of the current collection
 const Collections = () => {
+  //user id - should be stored on the collection
   const { uid } = useContext(UserContext);
   console.log(uid);
+
   const handleAddCollection = () => {};
+
   return (
     <>
       <div>Here you can see and edit your collections</div>

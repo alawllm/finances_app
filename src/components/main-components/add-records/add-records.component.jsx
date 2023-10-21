@@ -91,7 +91,7 @@ const AddRecords = () => {
   }, []);
 
   return (
-    <div className="m-10 flex flex-col justify-start text-center">
+    <div className="m-10 flex flex-col justify-start text-center font-lato">
       <Header text={"Add records"} />
       {message && (
         <>
@@ -139,6 +139,7 @@ const AddRecords = () => {
           onBlur={() => setType("text")}
           onChange={handleChange}
         />
+
         <div className="flex flex-col">
           <Button type="submit">+</Button>
         </div>

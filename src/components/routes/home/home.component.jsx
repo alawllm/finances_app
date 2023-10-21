@@ -6,7 +6,7 @@ import { signOutUser } from "../../../firebase_config/firebase-auth.config";
 import SignInForm from "../../main-components/sign-in-form/sign-in-form.component";
 
 const Home = () => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, userData } = useContext(UserContext);
   return (
     <>
       <div className="top-0 flex w-full flex-col items-center text-center">
@@ -26,10 +26,13 @@ const Home = () => {
             moniez
           </h2>
         </div>
-        {currentUser ? (
+        {currentUser && userData ? (
           <>
+            <h1 className="font-lato text-2xl font-bold text-indigo-600">
+              Welcome back, {userData.displayName}!
+            </h1>
             <Link
-              className="mt-10 rounded-full bg-blue-200 p-4 px-5 text-xl font-bold text-blue-900 hover:bg-blue-300"
+              className="mt-10 rounded-full bg-blue-200 p-4 px-5 font-lato text-xl font-bold text-blue-900 hover:bg-blue-300"
               to="/records"
             >
               Go to your records

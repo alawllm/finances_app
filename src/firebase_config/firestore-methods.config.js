@@ -64,29 +64,29 @@ export const getUserData = async (uid) => {
 };
 
 //collections methods
-const collectionsRef = collection(db, "collections");
+const spacesRef = collection(db, "collections");
 // const collectionsRef = collection(db, "collections");
 
 //basic CRUD methods
 //adds new item to the records collection
-export const addCollection = (newCollectionData) => {
-  return addDoc(collectionsRef, newCollectionData);
+export const addSpace = (newSpaceData) => {
+  return addDoc(spacesRef, newSpaceData);
 };
 
 //retrieving collections for the current uid
-export const getCollectionsData = async (uid) => {
-  const q = query(collectionsRef, where("uid", "==", uid));
+export const getSpacesData = async (uid) => {
+  const q = query(spacesRef, where("uid", "==", uid));
   try {
     //getDocs - fetching document snapshots
     const querySnapshot = await getDocs(q);
     //turning array of elements into the categoryMap object
-    const collectionsMap = querySnapshot.docs.map((doc) => ({
+    const spacesMap = querySnapshot.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
     }));
-    return collectionsMap;
+    return spacesMap;
   } catch (error) {
-    console.log("error getting collections data", error);
+    console.log("error getting spaces data", error);
   }
 };
 

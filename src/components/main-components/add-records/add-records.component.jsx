@@ -40,7 +40,6 @@ const AddRecords = () => {
       ...prevRecord,
       [name]: value,
     }));
-    console.log(name, value);
   };
 
   const handleRecordAddition = async (newRecord) => {

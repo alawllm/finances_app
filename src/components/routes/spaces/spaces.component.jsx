@@ -1,22 +1,27 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-
-import { SpacesContext } from "../../../contexts/spaces.context";
-import { UserContext } from "../../../contexts/user.context";
-import { addCollection } from "../../../firebase_config/firestore-methods.config";
-import Button from "../../helper-components/button/button.component";
-import FormInput from "../../helper-components/form-input/form-input.component";
 //collection -> uid, title of the collection
 //items -> id of the collection they are in
 //this component - create new collection, delete existing collection
 //retrieve the id of the current collection
+import { useNavigate } from "react-router-dom";
+
+import { SpacesContext } from "../../../contexts/spaces.context";
+import { UserContext } from "../../../contexts/user.context";
+import {
+  addSpace,
+  getSpacesData,
+} from "../../../firebase_config/firestore-methods.config";
+import Button from "../../helper-components/button/button.component";
+import FormInput from "../../helper-components/form-input/form-input.component";
 
 const Spaces = () => {
   const [newSpaceName, setNewSpaceName] = useState("");
   //user id - should be stored on the collection
-  const { spaces } = useContext(SpacesContext);
+  const { spaces, setSpaces, setCurrentSpace } = useContext(SpacesContext);
   const { uid } = useContext(UserContext);
-  console.log(spaces);
+
+  const navigateTo = useNavigate();
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -24,18 +29,35 @@ const Spaces = () => {
     setNewSpaceName(value);
   };
 
-  const handleAddSpace = async (event) => {
+  const handleSpaceAddition = async (newSpaceData) => {
+    await addSpace(newSpaceData);
+    const updatedSpaces = await getSpacesData(uid);
+    setSpaces(updatedSpaces);
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const newSpaceData = {
         title: newSpaceName,
         uid: uid,
       };
-      await addCollection(newSpaceData);
+      await handleSpaceAddition(newSpaceData);
     } catch {
       console.log("error adding collection");
     }
     setNewSpaceName("");
+  };
+
+  //onClick - redirect to the spaces page
+  //retrieving data for the current space and user
+  const onClick = (id, title) => {
+    const currentSpaceData = {
+      title: title,
+      id: id,
+    };
+    setCurrentSpace(currentSpaceData);
+    navigateTo("/records");
   };
 
   return (
@@ -47,7 +69,10 @@ const Spaces = () => {
         <div className="flex flex-row">
           {spaces.map((space) => (
             <div
-              className="m-4 flex h-28 w-28 items-center justify-center rounded-md bg-amber-200 text-center hover:bg-amber-300"
+              onClick={() => {
+                onClick(space.id, space.title);
+              }}
+              className="m-4 flex h-24 w-24 items-center justify-center rounded-md bg-amber-200 text-center hover:bg-amber-300"
               key={space.id}
             >
               {space.title}
@@ -57,7 +82,7 @@ const Spaces = () => {
       </div>
       <div className="m-4">
         <form
-          onSubmit={handleAddSpace}
+          onSubmit={handleSubmit}
           className="mb-4 flex flex-col items-center rounded px-8"
         >
           <FormInput

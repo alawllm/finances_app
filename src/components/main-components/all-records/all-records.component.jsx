@@ -12,7 +12,7 @@ import Header from "../../helper-components/header/header.component";
 import ModalUpdate from "../../helper-components/modal-update/modal-update.component";
 import TableRow from "../../helper-components/table-row/table-row.component";
 
-const ReadRecords = () => {
+const AllRecords = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickedRecord, setClickedRecord] = useState({});
 
@@ -102,4 +102,4 @@ const ReadRecords = () => {
   );
 };
 
-export default ReadRecords;
+export default AllRecords;

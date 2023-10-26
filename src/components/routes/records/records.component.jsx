@@ -1,5 +1,5 @@
 import AddRecords from "../../main-components/add-records/add-records.component";
-import ReadRecords from "../../main-components/read-records/read-records.component";
+import ReadRecords from "../../main-components/all-records/all-records.component";
 
 const Records = () => {
   return (

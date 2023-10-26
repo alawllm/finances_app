@@ -33,9 +33,9 @@ const Home = () => {
             </h1>
             <Link
               className="mt-10 rounded-full bg-blue-200 p-4 px-5 font-lato text-xl font-bold text-blue-900 hover:bg-blue-300"
-              to="/records"
+              to="/spaces"
             >
-              Go to your records
+              Go to your spaces
             </Link>
           </>
         ) : (

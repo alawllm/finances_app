@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { CollectionsContext } from "../../../contexts/collections.context";
+import { SpacesContext } from "../../../contexts/spaces.context";
 import { UserContext } from "../../../contexts/user.context";
 import { addCollection } from "../../../firebase_config/firestore-methods.config";
 import Button from "../../helper-components/button/button.component";
@@ -11,62 +11,68 @@ import FormInput from "../../helper-components/form-input/form-input.component";
 //this component - create new collection, delete existing collection
 //retrieve the id of the current collection
 
-const Collections = () => {
-  const [newCollectionName, setNewCollectionName] = useState("");
+const Spaces = () => {
+  const [newSpaceName, setNewSpaceName] = useState("");
   //user id - should be stored on the collection
-  const { collections } = useContext(CollectionsContext);
+  const { spaces } = useContext(SpacesContext);
   const { uid } = useContext(UserContext);
-  console.log(uid);
+  console.log(spaces);
 
   const handleChange = (event) => {
     const { value } = event.target;
 
-    setNewCollectionName(value);
+    setNewSpaceName(value);
   };
 
-  const handleAddCollection = async (event) => {
+  const handleAddSpace = async (event) => {
     event.preventDefault();
     try {
-      const newCollectionData = {
-        title: newCollectionName,
+      const newSpaceData = {
+        title: newSpaceName,
         uid: uid,
       };
-      await addCollection(newCollectionData);
+      await addCollection(newSpaceData);
     } catch {
       console.log("error adding collection");
     }
-    setNewCollectionName("");
+    setNewSpaceName("");
   };
 
   return (
     <>
-      <div className="mb-4 text-gray-800">Your collections</div>
+      <div className="mb-4 text-center text-gray-800">Your spaces</div>
+      <div className="m-8">
+        {/* use method to retrieve all collections  */}
+        <p className="mb-4 text-center">Your spaces</p>
+        <div className="flex flex-row">
+          {spaces.map((space) => (
+            <div
+              className="m-4 flex h-28 w-28 items-center justify-center rounded-md bg-amber-200 text-center hover:bg-amber-300"
+              key={space.id}
+            >
+              {space.title}
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="m-4">
         <form
-          onSubmit={handleAddCollection}
+          onSubmit={handleAddSpace}
           className="mb-4 flex flex-col items-center rounded px-8"
         >
           <FormInput
             required
             type="text"
-            name="newCollectionName"
-            label="Collection name"
-            value={newCollectionName}
-            placeholder="new collection name"
+            name="newSpaceName"
+            label="Add new space"
+            value={newSpaceName}
+            placeholder="new space name"
             onChange={handleChange}
           />
-          <Button type="submit">Add collection</Button>
+          <Button type="submit">+</Button>
         </form>
       </div>
-      <div className="m-8">
-        {/* use method to retrieve all collections  */}
-        <p className="mb-4">Your collections</p>
-        {collections.map((collection) => (
-          <div className="bg-red-200" key={collection.id}>
-            {collection.name}
-          </div>
-        ))}
-      </div>
+
       <Link
         className="text-bold px-5 text-blue-600 hover:text-blue-500"
         to="/records"
@@ -77,4 +83,4 @@ const Collections = () => {
   );
 };
 
-export default Collections;
+export default Spaces;

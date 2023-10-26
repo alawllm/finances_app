@@ -27,7 +27,7 @@ export const RecordsProvider = ({ children }) => {
     //   setCategoriesMap(add)
     // }
     // addCollections();
-  }, []);
+  }, [uid]);
   //value that is stored on the context
   const value = { records, setRecords };
 

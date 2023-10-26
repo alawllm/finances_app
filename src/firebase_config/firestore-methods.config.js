@@ -29,8 +29,7 @@ export const deleteRecord = (id) => {
   return deleteDoc(recordDoc);
 };
 
-//retrieving records from the firebase
-//for the current user id
+//retrieving records for the current id
 export const getRecordsData = async (uid) => {
   const q = query(recordsRef, where("uid", "==", uid));
   try {
@@ -47,7 +46,7 @@ export const getRecordsData = async (uid) => {
   }
 };
 
-//user data method
+//retrieving user data for the current id
 export const getUserData = async (uid) => {
   const recordsRef = collection(db, "users");
   const q = query(recordsRef, where("uid", "==", uid));
@@ -74,23 +73,40 @@ export const addCollection = (newCollectionData) => {
   return addDoc(collectionsRef, newCollectionData);
 };
 
-//retrieving items from the firebase
-//where the collection is the current collection
-export const getRecordsForCollection = async (uid) => {
-  const q = query(recordsRef, where("uid", "==", uid));
+//retrieving collections for the current uid
+export const getCollectionsData = async (uid) => {
+  const q = query(collectionsRef, where("uid", "==", uid));
   try {
     //getDocs - fetching document snapshots
     const querySnapshot = await getDocs(q);
     //turning array of elements into the categoryMap object
-    const recordsMap = querySnapshot.docs.map((doc) => ({
+    const collectionsMap = querySnapshot.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
     }));
-    return recordsMap;
+    return collectionsMap;
   } catch (error) {
-    console.log("error getting documents", error);
+    console.log("error getting collections data", error);
   }
 };
+
+//retrieving items from the firebase
+//where the collection is the current collection
+// export const getRecordsForCollection = async (uid) => {
+//   const q = query(recordsRef, where("uid", "==", uid));
+//   try {
+//     //getDocs - fetching document snapshots
+//     const querySnapshot = await getDocs(q);
+//     //turning array of elements into the categoryMap object
+//     const recordsMap = querySnapshot.docs.map((doc) => ({
+//       ...doc.data(),
+//       id: doc.id,
+//     }));
+//     return recordsMap;
+//   } catch (error) {
+//     console.log("error getting documents", error);
+//   }
+// };
 
 //not necessary?
 

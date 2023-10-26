@@ -12,7 +12,7 @@ export const RecordsContext = createContext({
 export const RecordsProvider = ({ children }) => {
   const [records, setRecords] = useState([]);
   const { uid } = useContext(UserContext);
-
+  console.log(records);
   //download the records initially
   useEffect(() => {
     const getRecordsMap = async () => {
@@ -27,7 +27,7 @@ export const RecordsProvider = ({ children }) => {
     //   setCategoriesMap(add)
     // }
     // addCollections();
-  }, [uid]);
+  }, []);
   //value that is stored on the context
   const value = { records, setRecords };
 

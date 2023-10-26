@@ -38,7 +38,6 @@ export const UserProvider = ({ children }) => {
         setUserId(user.uid);
         const userMap = await getUserData(user.uid);
         setUserData(userMap[0]);
-        console.log("user map", userMap);
       }
     });
     return unsubscribe;

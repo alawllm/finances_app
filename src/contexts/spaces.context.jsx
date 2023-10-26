@@ -7,6 +7,8 @@ import { UserContext } from "./user.context";
 export const SpacesContext = createContext({
   spaces: [],
   setSpaces: () => {},
+  currentSpace: null,
+  setCurrentSpace: () => {},
 });
 
 export const SpacesProvider = ({ children }) => {

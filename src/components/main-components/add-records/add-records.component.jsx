@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { categoriesList } from "../../../categoriesList/categoriesList";
 import { RecordsContext } from "../../../contexts/records.context";
+import { SpacesContext } from "../../../contexts/spaces.context";
 import { UserContext } from "../../../contexts/user.context";
 import {
   addRecord,
@@ -25,6 +26,7 @@ const AddRecords = () => {
 
   const { category, item, price, date } = addedRecord;
   const { uid } = useContext(UserContext);
+  const { currentSpace } = useContext(SpacesContext);
 
   const [type, setType] = useState("text");
   const [message, setMessage] = useState({ error: false, msg: "" });
@@ -66,6 +68,7 @@ const AddRecords = () => {
           item: addedRecord.item,
           price: addedRecord.price,
           uid: uid,
+          space: currentSpace.id,
         };
         await handleRecordAddition(newRecord);
         setMessage({ error: false, msg: "Added succesfully" });

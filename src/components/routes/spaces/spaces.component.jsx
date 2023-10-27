@@ -73,7 +73,7 @@ const Spaces = () => {
     <>
       <div className="m-8">
         {/* use method to retrieve all collections  */}
-        <p className="mb-10 text-center text-2xl">Your spaces</p>
+        <p className="mb-10 text-center text-3xl">Your spaces</p>
         <div className="flex flex-row">
           {spaces.map((space) => (
             <>
@@ -82,16 +82,17 @@ const Spaces = () => {
                   onClick={() => {
                     onClick(space.id, space.title);
                   }}
-                  className="m-4 flex h-24 w-24 items-center justify-center rounded-md bg-amber-200 text-center text-xl text-amber-900 hover:bg-amber-300"
+                  className="m-8 flex h-24 w-24 items-center justify-center rounded-md bg-amber-200 text-center text-xl text-amber-900 hover:bg-amber-300"
                   key={space.id}
                 >
                   {space.title}
                 </div>
                 <ButtonWhite
-                  hoverColor={"red"}
+                  hoverColor="red"
+                  width={20}
                   onClick={() => handleClickDelete(space.id)}
                 >
-                  -
+                  delete
                 </ButtonWhite>
               </div>
             </>

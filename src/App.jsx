@@ -5,6 +5,7 @@ import Authentication from "./components/routes/authentication/authentication.co
 import Home from "./components/routes/home/home.component";
 import Navigation from "./components/routes/navigation/navigation.component";
 import Records from "./components/routes/records/records.component";
+import Spaces from "./components/routes/spaces/spaces.component";
 
 import "./App.css";
 
@@ -14,7 +15,9 @@ function App() {
       <Route index element={<Home />} />
       <Route path="/" element={<Navigation />}>
         <Route path="/authentication" element={<Authentication />} />
+        {/* consider private routes  */}
         <Route element={<PrivateRoutes />}>
+          <Route path="/spaces" element={<Spaces />} />
           <Route path="/records" element={<Records />} />
         </Route>
       </Route>

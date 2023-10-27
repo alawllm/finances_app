@@ -2,61 +2,61 @@ import { useContext, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import { RecordsContext } from "../../../contexts/records.context";
+import { SpacesContext } from "../../../contexts/spaces.context";
 import { UserContext } from "../../../contexts/user.context";
 import {
-  deleteDocument,
-  getDocuments,
-  updateDocument,
-} from "../../../firebase_config/firestore-records.config";
+  deleteRecord,
+  getRecordsData,
+  updateRecord,
+} from "../../../firebase_config/firestore-methods.config";
 import Header from "../../helper-components/header/header.component";
 import ModalUpdate from "../../helper-components/modal-update/modal-update.component";
 import TableRow from "../../helper-components/table-row/table-row.component";
 
-const ReadRecords = () => {
+const TableRecords = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickedRecord, setClickedRecord] = useState({});
 
   const { records, setRecords } = useContext(RecordsContext);
-  console.log("records", records);
 
   const { uid } = useContext(UserContext);
+  const { currentSpace } = useContext(SpacesContext);
 
   const isSmallScreen = useMediaQuery({ maxWidth: 750 });
 
   const handleClickDelete = async (id) => {
-    await deleteDocument(id);
-    const updatedRecords = await getDocuments(uid);
+    await deleteRecord(id);
+    //update documents after the one has been deleted
+    const updatedRecords = await getRecordsData(uid, currentSpace.id);
     setRecords(updatedRecords);
   };
 
   const handleClickUpdate = async (clickedRecord) => {
     setIsModalOpen(true);
     setClickedRecord(clickedRecord);
-    console.log("update click, open modal");
   };
 
   const handleUpdate = async (updatedRecord) => {
     if (!clickedRecord) {
       return;
     }
-    await updateDocument(updatedRecord.id, updatedRecord);
-    const updatedRecords = await getDocuments(uid);
+    await updateRecord(updatedRecord.id, updatedRecord);
+    const updatedRecords = await getRecordsData(uid, currentSpace.id);
     setRecords(updatedRecords);
     setClickedRecord(null);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    console.log("close modal");
   };
 
   useEffect(() => {
     const updateRec = async () => {
-      const updatedRecords = await getDocuments(uid);
+      const updatedRecords = await getRecordsData(uid, currentSpace.id);
       setRecords(updatedRecords);
     };
     updateRec();
-  }, [setRecords, uid]);
+  }, [setRecords, uid, currentSpace.id]);
 
   return (
     <>
@@ -103,4 +103,4 @@ const ReadRecords = () => {
   );
 };
 
-export default ReadRecords;
+export default TableRecords;

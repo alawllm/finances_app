@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { getDocuments } from "../firebase_config/firestore-records.config";
+import { getRecordsData } from "../firebase_config/firestore-methods.config";
 
+import { SpacesContext } from "./spaces.context";
 import { UserContext } from "./user.context";
 
 export const RecordsContext = createContext({
@@ -12,23 +13,16 @@ export const RecordsContext = createContext({
 export const RecordsProvider = ({ children }) => {
   const [records, setRecords] = useState([]);
   const { uid } = useContext(UserContext);
-
+  const { currentSpace } = useContext(SpacesContext);
   //download the records initially
   useEffect(() => {
     const getRecordsMap = async () => {
-      const recordsMap = await getDocuments(uid);
+      const recordsMap = await getRecordsData(uid, currentSpace.id);
       setRecords(recordsMap);
     };
     getRecordsMap();
+  }, [uid, currentSpace.id]);
 
-    //adding initial data
-    // const addCollections = async() => {
-    //   const add = await addCollectionAndDocuments('records', MOCK_DATA);
-    //   setCategoriesMap(add)
-    // }
-    // addCollections();
-  }, [uid]);
-  //value that is stored on the context
   const value = { records, setRecords };
 
   return (

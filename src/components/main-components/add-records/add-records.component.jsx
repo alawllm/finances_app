@@ -2,10 +2,13 @@ import { useContext, useEffect, useState } from "react";
 
 import { categoriesList } from "../../../categoriesList/categoriesList";
 import { RecordsContext } from "../../../contexts/records.context";
+import { SpacesContext } from "../../../contexts/spaces.context";
 import { UserContext } from "../../../contexts/user.context";
-import { addRecord } from "../../../firebase_config/firestore-records.config";
-import { getDocuments } from "../../../firebase_config/firestore-records.config";
-import Button from "../../helper-components/button/button.component";
+import {
+  addRecord,
+  getRecordsData,
+} from "../../../firebase_config/firestore-methods.config";
+import ButtonBlue from "../../helper-components/button-blue/button-blue.component";
 import DropdownCategories from "../../helper-components/dropdown/dropdown.component";
 import FormInput from "../../helper-components/form-input/form-input.component";
 import Header from "../../helper-components/header/header.component";
@@ -23,6 +26,7 @@ const AddRecords = () => {
 
   const { category, item, price, date } = addedRecord;
   const { uid } = useContext(UserContext);
+  const { currentSpace } = useContext(SpacesContext);
 
   const [type, setType] = useState("text");
   const [message, setMessage] = useState({ error: false, msg: "" });
@@ -38,12 +42,12 @@ const AddRecords = () => {
       ...prevRecord,
       [name]: value,
     }));
-    console.log(name, value);
   };
 
   const handleRecordAddition = async (newRecord) => {
     await addRecord(newRecord);
-    const updatedRecords = await getDocuments(uid);
+    //update current documents after adding the new one
+    const updatedRecords = await getRecordsData(uid, currentSpace.id);
     setRecords(updatedRecords);
   };
 
@@ -64,6 +68,7 @@ const AddRecords = () => {
           item: addedRecord.item,
           price: addedRecord.price,
           uid: uid,
+          space: currentSpace.id,
         };
         await handleRecordAddition(newRecord);
         setMessage({ error: false, msg: "Added succesfully" });
@@ -91,7 +96,7 @@ const AddRecords = () => {
   }, []);
 
   return (
-    <div className="m-10 flex flex-col justify-start text-center">
+    <div className="m-10 flex flex-col justify-start text-center font-lato">
       <Header text={"Add records"} />
       {message && (
         <>
@@ -139,8 +144,9 @@ const AddRecords = () => {
           onBlur={() => setType("text")}
           onChange={handleChange}
         />
+
         <div className="flex flex-col">
-          <Button type="submit">+</Button>
+          <ButtonBlue type="submit">+</ButtonBlue>
         </div>
       </form>
     </div>

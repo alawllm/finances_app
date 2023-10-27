@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { signInAuthUserWithEmailAndPassword } from "../../../firebase_config/firebase-auth.config";
-import Button from "../../helper-components/button/button.component";
+import ButtonBlue from "../../helper-components/button-blue/button-blue.component";
 import FormInput from "../../helper-components/form-input/form-input.component";
 
 const defaultFormFields = {
@@ -13,8 +12,6 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-
-  const navigateTo = useNavigate();
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -31,7 +28,6 @@ const SignInForm = () => {
     event.preventDefault();
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
-      navigateTo("/records");
       resetFormFields();
     } catch (error) {
       if (
@@ -70,7 +66,7 @@ const SignInForm = () => {
           onChange={handleChange}
         />
         <div className="flex flex-col">
-          <Button>Sign In</Button>
+          <ButtonBlue>Sign In</ButtonBlue>
         </div>
       </form>
     </div>

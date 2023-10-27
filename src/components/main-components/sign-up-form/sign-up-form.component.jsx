@@ -5,7 +5,7 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../../firebase_config/firebase-auth.config";
-import Button from "../../helper-components/button/button.component";
+import ButtonBlue from "../../helper-components/button-blue/button-blue.component";
 import FormInput from "../../helper-components/form-input/form-input.component";
 
 const defaultFormFields = {
@@ -44,7 +44,7 @@ const SignUpForm = () => {
         password,
       );
       await createUserDocumentFromAuth(user, { displayName });
-      await navigateTo("/records");
+      navigateTo("/");
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
@@ -104,7 +104,7 @@ const SignUpForm = () => {
           value={confirmPassword}
           onChange={handleChange}
         />
-        <Button>Sign Up</Button>
+        <ButtonBlue>Sign Up</ButtonBlue>
       </form>
     </div>
   );

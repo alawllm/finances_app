@@ -7,17 +7,18 @@ The app is in continuous development.
 
 **Implemented features:**
 
-- firebase authentication and authorization,
-- storing records in firestore database,
-- CRUD Functionality,
-- Private Routes,
+- firebase authentication and authorization
+- storing records in firestore database
+- possibility to create and delete spaces in which records are held
+- CRUD Functionality
+- Private Routes
 - popup modal for updating the record;
 
 **Further planned features:**
 
-- possibility to create ledgers with access for more than one user,
-- records sorting,
-- hover and focus states for the interactive elements on the page,
+- records sorting
+- data visualisation
+- hover and focus states for the interactive elements on the page
 - working mobile version;
 
 ## 👨‍💻 Tech Stack

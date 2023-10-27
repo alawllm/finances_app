@@ -61,33 +61,41 @@ const TableRecords = () => {
   return (
     <>
       <div className="m-10 flex h-full flex-col justify-start text-center">
-        <Header text={"All records"} />
-        <table className="table-auto">
-          <thead>
-            <tr>
-              <th className="text-md p-2 font-bold text-black">
-                {isSmallScreen ? "Cat" : "Category"}
-              </th>
-              <th className="text-md p-2 font-bold text-black">Item</th>
-              <th className="text-md p-2 font-bold text-black">Cost</th>
-              <th className="text-md p-2 font-bold text-black">Date</th>
-              <th className="text-md p-2 font-bold text-blue-400">Edit</th>
-              <th className="text-md p-2 font-bold text-blue-400">
-                {isSmallScreen ? "Del" : "Delete"}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {records.map((record) => (
-              <TableRow
-                key={record.id}
-                record={record}
-                handleClickUpdate={handleClickUpdate}
-                handleClickDelete={handleClickDelete}
-              />
-            ))}
-          </tbody>
-        </table>
+        {currentSpace && (
+          <Header text={`current space: ${currentSpace.title}`} />
+        )}
+        {records.length === 0 ? (
+          <p className="mt-12 text-2xl text-yellow-600">
+            Sorry, no records yet.
+          </p>
+        ) : (
+          <table className="table-auto">
+            <thead>
+              <tr>
+                <th className="text-md p-2 font-bold text-black">
+                  {isSmallScreen ? "Cat" : "Category"}
+                </th>
+                <th className="text-md p-2 font-bold text-black">Item</th>
+                <th className="text-md p-2 font-bold text-black">Cost</th>
+                <th className="text-md p-2 font-bold text-black">Date</th>
+                <th className="text-md p-2 font-bold text-blue-400">Edit</th>
+                <th className="text-md p-2 font-bold text-blue-400">
+                  {isSmallScreen ? "Del" : "Delete"}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {records.map((record) => (
+                <TableRow
+                  key={record.id}
+                  record={record}
+                  handleClickUpdate={handleClickUpdate}
+                  handleClickDelete={handleClickDelete}
+                />
+              ))}
+            </tbody>
+          </table>
+        )}
         {isModalOpen && (
           <>
             <ModalUpdate

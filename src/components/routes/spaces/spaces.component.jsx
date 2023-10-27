@@ -1,9 +1,4 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-//collection -> uid, title of the collection
-//items -> id of the collection they are in
-//this component - create new collection, delete existing collection
-//retrieve the id of the current collection
 import { useNavigate } from "react-router-dom";
 
 import { SpacesContext } from "../../../contexts/spaces.context";
@@ -12,8 +7,15 @@ import {
   addSpace,
   getSpacesData,
 } from "../../../firebase_config/firestore-methods.config";
-import Button from "../../helper-components/button/button.component";
+import { deleteSpace } from "../../../firebase_config/firestore-methods.config";
+import ButtonBlue from "../../helper-components/button-blue/button-blue.component";
+import ButtonWhite from "../../helper-components/button-white/button-white.component";
 import FormInput from "../../helper-components/form-input/form-input.component";
+
+//collection -> uid, title of the collection
+//items -> id of the collection they are in
+//this component - create new collection, delete existing collection
+//retrieve the id of the current collection
 
 const Spaces = () => {
   const [newSpaceName, setNewSpaceName] = useState("");
@@ -31,6 +33,13 @@ const Spaces = () => {
 
   const handleSpaceAddition = async (newSpaceData) => {
     await addSpace(newSpaceData);
+    const updatedSpaces = await getSpacesData(uid);
+    setSpaces(updatedSpaces);
+  };
+
+  const handleClickDelete = async (id) => {
+    await deleteSpace(id);
+    //update documents after the one has been deleted
     const updatedSpaces = await getSpacesData(uid);
     setSpaces(updatedSpaces);
   };
@@ -62,21 +71,30 @@ const Spaces = () => {
 
   return (
     <>
-      <div className="mb-4 text-center text-gray-800">Your spaces</div>
       <div className="m-8">
         {/* use method to retrieve all collections  */}
-        <p className="mb-4 text-center">Your spaces</p>
+        <p className="mb-10 text-center text-2xl">Your spaces</p>
         <div className="flex flex-row">
           {spaces.map((space) => (
-            <div
-              onClick={() => {
-                onClick(space.id, space.title);
-              }}
-              className="m-4 flex h-24 w-24 items-center justify-center rounded-md bg-amber-200 text-center hover:bg-amber-300"
-              key={space.id}
-            >
-              {space.title}
-            </div>
+            <>
+              <div className="flex flex-col items-center">
+                <div
+                  onClick={() => {
+                    onClick(space.id, space.title);
+                  }}
+                  className="m-4 flex h-24 w-24 items-center justify-center rounded-md bg-amber-200 text-center text-xl text-amber-900 hover:bg-amber-300"
+                  key={space.id}
+                >
+                  {space.title}
+                </div>
+                <ButtonWhite
+                  hoverColor={"red"}
+                  onClick={() => handleClickDelete(space.id)}
+                >
+                  -
+                </ButtonWhite>
+              </div>
+            </>
           ))}
         </div>
       </div>
@@ -94,16 +112,9 @@ const Spaces = () => {
             placeholder="new space name"
             onChange={handleChange}
           />
-          <Button type="submit">+</Button>
+          <ButtonBlue type="submit">+</ButtonBlue>
         </form>
       </div>
-
-      <Link
-        className="text-bold px-5 text-blue-600 hover:text-blue-500"
-        to="/records"
-      >
-        Go to all records
-      </Link>
     </>
   );
 };

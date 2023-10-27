@@ -1,4 +1,4 @@
-const Button = ({ children, ...otherProps }) => {
+const ButtonBlue = ({ children, ...otherProps }) => {
   return (
     <button
       className="w-30 m-3 cursor-pointer 
@@ -10,4 +10,4 @@ const Button = ({ children, ...otherProps }) => {
   );
 };
 
-export default Button;
+export default ButtonBlue;

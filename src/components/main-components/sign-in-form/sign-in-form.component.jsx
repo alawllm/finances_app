@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { signInAuthUserWithEmailAndPassword } from "../../../firebase_config/firebase-auth.config";
-import Button from "../../helper-components/button/button.component";
+import ButtonBlue from "../../helper-components/button-blue/button-blue.component";
 import FormInput from "../../helper-components/form-input/form-input.component";
 
 const defaultFormFields = {
@@ -66,7 +66,7 @@ const SignInForm = () => {
           onChange={handleChange}
         />
         <div className="flex flex-col">
-          <Button>Sign In</Button>
+          <ButtonBlue>Sign In</ButtonBlue>
         </div>
       </form>
     </div>

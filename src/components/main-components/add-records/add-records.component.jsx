@@ -8,7 +8,7 @@ import {
   addRecord,
   getRecordsData,
 } from "../../../firebase_config/firestore-methods.config";
-import Button from "../../helper-components/button/button.component";
+import ButtonBlue from "../../helper-components/button-blue/button-blue.component";
 import DropdownCategories from "../../helper-components/dropdown/dropdown.component";
 import FormInput from "../../helper-components/form-input/form-input.component";
 import Header from "../../helper-components/header/header.component";
@@ -146,7 +146,7 @@ const AddRecords = () => {
         />
 
         <div className="flex flex-col">
-          <Button type="submit">+</Button>
+          <ButtonBlue type="submit">+</ButtonBlue>
         </div>
       </form>
     </div>

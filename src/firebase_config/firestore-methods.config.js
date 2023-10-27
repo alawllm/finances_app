@@ -90,6 +90,11 @@ export const getSpacesData = async (uid) => {
   }
 };
 
+export const deleteSpace = (id) => {
+  const spaceDoc = doc(db, "collections", id);
+  return deleteDoc(spaceDoc);
+};
+
 //retrieving items from the firebase
 //where the collection is the current collection
 // export const getRecordsForCollection = async (uid) => {

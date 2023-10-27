@@ -1,5 +1,7 @@
 import { useMediaQuery } from "react-responsive";
 
+import ButtonWhite from "../button-white/button-white.component";
+
 const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
   const { id, category, item, price, date } = record;
   const shortDate = date.slice(2);
@@ -33,22 +35,20 @@ const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
         {shortDate}
       </td>
       <td className="w-auto py-1 text-center">
-        <button
-          className=" ml-2 h-8 w-8 cursor-pointer rounded-full border-2
-       border-solid border-slate-400 bg-white text-center text-gray-800 hover:bg-blue-100 hover:text-blue-600"
+        <ButtonWhite
+          hoverColor={"blue"}
           onClick={() => handleClickUpdate(record)}
         >
           &#187;
-        </button>
+        </ButtonWhite>
       </td>
       <td className="w-auto py-1 text-center">
-        <button
-          className=" h-8 w-8 cursor-pointer rounded-full border-2
-       border-solid border-slate-400 bg-white text-center text-gray-800 hover:bg-red-100 hover:text-red-500"
+        <ButtonWhite
+          hoverColor={"red"}
           onClick={() => handleClickDelete(record.id)}
         >
           -
-        </button>
+        </ButtonWhite>
       </td>
     </tr>
   );

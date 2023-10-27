@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { categoriesList } from "../../../categoriesList/categoriesList";
-import Button from "../button/button.component";
+import ButtonBlue from "../button-blue/button-blue.component";
 import DropdownCategories from "../dropdown/dropdown.component";
 import FormInput from "../form-input/form-input.component";
 
@@ -75,7 +75,7 @@ const ModalUpdate = ({ clickedRecord, handleUpdate, closeModal }) => {
             value={date}
             onChange={handleChange}
           />
-          <Button>&#10004;</Button>
+          <ButtonBlue>&#10004;</ButtonBlue>
         </form>
       </div>
     </div>

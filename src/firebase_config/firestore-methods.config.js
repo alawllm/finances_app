@@ -30,8 +30,12 @@ export const deleteRecord = (id) => {
 };
 
 //retrieving records for the current id
-export const getRecordsData = async (uid) => {
-  const q = query(recordsRef, where("uid", "==", uid));
+export const getRecordsData = async (uid, currentSpaceId) => {
+  const q = query(
+    recordsRef,
+    where("uid", "==", uid),
+    where("space", "==", currentSpaceId),
+  );
   try {
     //getDocs - fetching document snapshots
     const querySnapshot = await getDocs(q);
@@ -45,6 +49,26 @@ export const getRecordsData = async (uid) => {
     console.log("error getting documents", error);
   }
 };
+
+// export const getRecordsData = async (uid, currentSpaceId) => {
+//   const q = query(
+//     recordsRef,
+//     where("uid", "==", uid),
+//     where("space", "==", currentSpaceId),
+//   );
+//   try {
+//     //getDocs - fetching document snapshots
+//     const querySnapshot = await getDocs(q);
+//     //turning array of elements into the categoryMap object
+//     const recordsMap = querySnapshot.docs.map((doc) => ({
+//       ...doc.data(),
+//       id: doc.id,
+//     }));
+//     return recordsMap;
+//   } catch (error) {
+//     console.log("error getting documents", error);
+//   }
+// };
 
 //retrieving user data for the current id
 export const getUserData = async (uid) => {

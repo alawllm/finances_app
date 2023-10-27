@@ -71,10 +71,10 @@ const Spaces = () => {
 
   return (
     <>
-      <div className="m-8">
+      <div className="max-h-full">
         {/* use method to retrieve all collections  */}
-        <p className="mb-10 text-center text-3xl">Your spaces</p>
-        <div className="flex flex-row">
+        <p className="text-center text-3xl">Your spaces</p>
+        <div className="flex flex-col md:flex-row">
           {spaces.map((space) => (
             <>
               <div className="flex flex-col items-center">
@@ -82,7 +82,7 @@ const Spaces = () => {
                   onClick={() => {
                     onClick(space.id, space.title);
                   }}
-                  className="m-8 flex h-24 w-24 items-center justify-center rounded-md bg-amber-200 text-center text-xl text-amber-900 hover:bg-amber-300"
+                  className="m-8 flex h-24 w-24 cursor-pointer items-center justify-center rounded-md bg-amber-200 text-center text-xl text-amber-900 hover:bg-amber-300"
                   key={space.id}
                 >
                   {space.title}
@@ -99,7 +99,7 @@ const Spaces = () => {
           ))}
         </div>
       </div>
-      <div className="m-4">
+      <div className="mt-12">
         <form
           onSubmit={handleSubmit}
           className="mb-4 flex flex-col items-center rounded px-8"

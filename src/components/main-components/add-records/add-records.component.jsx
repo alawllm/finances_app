@@ -47,7 +47,7 @@ const AddRecords = () => {
   const handleRecordAddition = async (newRecord) => {
     await addRecord(newRecord);
     //update current documents after adding the new one
-    const updatedRecords = await getRecordsData(uid);
+    const updatedRecords = await getRecordsData(uid, currentSpace.id);
     setRecords(updatedRecords);
   };
 

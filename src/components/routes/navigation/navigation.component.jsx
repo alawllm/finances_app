@@ -27,7 +27,7 @@ const Navigation = () => {
                 Spaces
               </Link>
               <Link className="px-5 text-gray-700" to="/records">
-                All Records
+                Records
               </Link>
             </>
           ) : (
@@ -39,7 +39,7 @@ const Navigation = () => {
             </span>
           )}
         </div>
-        <div className="flex min-h-screen flex-col items-center justify-center">
+        <div className="mt-12 flex min-h-screen flex-col items-center justify-center">
           <Outlet />
         </div>
       </div>

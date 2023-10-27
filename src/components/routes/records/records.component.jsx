@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { SpacesContext } from "../../../contexts/spaces.context";
 import AddRecords from "../../main-components/add-records/add-records.component";
-import ReadRecords from "../../main-components/all-records/all-records.component";
+import TableRecords from "../../main-components/table-records/table-records.component";
 const Records = () => {
   const { currentSpace } = useContext(SpacesContext);
   return (
@@ -15,7 +15,7 @@ const Records = () => {
       )}
       <div className="mt-10 flex flex-col lg:flex-row lg:items-baseline">
         <AddRecords />
-        <ReadRecords />
+        <TableRecords />
       </div>
     </>
   );

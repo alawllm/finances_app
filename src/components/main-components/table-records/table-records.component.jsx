@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import { RecordsContext } from "../../../contexts/records.context";
+import { SpacesContext } from "../../../contexts/spaces.context";
 import { UserContext } from "../../../contexts/user.context";
 import {
   deleteRecord,
@@ -12,21 +13,21 @@ import Header from "../../helper-components/header/header.component";
 import ModalUpdate from "../../helper-components/modal-update/modal-update.component";
 import TableRow from "../../helper-components/table-row/table-row.component";
 
-const AllRecords = () => {
+const TableRecords = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickedRecord, setClickedRecord] = useState({});
 
   const { records, setRecords } = useContext(RecordsContext);
-  console.log("records", records);
 
   const { uid } = useContext(UserContext);
+  const { currentSpace } = useContext(SpacesContext);
 
   const isSmallScreen = useMediaQuery({ maxWidth: 750 });
 
   const handleClickDelete = async (id) => {
     await deleteRecord(id);
     //update documents after the one has been deleted
-    const updatedRecords = await getRecordsData(uid);
+    const updatedRecords = await getRecordsData(uid, currentSpace.id);
     setRecords(updatedRecords);
   };
 
@@ -40,7 +41,7 @@ const AllRecords = () => {
       return;
     }
     await updateRecord(updatedRecord.id, updatedRecord);
-    const updatedRecords = await getRecordsData(uid);
+    const updatedRecords = await getRecordsData(uid, currentSpace.id);
     setRecords(updatedRecords);
     setClickedRecord(null);
   };
@@ -51,11 +52,11 @@ const AllRecords = () => {
 
   useEffect(() => {
     const updateRec = async () => {
-      const updatedRecords = await getRecordsData(uid);
+      const updatedRecords = await getRecordsData(uid, currentSpace.id);
       setRecords(updatedRecords);
     };
     updateRec();
-  }, [setRecords, uid]);
+  }, [setRecords, uid, currentSpace.id]);
 
   return (
     <>
@@ -102,4 +103,4 @@ const AllRecords = () => {
   );
 };
 
-export default AllRecords;
+export default TableRecords;

@@ -15,6 +15,7 @@ import TableRow from "../../helper-components/table-row/table-row.component";
 
 const TableRecords = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
   const [clickedRecord, setClickedRecord] = useState({});
 
   const { records, setRecords } = useContext(RecordsContext);
@@ -29,6 +30,7 @@ const TableRecords = () => {
     //update documents after the one has been deleted
     const updatedRecords = await getRecordsData(uid, currentSpace.id);
     setRecords(updatedRecords);
+    setIsDeleted(true);
   };
 
   const handleClickUpdate = async (clickedRecord) => {
@@ -57,6 +59,21 @@ const TableRecords = () => {
     };
     updateRec();
   }, [setRecords, uid, currentSpace.id]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Check if the click is outside the message component
+      if (!event.target.closest(".text-sky-500")) {
+        setIsDeleted(false);
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -95,6 +112,13 @@ const TableRecords = () => {
               ))}
             </tbody>
           </table>
+        )}
+        {isDeleted ? (
+          <p className="mt-4 text-left text-lg text-red-500">
+            Succesfully deleted.
+          </p>
+        ) : (
+          ""
         )}
         {isModalOpen && (
           <>

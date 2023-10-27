@@ -9,7 +9,7 @@ import {
   getRecordsData,
 } from "../../../firebase_config/firestore-methods.config";
 import ButtonBlue from "../../helper-components/button-blue/button-blue.component";
-import DropdownCategories from "../../helper-components/dropdown/dropdown.component";
+import DropdownCategories from "../../helper-components/dropdown-categories/dropdown-categories.component";
 import FormInput from "../../helper-components/form-input/form-input.component";
 import Header from "../../helper-components/header/header.component";
 

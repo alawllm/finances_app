@@ -37,7 +37,7 @@ const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
       <td className="w-auto py-1 text-center">
         <ButtonWhite
           hoverColor="blue"
-          width={8}
+          width="8"
           onClick={() => handleClickUpdate(record)}
         >
           &#187;
@@ -46,7 +46,7 @@ const TableRow = ({ record, handleClickDelete, handleClickUpdate }) => {
       <td className="w-auto py-1 text-center">
         <ButtonWhite
           hoverColor="red"
-          width={8}
+          width="8"
           onClick={() => handleClickDelete(record.id)}
         >
           -

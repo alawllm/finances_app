@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { categoriesList } from "../../../categoriesList/categoriesList";
 import ButtonBlue from "../button-blue/button-blue.component";
-import DropdownCategories from "../dropdown/dropdown.component";
+import DropdownCategories from "../dropdown-categories/dropdown-categories.component";
 import FormInput from "../form-input/form-input.component";
 
 const ModalUpdate = ({ clickedRecord, handleUpdate, closeModal }) => {

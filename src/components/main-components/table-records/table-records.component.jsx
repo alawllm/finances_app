@@ -11,6 +11,7 @@ import {
 } from "../../../firebase_config/firestore-methods.config";
 import Header from "../../helper-components/header/header.component";
 import ModalUpdate from "../../helper-components/modal-update/modal-update.component";
+import TableHeader from "../../helper-components/table-header/table-header.component";
 import TableRow from "../../helper-components/table-row/table-row.component";
 
 const TableRecords = () => {
@@ -85,35 +86,40 @@ const TableRecords = () => {
             Sorry, no records yet.
           </p>
         ) : (
-          <table className="table-auto">
-            <thead>
-              <tr>
-                <th className="text-md p-2 font-bold text-black">
-                  {isSmallScreen ? "Cat" : "Category"}
-                </th>
-                <th className="text-md p-2 font-bold text-black">Item</th>
-                <th className="text-md p-2 font-bold text-black">Cost</th>
-                <th className="text-md p-2 font-bold text-black">Date</th>
-                <th className="text-md p-2 font-bold text-blue-600">Edit</th>
-                <th className="text-md p-2 font-bold text-blue-600">
-                  {isSmallScreen ? "Del" : "Delete"}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {records.map((record) => (
-                <TableRow
-                  key={record.id}
-                  record={record}
-                  handleClickUpdate={handleClickUpdate}
-                  handleClickDelete={handleDeleteAndUpdate}
-                />
-              ))}
-            </tbody>
-          </table>
+          <>
+            {/* here input for filtering  */}
+            <table className="table-auto">
+              <thead>
+                <tr>
+                  <TableHeader
+                    text={isSmallScreen ? "Cat" : "Category"}
+                    textColor="text-black"
+                  />
+                  <TableHeader text="Item" textColor="text-black" />
+                  <TableHeader text="Price" textColor="text-black" />
+                  <TableHeader text="Date" textColor="text-black" />
+                  <TableHeader text="Edit" textColor="text-blue-700" />
+                  <TableHeader
+                    text={isSmallScreen ? "Del" : "Delete"}
+                    textColor="text-blue-700"
+                  />
+                </tr>
+              </thead>
+              <tbody>
+                {records.map((record) => (
+                  <TableRow
+                    key={record.id}
+                    record={record}
+                    handleClickUpdate={handleClickUpdate}
+                    handleDeleteAndUpdate={handleDeleteAndUpdate}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </>
         )}
         {isDeleted ? (
-          <p className="mt-4 text-left text-lg text-red-500">
+          <p className="mt-4 text-left text-base text-red-500">
             Succesfully deleted.
           </p>
         ) : (

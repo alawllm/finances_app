@@ -1,6 +1,7 @@
 import { useMediaQuery } from "react-responsive";
 
 import ButtonWhite from "../button-white/button-white.component";
+import TableCell from "../table-cell/table-cell.component";
 
 const TableRow = ({ record, handleDeleteAndUpdate, handleClickUpdate }) => {
   const { id, category, item, price, date } = record;
@@ -20,20 +21,10 @@ const TableRow = ({ record, handleDeleteAndUpdate, handleClickUpdate }) => {
   const categoryContent = isSmallScreen ? category.charAt(0) : category;
   return (
     <tr key={id} className="text-base">
-      <td
-        className={`border border-slate-300 px-2 py-1 ${categoryColor} w-auto text-left`}
-      >
-        {categoryContent}
-      </td>
-      <td className="w-auto border border-slate-300  bg-white px-2 py-1 text-left">
-        {item}
-      </td>
-      <td className="w-auto border border-slate-300 bg-white px-2 py-1">
-        {price} €
-      </td>
-      <td className="w-auto border border-slate-300 bg-white px-2 py-1">
-        {shortDate}
-      </td>
+      <TableCell bgColor={categoryColor}>{categoryContent}</TableCell>
+      <TableCell bgColor="bg-white">{item}</TableCell>
+      <TableCell bgColor="bg-white">{price} €</TableCell>
+      <TableCell bgColor="bg-white">{shortDate}</TableCell>
       <td className="w-auto py-1 text-center">
         <ButtonWhite
           hoverBg="hover:bg-blue-200"

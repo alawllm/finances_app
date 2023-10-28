@@ -11,6 +11,7 @@ import { deleteSpace } from "../../../firebase_config/firestore-methods.config";
 import ButtonBlue from "../../helper-components/button-blue/button-blue.component";
 import ButtonWhite from "../../helper-components/button-white/button-white.component";
 import FormInput from "../../helper-components/form-input/form-input.component";
+import Header from "../../helper-components/header/header.component";
 
 //collection -> uid, title of the collection
 //items -> id of the collection they are in
@@ -73,7 +74,7 @@ const Spaces = () => {
     <>
       <div className="max-h-full">
         {/* use method to retrieve all collections  */}
-        <p className="text-center text-3xl">Your spaces</p>
+        <Header text="Your spaces" />
         <div className="flex flex-col md:flex-row">
           {spaces.map((space) => (
             <>

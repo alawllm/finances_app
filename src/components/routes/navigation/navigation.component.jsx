@@ -16,22 +16,23 @@ const Navigation = () => {
   };
   return (
     <>
-      <div className="bg-blue-30 flex flex-col font-lato  text-lg">
-        <div className="fixed top-0 w-full bg-blue-100 py-3">
-          <Link className="px-5" to="/">
-            💸
-          </Link>
-          {currentUser ? (
-            <>
+      <div className="bg-blue-30 flex flex-col font-lato text-lg">
+        <div className="fixed top-0 flex w-full items-center justify-between bg-blue-100 py-3">
+          <div className="flex items-center">
+            <Link className="px-5" to="/">
+              💸
+            </Link>
+            {currentUser && (
               <Link className="px-5 text-gray-700" to="/spaces">
                 Spaces
               </Link>
-            </>
-          ) : (
-            ""
-          )}
+            )}
+          </div>
           {currentUser && (
-            <span onClick={signOut} className="cursor-pointer text-gray-700">
+            <span
+              onClick={signOut}
+              className="mr-5 cursor-pointer text-gray-700"
+            >
               Sign out
             </span>
           )}

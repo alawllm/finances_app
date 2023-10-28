@@ -1,8 +1,14 @@
-const ButtonWhite = ({ hoverColor, width, children, ...otherProps }) => {
+const ButtonWhite = ({
+  hoverBg,
+  hoverBorder,
+  width,
+  children,
+  ...otherProps
+}) => {
   return (
     <button
-      className={`h-8 w-${width} cursor-pointer rounded-full border-2
-    border-solid border-slate-400 bg-white text-center text-gray-800 hover:bg-${hoverColor}-200 hover:text-${hoverColor}-600`}
+      className={`h-8 ${width} cursor-pointer rounded-full border-2 border-solid
+    border-slate-300 bg-white text-center text-sm text-gray-500 ${hoverBorder} hover:text-gray-800 ${hoverBg}`}
       {...otherProps}
     >
       {children}

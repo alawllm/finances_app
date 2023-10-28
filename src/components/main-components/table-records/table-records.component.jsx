@@ -25,12 +25,9 @@ const TableRecords = () => {
 
   const isSmallScreen = useMediaQuery({ maxWidth: 750 });
 
-  const handleClickDelete = async (id) => {
-    await deleteRecord(id);
-    //update documents after the one has been deleted
-    const updatedRecords = await getRecordsData(uid, currentSpace.id);
+  const getUpdatedAndSetState = async (uid, spaceId) => {
+    const updatedRecords = await getRecordsData(uid, spaceId);
     setRecords(updatedRecords);
-    setIsDeleted(true);
   };
 
   const handleClickUpdate = async (clickedRecord) => {
@@ -43,9 +40,13 @@ const TableRecords = () => {
       return;
     }
     await updateRecord(updatedRecord.id, updatedRecord);
-    const updatedRecords = await getRecordsData(uid, currentSpace.id);
-    setRecords(updatedRecords);
     setClickedRecord(null);
+  };
+
+  const handleDeleteAndUpdate = async (id) => {
+    await deleteRecord(id);
+    await getUpdatedAndSetState(uid, currentSpace.id);
+    setIsDeleted(true);
   };
 
   const closeModal = () => {
@@ -60,16 +61,14 @@ const TableRecords = () => {
     updateRec();
   }, [setRecords, uid, currentSpace.id]);
 
+  //handle click outside modal
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Check if the click is outside the message component
       if (!event.target.closest(".text-sky-500")) {
         setIsDeleted(false);
       }
     };
-
     window.addEventListener("click", handleClickOutside);
-
     return () => {
       window.removeEventListener("click", handleClickOutside);
     };
@@ -95,8 +94,8 @@ const TableRecords = () => {
                 <th className="text-md p-2 font-bold text-black">Item</th>
                 <th className="text-md p-2 font-bold text-black">Cost</th>
                 <th className="text-md p-2 font-bold text-black">Date</th>
-                <th className="text-md p-2 font-bold text-blue-400">Edit</th>
-                <th className="text-md p-2 font-bold text-blue-400">
+                <th className="text-md p-2 font-bold text-blue-600">Edit</th>
+                <th className="text-md p-2 font-bold text-blue-600">
                   {isSmallScreen ? "Del" : "Delete"}
                 </th>
               </tr>
@@ -107,7 +106,7 @@ const TableRecords = () => {
                   key={record.id}
                   record={record}
                   handleClickUpdate={handleClickUpdate}
-                  handleClickDelete={handleClickDelete}
+                  handleClickDelete={handleDeleteAndUpdate}
                 />
               ))}
             </tbody>

@@ -88,8 +88,9 @@ const Spaces = () => {
                   {space.title}
                 </div>
                 <ButtonWhite
-                  hoverColor="red"
-                  width="24"
+                  hoverBg="hover:bg-red-200"
+                  hoverBorder="hover:border-red-700"
+                  width="w-16"
                   onClick={() => handleClickDelete(space.id)}
                 >
                   delete

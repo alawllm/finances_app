@@ -15,17 +15,12 @@ export const UserContext = createContext({
   userName: null,
 });
 
-//the component
-//wraps around the components that need the values inside
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [uid, setUserId] = useState(null);
   const [userData, setUserData] = useState(null);
-  //current user - userDocRef from the Firestore database
+
   const value = { currentUser, setCurrentUser, uid, setUserId, userData };
-  console.log("current user", currentUser);
-  console.log("user id", uid);
-  console.log("userData", userData);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener(async (user) => {

@@ -46,7 +46,6 @@ const AddRecords = () => {
 
   const handleRecordAddition = async (newRecord) => {
     await addRecord(newRecord);
-    //update current documents after adding the new one
     const updatedRecords = await getRecordsData(uid, currentSpace.id);
     setRecords(updatedRecords);
   };
@@ -79,10 +78,9 @@ const AddRecords = () => {
     }
     resetRecord();
   };
-  //handle click outside of the box to handle messages
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Check if the click is outside the message component
       if (!event.target.closest(".text-sky-500")) {
         setMessage({ error: false, msg: "" });
       }

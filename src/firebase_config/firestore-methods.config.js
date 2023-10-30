@@ -50,26 +50,6 @@ export const getRecordsData = async (uid, currentSpaceId) => {
   }
 };
 
-// export const getRecordsData = async (uid, currentSpaceId) => {
-//   const q = query(
-//     recordsRef,
-//     where("uid", "==", uid),
-//     where("space", "==", currentSpaceId),
-//   );
-//   try {
-//     //getDocs - fetching document snapshots
-//     const querySnapshot = await getDocs(q);
-//     //turning array of elements into the categoryMap object
-//     const recordsMap = querySnapshot.docs.map((doc) => ({
-//       ...doc.data(),
-//       id: doc.id,
-//     }));
-//     return recordsMap;
-//   } catch (error) {
-//     console.log("error getting documents", error);
-//   }
-// };
-
 //retrieving user data for the current id
 export const getUserData = async (uid) => {
   const recordsRef = collection(db, "users");
@@ -89,9 +69,7 @@ export const getUserData = async (uid) => {
 
 //collections methods
 const spacesRef = collection(db, "collections");
-// const collectionsRef = collection(db, "collections");
 
-//basic CRUD methods
 //adds new item to the records collection
 export const addSpace = (newSpaceData) => {
   return addDoc(spacesRef, newSpaceData);
@@ -118,34 +96,3 @@ export const deleteSpace = (id) => {
   const spaceDoc = doc(db, "collections", id);
   return deleteDoc(spaceDoc);
 };
-
-//retrieving items from the firebase
-//where the collection is the current collection
-// export const getRecordsForCollection = async (uid) => {
-//   const q = query(recordsRef, where("uid", "==", uid));
-//   try {
-//     //getDocs - fetching document snapshots
-//     const querySnapshot = await getDocs(q);
-//     //turning array of elements into the categoryMap object
-//     const recordsMap = querySnapshot.docs.map((doc) => ({
-//       ...doc.data(),
-//       id: doc.id,
-//     }));
-//     return recordsMap;
-//   } catch (error) {
-//     console.log("error getting documents", error);
-//   }
-// };
-
-//not necessary?
-
-// //get document snapshot
-// export const getDocSnapshot = (id) => {
-//   const recordsDoc = doc(db, "records", id);
-//   //fetching document snapshot
-//   return getDoc(recordsDoc);
-// };
-
-// export const getAllDocuments = () => {
-//   return getDocs(recordsRef);
-// };

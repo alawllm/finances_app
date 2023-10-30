@@ -13,11 +13,6 @@ import ButtonWhite from "../../helper-components/button-white/button-white.compo
 import FormInput from "../../helper-components/form-input/form-input.component";
 import Header from "../../helper-components/header/header.component";
 
-//collection -> uid, title of the collection
-//items -> id of the collection they are in
-//this component - create new collection, delete existing collection
-//retrieve the id of the current collection
-
 const Spaces = () => {
   const [newSpaceName, setNewSpaceName] = useState("");
   //user id - should be stored on the collection

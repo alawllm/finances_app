@@ -15,8 +15,7 @@ export const SpacesProvider = ({ children }) => {
   const [spaces, setSpaces] = useState([]);
   const [currentSpace, setCurrentSpace] = useState({});
   const { uid } = useContext(UserContext);
-  console.log(spaces);
-  //get collections for the current uid initially
+
   useEffect(() => {
     const getSpacesMap = async () => {
       const spacesMap = await getSpacesData(uid);

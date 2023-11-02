@@ -1,5 +1,5 @@
 const TableHeader = ({ text, textColor }) => {
-  return <th className={`text-md p-2 font-bold ${textColor}`}>{text}</th>;
+  return <th className={`p-2 text-base font-medium ${textColor}`}>{text}</th>;
 };
 
 export default TableHeader;

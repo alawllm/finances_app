@@ -12,6 +12,7 @@ export const RecordsContext = createContext({
 
 export const RecordsProvider = ({ children }) => {
   const [records, setRecords] = useState([]);
+
   const { uid } = useContext(UserContext);
   const { currentSpace } = useContext(SpacesContext);
   //download the records initially

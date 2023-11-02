@@ -32,7 +32,7 @@ const Home = () => {
               Welcome back, {userData.displayName}!
             </h1>
             <Link
-              className="mt-10 rounded-full bg-amber-200 p-4 px-5 font-lato text-xl font-bold text-blue-900 hover:bg-amber-300"
+              className="mt-10 rounded-full bg-green-200 p-4 px-5 font-lato text-xl font-bold text-blue-900 hover:bg-green-300"
               to="/spaces"
             >
               Go to your spaces

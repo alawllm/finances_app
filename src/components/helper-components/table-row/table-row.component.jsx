@@ -20,7 +20,7 @@ const TableRow = ({ record, handleDeleteAndUpdate, handleClickUpdate }) => {
   const categoryColor = categoryColors[category] || "bg-white";
   const categoryContent = isSmallScreen ? category.charAt(0) : category;
   return (
-    <tr key={id} className="text-base">
+    <tr key={id} className="text-base font-medium">
       <TableCell bgColor={categoryColor}>{categoryContent}</TableCell>
       <TableCell bgColor="bg-white">{item}</TableCell>
       <TableCell bgColor="bg-white">{price} €</TableCell>

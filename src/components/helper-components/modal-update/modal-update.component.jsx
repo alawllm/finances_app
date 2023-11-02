@@ -45,7 +45,6 @@ const ModalUpdate = ({ clickedRecord, handleUpdate, closeModal }) => {
       id="background"
     >
       <div className="w-96 rounded-lg bg-white p-10 shadow-lg" id="modal">
-        <h1>System sanity check</h1>
         <h2 className="mb-8 text-2xl font-bold text-blue-800">Edit Record</h2>
         <form onSubmit={handleSubmit}>
           <DropdownCategories

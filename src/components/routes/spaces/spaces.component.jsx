@@ -72,27 +72,25 @@ const Spaces = () => {
         <Header text="Your spaces" />
         <div className="flex flex-col md:flex-row">
           {spaces.map((space) => (
-            <>
-              <div className="flex flex-col items-center">
-                <div
-                  onClick={() => {
-                    onClick(space.id, space.title);
-                  }}
-                  className="m-8 flex h-24 w-24 cursor-pointer items-center justify-center rounded-md bg-amber-200 text-center text-xl text-amber-900 hover:bg-amber-300"
-                  key={space.id}
-                >
-                  {space.title}
-                </div>
-                <ButtonWhite
-                  hoverBg="hover:bg-red-200"
-                  hoverBorder="hover:border-red-700"
-                  width="w-16"
-                  onClick={() => handleClickDelete(space.id)}
-                >
-                  delete
-                </ButtonWhite>
+            <div className="flex flex-col items-center" key={space.id}>
+              <div
+                onClick={() => {
+                  onClick(space.id, space.title);
+                }}
+                className="m-8 flex h-24 w-24 cursor-pointer items-center justify-center rounded-md bg-green-200 text-center text-xl text-green-900 hover:bg-green-300"
+                key={space.id}
+              >
+                {space.title}
               </div>
-            </>
+              <ButtonWhite
+                hoverBg="hover:bg-red-200"
+                hoverBorder="hover:border-red-700"
+                width="w-16"
+                onClick={() => handleClickDelete(space.id)}
+              >
+                delete
+              </ButtonWhite>
+            </div>
           ))}
         </div>
       </div>

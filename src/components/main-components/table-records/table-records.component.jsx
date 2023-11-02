@@ -19,12 +19,27 @@ const TableRecords = () => {
   const [isDeleted, setIsDeleted] = useState(false);
   const [clickedRecord, setClickedRecord] = useState({});
 
+  //informations out of the context
   const { records, setRecords } = useContext(RecordsContext);
-
   const { uid } = useContext(UserContext);
   const { currentSpace } = useContext(SpacesContext);
 
   const isSmallScreen = useMediaQuery({ maxWidth: 750 });
+
+  const calculateTotalPrice = (records) => {
+    const totalPrice = records.reduce(
+      (sum, item) => sum + Number(item.price),
+      0,
+    );
+    const numItems = records.length;
+    console.log(numItems);
+    const summary = {
+      totalPrice: totalPrice,
+      numItems: numItems,
+    };
+    return summary;
+  };
+  const summary = calculateTotalPrice(records);
 
   const getUpdatedAndSetState = async (uid, spaceId) => {
     const updatedRecords = await getRecordsData(uid, spaceId);
@@ -87,6 +102,9 @@ const TableRecords = () => {
           </p>
         ) : (
           <>
+            <p className="mb-4 text-center text-xl text-green-700">
+              spent {summary.totalPrice} € on {summary.numItems} items
+            </p>
             {/* here input for filtering  */}
             <table className="table-auto">
               <thead>
@@ -95,9 +113,9 @@ const TableRecords = () => {
                     text={isSmallScreen ? "Cat" : "Category"}
                     textColor="text-black"
                   />
-                  <TableHeader text="Item" textColor="text-black" />
-                  <TableHeader text="Price" textColor="text-black" />
-                  <TableHeader text="Date" textColor="text-black" />
+                  <TableHeader text="Item" textColor="text-gray-800" />
+                  <TableHeader text="Price" textColor="text-gray-800" />
+                  <TableHeader text="Date" textColor="text-gray-800" />
                   <TableHeader text="Edit" textColor="text-blue-700" />
                   <TableHeader
                     text={isSmallScreen ? "Del" : "Delete"}

@@ -1,6 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { getRecordsData } from "../firebase_config/firestore-methods.config";
+import {
+  getAllRecordsData,
+  getRecordsDataInSpace,
+} from "../firebase_config/firestore-methods.config";
 
 import { SpacesContext } from "./spaces.context";
 import { UserContext } from "./user.context";
@@ -11,20 +14,32 @@ export const RecordsContext = createContext({
 });
 
 export const RecordsProvider = ({ children }) => {
-  const [records, setRecords] = useState([]);
+  const [recordsInSpace, setRecordsInSpace] = useState([]);
+  const [allRecords, setAllRecords] = useState([]);
 
   const { uid } = useContext(UserContext);
   const { currentSpace } = useContext(SpacesContext);
-  //download the records initially
+
+  //download the records for specific space and all records initially
   useEffect(() => {
-    const getRecordsMap = async () => {
-      const recordsMap = await getRecordsData(uid, currentSpace.id);
-      setRecords(recordsMap);
+    const getRecordsInSpaceMap = async () => {
+      const recordsMap = await getRecordsDataInSpace(uid, currentSpace.id);
+      setRecordsInSpace(recordsMap);
     };
-    getRecordsMap();
+    const getAllRecordsMap = async () => {
+      const recordsMap = await getAllRecordsData(uid, currentSpace.id);
+      setAllRecords(recordsMap);
+    };
+    getAllRecordsMap();
+    getRecordsInSpaceMap();
   }, [uid, currentSpace.id]);
 
-  const value = { records, setRecords };
+  const value = {
+    recordsInSpace,
+    setRecordsInSpace,
+    allRecords,
+    setAllRecords,
+  };
 
   return (
     <RecordsContext.Provider value={value}>{children}</RecordsContext.Provider>

@@ -62,7 +62,7 @@ const Spaces = () => {
       id: id,
     };
     setCurrentSpace(currentSpaceData);
-    navigateTo("/records");
+    navigateTo("/spaces-records");
   };
 
   return (

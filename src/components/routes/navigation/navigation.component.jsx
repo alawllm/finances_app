@@ -23,9 +23,14 @@ const Navigation = () => {
               💸
             </Link>
             {currentUser && (
-              <Link className="px-5 text-gray-700" to="/spaces">
-                Spaces
-              </Link>
+              <>
+                <Link className="px-5 text-gray-700" to="/spaces">
+                  Spaces
+                </Link>
+                <Link className="px-5 text-gray-700" to="/all-records">
+                  All records
+                </Link>
+              </>
             )}
           </div>
           {currentUser && (

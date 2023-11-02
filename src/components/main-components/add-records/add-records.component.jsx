@@ -6,7 +6,7 @@ import { SpacesContext } from "../../../contexts/spaces.context";
 import { UserContext } from "../../../contexts/user.context";
 import {
   addRecord,
-  getRecordsData,
+  getRecordsDataInSpace,
 } from "../../../firebase_config/firestore-methods.config";
 import ButtonBlue from "../../helper-components/button-blue/button-blue.component";
 import DropdownCategories from "../../helper-components/dropdown-categories/dropdown-categories.component";
@@ -46,7 +46,7 @@ const AddRecords = () => {
 
   const handleRecordAddition = async (newRecord) => {
     await addRecord(newRecord);
-    const updatedRecords = await getRecordsData(uid, currentSpace.id);
+    const updatedRecords = await getRecordsDataInSpace(uid, currentSpace.id);
     setRecords(updatedRecords);
   };
 

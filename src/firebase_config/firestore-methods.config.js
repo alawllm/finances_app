@@ -29,13 +29,29 @@ export const deleteRecord = (id) => {
   return deleteDoc(recordDoc);
 };
 
-//retrieving records for the current id
-export const getRecordsData = async (uid, currentSpaceId) => {
+//retrieving records for the current id and space
+export const getRecordsDataInSpace = async (uid, currentSpaceId) => {
   const q = query(
     recordsRef,
     where("uid", "==", uid),
     where("space", "==", currentSpaceId),
   );
+  try {
+    //getDocs - fetching document snapshots
+    const querySnapshot = await getDocs(q);
+    //turning array of elements into the categoryMap object
+    const recordsMap = querySnapshot.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    return recordsMap;
+  } catch (error) {
+    console.log("error getting documents", error);
+  }
+};
+
+export const getAllRecordsData = async (uid) => {
+  const q = query(recordsRef, where("uid", "==", uid));
   try {
     //getDocs - fetching document snapshots
     const querySnapshot = await getDocs(q);

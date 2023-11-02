@@ -6,7 +6,7 @@ import { SpacesContext } from "../../../contexts/spaces.context";
 import { UserContext } from "../../../contexts/user.context";
 import {
   deleteRecord,
-  getRecordsData,
+  getRecordsDataInSpace,
   updateRecord,
 } from "../../../firebase_config/firestore-methods.config";
 import Header from "../../helper-components/header/header.component";
@@ -20,7 +20,7 @@ const TableRecords = () => {
   const [clickedRecord, setClickedRecord] = useState({});
 
   //informations out of the context
-  const { records, setRecords } = useContext(RecordsContext);
+  const { recordsInSpace, setRecordsInSpace } = useContext(RecordsContext);
   const { uid } = useContext(UserContext);
   const { currentSpace } = useContext(SpacesContext);
 
@@ -39,11 +39,11 @@ const TableRecords = () => {
     };
     return summary;
   };
-  const summary = calculateTotalPrice(records);
+  const summary = calculateTotalPrice(recordsInSpace);
 
   const getUpdatedAndSetState = async (uid, spaceId) => {
-    const updatedRecords = await getRecordsData(uid, spaceId);
-    setRecords(updatedRecords);
+    const updatedRecords = await getRecordsDataInSpace(uid, spaceId);
+    setRecordsInSpace(updatedRecords);
   };
 
   const handleClickUpdate = async (clickedRecord) => {
@@ -71,11 +71,11 @@ const TableRecords = () => {
 
   useEffect(() => {
     const updateRec = async () => {
-      const updatedRecords = await getRecordsData(uid, currentSpace.id);
-      setRecords(updatedRecords);
+      const updatedRecords = await getRecordsDataInSpace(uid, currentSpace.id);
+      setRecordsInSpace(updatedRecords);
     };
     updateRec();
-  }, [setRecords, uid, currentSpace.id]);
+  }, [setRecordsInSpace, uid, currentSpace.id]);
 
   //handle click outside modal
   useEffect(() => {
@@ -96,7 +96,7 @@ const TableRecords = () => {
         {currentSpace && (
           <Header text={`current space: ${currentSpace.title}`} />
         )}
-        {records.length === 0 ? (
+        {recordsInSpace.length === 0 ? (
           <p className="mt-12 text-2xl text-yellow-600">
             Sorry, no records yet.
           </p>
@@ -124,7 +124,7 @@ const TableRecords = () => {
                 </tr>
               </thead>
               <tbody>
-                {records.map((record) => (
+                {recordsInSpace.map((record) => (
                   <TableRow
                     key={record.id}
                     record={record}

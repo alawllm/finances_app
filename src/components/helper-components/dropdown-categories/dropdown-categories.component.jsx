@@ -14,6 +14,7 @@ const DropdownCategories = ({
         value={value}
         onChange={onChange}
       >
+        {/* react select  */}
         <option value="" disabled className="text-gray-400">
           select category
         </option>

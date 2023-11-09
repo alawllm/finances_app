@@ -26,6 +26,7 @@ const ModalUpdate = ({ clickedRecord, handleUpdate, closeModal }) => {
     }));
   };
 
+  //handleSubmit inside of the modal should trigger downloading updated
   const handleSubmit = (event) => {
     event.preventDefault();
     handleUpdate(updatedRecord);

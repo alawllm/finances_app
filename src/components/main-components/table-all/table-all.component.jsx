@@ -34,6 +34,7 @@ const TableAllRecords = () => {
       return;
     }
     await updateRecord(updatedRecord.id, updatedRecord);
+    await getUpdatedAndSetState(uid);
     setClickedRecord(null);
   };
 
@@ -90,7 +91,6 @@ const TableAllRecords = () => {
               clickedRecord={clickedRecord}
               handleUpdate={handleUpdate}
               closeModal={closeModal}
-              isModalOpen={isModalOpen}
             />
           </>
         )}

@@ -6,7 +6,7 @@ import TableRow from "../table-row/table-row.component";
 
 const Table = ({ records, handleClickUpdate, handleDeleteAndUpdate }) => {
   const [sortCriteria, setSortCriteria] = useState("");
-  const [sortOrder, setSortOrder] = useState(null);
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const isSmallScreen = useMediaQuery({ maxWidth: 750 });
 
@@ -24,11 +24,35 @@ const Table = ({ records, handleClickUpdate, handleDeleteAndUpdate }) => {
     return summary;
   };
 
-  const sortRecords = (criteria, order) => {
-    const sortedRecords = [...records].sort((a, b) => {
-      a - b;
+  const sortRecords = (records, criteria, order) => {
+    const sortOrder = order === "desc" ? -1 : 1;
+
+    return [...records].sort((a, b) => {
+      const aValue =
+        criteria === "price" || criteria === "date"
+          ? Number(a[criteria])
+          : a[criteria];
+
+      const bValue =
+        criteria === "price" || criteria === "date"
+          ? Number(b[criteria])
+          : b[criteria];
+
+      if (criteria === "date") {
+        // Convert the date strings to Date objects for proper comparison
+        const dateA = new Date(aValue);
+        const dateB = new Date(bValue);
+
+        if (dateA < dateB) return -1 * sortOrder;
+        if (dateA > dateB) return 1 * sortOrder;
+        return 0;
+      }
+
+      // For non-date criteria, continue with the previous comparison logic
+      if (aValue < bValue) return -1 * sortOrder;
+      if (aValue > bValue) return 1 * sortOrder;
+      return 0;
     });
-    return sortedRecords;
   };
 
   const handleSort = (criteria) => {
@@ -42,7 +66,7 @@ const Table = ({ records, handleClickUpdate, handleDeleteAndUpdate }) => {
     }
   };
 
-  const sortedRecords = sortRecords(sortCriteria, sortOrder);
+  const sortedRecords = sortRecords(records, sortCriteria, sortOrder);
   const summary = calculateTotalPrice(sortedRecords);
 
   return records.length === 0 ? (

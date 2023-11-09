@@ -4,7 +4,7 @@ const TableHeader = ({ text, textColor, isSortable, onClick }) => {
       className={`p-2  text-base ${textColor} ${
         isSortable ? "cursor-pointer hover:text-green-600" : ""
       }`}
-      onClick={isSortable ? () => onClick(text) : undefined}
+      onClick={isSortable ? () => onClick(text.toLowerCase()) : undefined}
     >
       {text}
     </th>

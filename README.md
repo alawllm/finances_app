@@ -38,7 +38,7 @@ The app is in continuous development.
 
 ## 🖇️ Links
 
-- Solution URL: [GitHub](https://github.com/alawllm/moniez)
+- Code URL: [GitHub](https://github.com/alawllm/moniez)
 - Live URL: [https://moniez.netlify.app]
 
 ## 👧🏻 Author

@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import TableHeader from "../table-header/table-header.component";
 import TableRow from "../table-row/table-row.component";
 
 const Table = ({ records, handleClickUpdate, handleDeleteAndUpdate }) => {
+  const [sortCriteria, setSortCriteria] = useState("");
+  const [sortOrder, setSortOrder] = useState(null);
+
   const isSmallScreen = useMediaQuery({ maxWidth: 750 });
 
   const calculateTotalPrice = (records) => {
@@ -19,7 +23,27 @@ const Table = ({ records, handleClickUpdate, handleDeleteAndUpdate }) => {
     };
     return summary;
   };
-  const summary = calculateTotalPrice(records);
+
+  const sortRecords = (criteria, order) => {
+    const sortedRecords = [...records].sort((a, b) => {
+      a - b;
+    });
+    return sortedRecords;
+  };
+
+  const handleSort = (criteria) => {
+    if (sortCriteria === criteria) {
+      // If clicking on the same criteria, toggle the order
+      setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+    } else {
+      // If clicking on a different criteria, set the new criteria
+      setSortCriteria(criteria);
+      setSortOrder("");
+    }
+  };
+
+  const sortedRecords = sortRecords(sortCriteria, sortOrder);
+  const summary = calculateTotalPrice(sortedRecords);
 
   return records.length === 0 ? (
     <p className="mt-12 text-2xl text-yellow-600">Sorry, no records yet.</p>
@@ -31,23 +55,45 @@ const Table = ({ records, handleClickUpdate, handleDeleteAndUpdate }) => {
       {/* here input for filtering  */}
       <table className="table-auto">
         <thead>
-          <tr>
+          <tr className="">
             <TableHeader
-              text={isSmallScreen ? "Cat" : "Category"}
+              text={"Category"}
               textColor="text-black"
+              isSortable={true}
+              onClick={handleSort}
             />
-            <TableHeader text="Item" textColor="text-gray-800" />
-            <TableHeader text="Price" textColor="text-gray-800" />
-            <TableHeader text="Date" textColor="text-gray-800" />
-            <TableHeader text="Edit" textColor="text-blue-700" />
+            <TableHeader
+              text="Item"
+              textColor="text-gray-800"
+              isSortable={true}
+              onClick={handleSort}
+            />
+            <TableHeader
+              text="Price"
+              textColor="text-gray-800"
+              isSortable={true}
+              onClick={handleSort}
+            />
+            <TableHeader
+              text="Date"
+              textColor="text-gray-800"
+              isSortable={true}
+              onClick={handleSort}
+            />
+            <TableHeader
+              text="Edit"
+              textColor="text-blue-700"
+              isSortable={false}
+            />
             <TableHeader
               text={isSmallScreen ? "Del" : "Delete"}
               textColor="text-blue-700"
+              isSortable={false}
             />
           </tr>
         </thead>
         <tbody>
-          {records.map((record) => (
+          {sortedRecords.map((record) => (
             <TableRow
               key={record.id}
               record={record}

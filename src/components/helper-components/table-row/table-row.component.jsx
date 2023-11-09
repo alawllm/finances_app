@@ -1,4 +1,4 @@
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 
 import ButtonWhite from "../button-white/button-white.component";
 import TableCell from "../table-cell/table-cell.component";
@@ -7,7 +7,7 @@ const TableRow = ({ record, handleDeleteAndUpdate, handleClickUpdate }) => {
   const { id, category, item, price, date } = record;
   const shortDate = date.slice(2);
 
-  const isSmallScreen = useMediaQuery({ maxWidth: 750 });
+  // const isSmallScreen = useMediaQuery({ maxWidth: 750 });
 
   const categoryColors = {
     clothes: "bg-blue-100",
@@ -18,10 +18,10 @@ const TableRow = ({ record, handleDeleteAndUpdate, handleClickUpdate }) => {
   };
 
   const categoryColor = categoryColors[category] || "bg-white";
-  const categoryContent = isSmallScreen ? category.charAt(0) : category;
+  // const categoryContent = isSmallScreen ? category.charAt(0) : category;
   return (
     <tr key={id} className="text-base font-medium">
-      <TableCell bgColor={categoryColor}>{categoryContent}</TableCell>
+      <TableCell bgColor={categoryColor}>{category}</TableCell>
       <TableCell bgColor="bg-white">{item}</TableCell>
       <TableCell bgColor="bg-white">{price} €</TableCell>
       <TableCell bgColor="bg-white">{shortDate}</TableCell>

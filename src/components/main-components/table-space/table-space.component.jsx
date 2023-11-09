@@ -10,7 +10,7 @@ import {
 } from "../../../firebase_config/firestore-methods.config";
 import Header from "../../helper-components/header/header.component";
 import ModalUpdate from "../../helper-components/modal-update/modal-update.component";
-import Table from "../../helper-components/table/table.component";
+import Table from "../table/table.component";
 
 const TableRecords = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

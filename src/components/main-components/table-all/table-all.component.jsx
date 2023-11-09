@@ -8,7 +8,7 @@ import {
   updateRecord,
 } from "../../../firebase_config/firestore-methods.config";
 import ModalUpdate from "../../helper-components/modal-update/modal-update.component";
-import Table from "../../helper-components/table/table.component";
+import Table from "../table/table.component";
 
 const TableAllRecords = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

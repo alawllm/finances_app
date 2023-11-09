@@ -12,11 +12,11 @@ The app is in continuous development.
 - possibility to create and delete spaces in which records are held
 - CRUD Functionality
 - Private Routes
-- popup modal for updating the record;
+- popup modal for updating the record
+- records sorting
 
 **Further planned features:**
 
-- records sorting
 - data visualisation
 - hover and focus states for the interactive elements on the page
 - working mobile version;

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
-import TableHeader from "../table-header/table-header.component";
-import TableRow from "../table-row/table-row.component";
+import TableHeader from "../../helper-components/table-header/table-header.component";
+import TableRow from "../../helper-components/table-row/table-row.component";
 
 const Table = ({ records, handleClickUpdate, handleDeleteAndUpdate }) => {
   const [sortCriteria, setSortCriteria] = useState("");
@@ -25,14 +25,23 @@ const Table = ({ records, handleClickUpdate, handleDeleteAndUpdate }) => {
   };
 
   const sortRecords = (records, criteria, order) => {
+    //determine sort order based on the provided order
     const sortOrder = order === "desc" ? -1 : 1;
 
+    //copy of the array in order to mot modify the original one
     return [...records].sort((a, b) => {
-      const aValue = criteria === "price" ? Number(a[criteria]) : a[criteria];
-
-      const bValue = criteria === "price" ? Number(b[criteria]) : b[criteria];
-
-      // For non-date criteria, continue with the previous comparison logic
+      let aValue;
+      let bValue;
+      //extracting the values in order to be able to compare them
+      if (criteria === "price") {
+        //converting to number in case of the price
+        aValue = Number(a[criteria]);
+        bValue = Number(b[criteria]);
+      } else {
+        aValue = a[criteria];
+        bValue = b[criteria];
+      }
+      //sorting comparison logic
       if (aValue < bValue) return -1 * sortOrder;
       if (aValue > bValue) return 1 * sortOrder;
       return 0;

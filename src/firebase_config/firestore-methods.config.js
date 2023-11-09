@@ -31,14 +31,14 @@ export const deleteRecord = (id) => {
 
 //retrieving records for the current id and space
 export const getRecordsDataInSpace = async (uid, currentSpaceId) => {
-  const q = query(
+  const queryContent = query(
     recordsRef,
     where("uid", "==", uid),
     where("space", "==", currentSpaceId),
   );
   try {
     //getDocs - fetching document snapshots
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(queryContent);
     //turning array of elements into the categoryMap object
     const recordsMap = querySnapshot.docs.map((doc) => ({
       ...doc.data(),
@@ -51,10 +51,10 @@ export const getRecordsDataInSpace = async (uid, currentSpaceId) => {
 };
 
 export const getAllRecordsData = async (uid) => {
-  const q = query(recordsRef, where("uid", "==", uid));
+  const queryContent = query(recordsRef, where("uid", "==", uid));
   try {
     //getDocs - fetching document snapshots
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(queryContent);
     //turning array of elements into the categoryMap object
     const recordsMap = querySnapshot.docs.map((doc) => ({
       ...doc.data(),
@@ -69,9 +69,9 @@ export const getAllRecordsData = async (uid) => {
 //retrieving user data for the current id
 export const getUserData = async (uid) => {
   const recordsRef = collection(db, "users");
-  const q = query(recordsRef, where("uid", "==", uid));
+  const queryContent = query(recordsRef, where("uid", "==", uid));
   try {
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(queryContent);
     console.log(querySnapshot);
     const userMap = querySnapshot.docs.map((doc) => ({
       ...doc.data(),
@@ -93,10 +93,10 @@ export const addSpace = (newSpaceData) => {
 
 //retrieving collections for the current uid
 export const getSpacesData = async (uid) => {
-  const q = query(spacesRef, where("uid", "==", uid));
+  const queryContent = query(spacesRef, where("uid", "==", uid));
   try {
     //getDocs - fetching document snapshots
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(queryContent);
     //turning array of elements into the categoryMap object
     const spacesMap = querySnapshot.docs.map((doc) => ({
       ...doc.data(),

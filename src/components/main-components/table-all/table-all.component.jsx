@@ -19,21 +19,6 @@ const TableAllRecords = () => {
   const { allRecords, setAllRecords } = useContext(RecordsContext);
   const { uid } = useContext(UserContext);
 
-  const calculateTotalPrice = (records) => {
-    const totalPrice = records.reduce(
-      (sum, item) => sum + Number(item.price),
-      0,
-    );
-    const numItems = records.length;
-    console.log(numItems);
-    const summary = {
-      totalPrice: totalPrice,
-      numItems: numItems,
-    };
-    return summary;
-  };
-  const summary = calculateTotalPrice(allRecords);
-
   const getUpdatedAndSetState = async (uid) => {
     const updatedRecords = await getAllRecordsData(uid);
     setAllRecords(updatedRecords);
@@ -89,7 +74,6 @@ const TableAllRecords = () => {
       <div className="m-10 flex h-full flex-col justify-start text-center">
         <Table
           records={allRecords}
-          summary={summary}
           handleClickUpdate={handleClickUpdate}
           handleDeleteAndUpdate={handleDeleteAndUpdate}
         />

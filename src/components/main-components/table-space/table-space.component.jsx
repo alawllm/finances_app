@@ -22,21 +22,6 @@ const TableRecords = () => {
   const { uid } = useContext(UserContext);
   const { currentSpace } = useContext(SpacesContext);
 
-  const calculateTotalPrice = (records) => {
-    const totalPrice = records.reduce(
-      (sum, item) => sum + Number(item.price),
-      0,
-    );
-    const numItems = records.length;
-    console.log(numItems);
-    const summary = {
-      totalPrice: totalPrice,
-      numItems: numItems,
-    };
-    return summary;
-  };
-  const summary = calculateTotalPrice(recordsInSpace);
-
   const getUpdatedAndSetState = async (uid, spaceId) => {
     const updatedRecords = await getRecordsDataInSpace(uid, spaceId);
     setRecordsInSpace(updatedRecords);
@@ -94,7 +79,6 @@ const TableRecords = () => {
         )}
         <Table
           records={recordsInSpace}
-          summary={summary}
           handleClickUpdate={handleClickUpdate}
           handleDeleteAndUpdate={handleDeleteAndUpdate}
         />

@@ -30,8 +30,10 @@ export const RecordsProvider = ({ children }) => {
       const recordsMap = await getAllRecordsData(uid, currentSpace.id);
       setAllRecords(recordsMap);
     };
-    getAllRecordsMap();
-    getRecordsInSpaceMap();
+    if ((uid, currentSpace.id)) {
+      getAllRecordsMap();
+      getRecordsInSpaceMap();
+    }
   }, [uid, currentSpace.id]);
 
   const value = {

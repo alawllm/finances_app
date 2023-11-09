@@ -3,13 +3,23 @@ import { useMediaQuery } from "react-responsive";
 import TableHeader from "../table-header/table-header.component";
 import TableRow from "../table-row/table-row.component";
 
-const Table = ({
-  records,
-  summary,
-  handleClickUpdate,
-  handleDeleteAndUpdate,
-}) => {
+const Table = ({ records, handleClickUpdate, handleDeleteAndUpdate }) => {
   const isSmallScreen = useMediaQuery({ maxWidth: 750 });
+
+  const calculateTotalPrice = (records) => {
+    const totalPrice = records.reduce(
+      (sum, item) => sum + Number(item.price),
+      0,
+    );
+    const numItems = records.length;
+    console.log(numItems);
+    const summary = {
+      totalPrice: totalPrice,
+      numItems: numItems,
+    };
+    return summary;
+  };
+  const summary = calculateTotalPrice(records);
 
   return records.length === 0 ? (
     <p className="mt-12 text-2xl text-yellow-600">Sorry, no records yet.</p>

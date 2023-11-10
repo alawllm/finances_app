@@ -22,7 +22,7 @@ const defaultRecord = {
 
 const AddRecords = () => {
   const [addedRecord, setAddedRecord] = useState(defaultRecord);
-  const { setRecords } = useContext(RecordsContext);
+  const { setAllRecords } = useContext(RecordsContext);
 
   const { category, item, price, date } = addedRecord;
   const { uid } = useContext(UserContext);
@@ -47,7 +47,7 @@ const AddRecords = () => {
   const handleRecordAddition = async (newRecord) => {
     await addRecord(newRecord);
     const updatedRecords = await getRecordsDataInSpace(uid, currentSpace.id);
-    setRecords(updatedRecords);
+    setAllRecords(updatedRecords);
   };
 
   const handleSubmit = async (event) => {

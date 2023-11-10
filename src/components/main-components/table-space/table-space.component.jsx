@@ -18,7 +18,8 @@ const TableRecords = () => {
   const [clickedRecord, setClickedRecord] = useState({});
 
   //informations out of the context
-  const { recordsInSpace, setRecordsInSpace } = useContext(RecordsContext);
+  const { recordsInSpace, setRecordsInSpace, allRecords } =
+    useContext(RecordsContext);
   const { uid } = useContext(UserContext);
   const { currentSpace } = useContext(SpacesContext);
 
@@ -57,7 +58,7 @@ const TableRecords = () => {
       setRecordsInSpace(updatedRecords);
     };
     updateRec();
-  }, [setRecordsInSpace, uid, currentSpace.id]);
+  }, [setRecordsInSpace, uid, currentSpace.id, allRecords]);
 
   //handle click outside modal
   useEffect(() => {

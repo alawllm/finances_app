@@ -5,6 +5,21 @@ import { UserContext } from "../../../contexts/user.context";
 import { signOutUser } from "../../../firebase_config/firebase-auth.config";
 import HamburgerMenu from "../../helper-components/hamburger-menu/hamburger-menu.component";
 
+const links = [
+  {
+    name: "Spaces",
+    redirectAddress: "/spaces",
+  },
+  {
+    name: "All records",
+    redirectAddress: "/all-records",
+  },
+  {
+    name: "Summary",
+    redirectAddress: "/summary",
+  },
+];
+
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -32,22 +47,26 @@ const Navigation = () => {
             {/* hamburger menu links mobile state */}
             {currentUser && (
               <div className="md:hidden">
-                <HamburgerMenu isOpen={isOpen} onClick={toggleMenu} />
+                <HamburgerMenu
+                  isOpen={isOpen}
+                  onClick={toggleMenu}
+                  links={links}
+                />
               </div>
             )}
             {/* all links not mobile state */}
             {currentUser && (
               <>
                 <div className="hidden md:block">
-                  <Link className="px-5 text-gray-700" to="/spaces">
-                    Spaces
-                  </Link>
-                  <Link className="px-5 text-gray-700" to="/all-records">
-                    All records
-                  </Link>
-                  <Link className="px-5 text-gray-700" to="/summary">
-                    Summary
-                  </Link>
+                  {links.map((link, index) => (
+                    <Link
+                      key={index}
+                      to={link.redirectAddress}
+                      className="border border-solid p-2"
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
                 </div>
               </>
             )}

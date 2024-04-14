@@ -3,12 +3,18 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../../contexts/user.context";
 import { signOutUser } from "../../../firebase_config/firebase-auth.config";
+import HamburgerMenu from "../../helper-components/hamburger-menu/hamburger-menu.component";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const navigateTo = useNavigate();
+
+  const toggleMenu = () => {
+    console.log("menu toggled");
+    setIsOpen(!isOpen);
+  };
 
   const signOut = async () => {
     await signOutUser();
@@ -24,9 +30,11 @@ const Navigation = () => {
               💸
             </Link>
             {/* hamburger menu links mobile state */}
-            <div className="md:hidden">
-              <h1>hhh</h1>
-            </div>
+            {currentUser && (
+              <div className="md:hidden">
+                <HamburgerMenu isOpen={isOpen} onClick={toggleMenu} />
+              </div>
+            )}
             {/* all links not mobile state */}
             {currentUser && (
               <>

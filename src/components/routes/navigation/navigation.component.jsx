@@ -24,12 +24,12 @@ const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
 
-  const navigateTo = useNavigate();
-
   const toggleMenu = () => {
-    console.log("menu toggled");
+    console.log('menu toggled')
     setIsOpen(!isOpen);
   };
+
+   const navigateTo = useNavigate();
 
   const signOut = async () => {
     await signOutUser();

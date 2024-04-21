@@ -7,6 +7,7 @@ import Home from "./components/routes/home/home.component";
 import Navigation from "./components/routes/navigation/navigation.component";
 import Spaces from "./components/routes/spaces/spaces.component";
 import SpacesRecords from "./components/routes/spaces-records/spaces-records.component";
+import SummaryComponent from "./components/routes/summary/summary.component";
 
 import "./App.css";
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/spaces" element={<Spaces />} />
           <Route path="/spaces-records" element={<SpacesRecords />} />
           <Route path="/all-records" element={<AllRecords />} />
+          <Route path="/summary" element={<SummaryComponent />} />
         </Route>
       </Route>
     </Routes>

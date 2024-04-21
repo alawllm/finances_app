@@ -20,6 +20,7 @@ The app is in continuous development.
 - data visualisation
 - hover and focus states for the interactive elements on the page
 - working mobile version;
+- loading records from a csv file
 
 ## 👨‍💻 Tech Stack
 

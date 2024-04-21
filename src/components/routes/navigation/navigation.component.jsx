@@ -1,14 +1,35 @@
-import { useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import { UserContext } from "../../../contexts/user.context";
 import { signOutUser } from "../../../firebase_config/firebase-auth.config";
+import HamburgerMenu from "../../helper-components/hamburger-menu/hamburger-menu.component";
+
+const links = [
+  {
+    name: "Spaces",
+    redirectAddress: "/spaces",
+  },
+  {
+    name: "All records",
+    redirectAddress: "/all-records",
+  },
+  {
+    name: "Summary",
+    redirectAddress: "/summary",
+  },
+];
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const navigateTo = useNavigate();
+  const toggleMenu = () => {
+    console.log('menu toggled')
+    setIsOpen(!isOpen);
+  };
+
+   const navigateTo = useNavigate();
 
   const signOut = async () => {
     await signOutUser();
@@ -19,20 +40,38 @@ const Navigation = () => {
       <div className="bg-blue-30 flex flex-col font-lato text-lg">
         <div className="fixed top-0 flex w-full items-center justify-between bg-blue-100 py-3">
           <div className="flex items-center">
+            {/* home link */}
             <Link className="px-5" to="/">
               💸
             </Link>
+            {/* hamburger menu links mobile state */}
+            {currentUser && (
+              <div className="md:hidden">
+                <HamburgerMenu
+                  isOpen={isOpen}
+                  onClick={toggleMenu}
+                  links={links}
+                />
+              </div>
+            )}
+            {/* all links not mobile state */}
             {currentUser && (
               <>
-                <Link className="px-5 text-gray-700" to="/spaces">
-                  Spaces
-                </Link>
-                <Link className="px-5 text-gray-700" to="/all-records">
-                  All records
-                </Link>
+                <div className="hidden md:block">
+                  {links.map((link, index) => (
+                    <Link
+                      key={index}
+                      to={link.redirectAddress}
+                      className="border border-solid p-2"
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </div>
               </>
             )}
           </div>
+          {/* sign out */}
           {currentUser && (
             <span
               onClick={signOut}

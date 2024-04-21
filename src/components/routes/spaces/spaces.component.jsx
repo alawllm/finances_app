@@ -72,12 +72,12 @@ const Spaces = () => {
         <Header text="Your spaces" />
         <div className="flex flex-col md:flex-row">
           {spaces.map((space) => (
-            <div className="flex flex-col items-center" key={space.id}>
+            <div className="flex flex-col items-center my-3 transition-all ease-in-out duration-300" key={space.id}>
               <div
                 onClick={() => {
                   onClick(space.id, space.title);
                 }}
-                className="m-8 flex h-24 w-24 cursor-pointer items-center justify-center rounded-md bg-green-200 text-center text-xl text-green-900 hover:bg-green-300"
+                className="mx-8 my-4 flex h-20 w-28 cursor-pointer items-center justify-center rounded-md bg-green-200 text-center text-xl text-green-900 hover:bg-green-400"
                 key={space.id}
               >
                 {space.title}

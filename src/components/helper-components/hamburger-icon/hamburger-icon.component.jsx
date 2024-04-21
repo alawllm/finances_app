@@ -2,26 +2,26 @@
 
 const HamburgerIcon = ({ isOpen, onClick }) => {
   console.log(onClick)
-  const genericHamburgerLine = `h-1 w-8 my-1 rounded-full bg-blue-800 transition ease transform duration-300`;
+  const genericHamburgerLine = `h-1 w-10 my-1 rounded-full bg-blue-900 transition ease transform duration-300`;
   return (
-    <button className="group flex h-12 w-14 flex-col rounded justify-center items-center" onClick={onClick}>
+    <button className="group flex h-10 w-10 flex-col rounded justify-center items-center" onClick={onClick}>
           <div
             className={`${genericHamburgerLine} ${
               isOpen
-                ? "translate-y-3 rotate-45 opacity-70 group-hover:opacity-100"
-                : "opacity-50 group-hover:opacity-100"
+                ? "translate-y-3 rotate-45 opacity-80 group-hover:opacity-100"
+                : "opacity-60 group-hover:opacity-100"
             }`}
           ></div>
           <div
             className={`${genericHamburgerLine} ${
-              isOpen ? "opacity-0" : "opacity-50 group-hover:opacity-100"
+              isOpen ? "opacity-0" : "opacity-60 group-hover:opacity-100"
             }`}
           ></div>
           <div
             className={`${genericHamburgerLine} ${
               isOpen
-                ? "-translate-y-3 -rotate-45 opacity-70 group-hover:opacity-100"
-                : "opacity-50 group-hover:opacity-100"
+                ? "-translate-y-3 -rotate-45 opacity-80 group-hover:opacity-100"
+                : "opacity-60 group-hover:opacity-100"
             }`}
           ></div>
     </button>

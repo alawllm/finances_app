@@ -7,7 +7,7 @@ const ButtonWhite = ({
 }) => {
   return (
     <button
-      className={`h-8 ${width} cursor-pointer rounded-full border-2 border-solid
+      className={`h-8 ${width} cursor-pointer rounded-md border-2 border-solid
     border-slate-300 bg-white text-center text-sm text-gray-500 ${hoverBorder} hover:text-gray-800 ${hoverBg}`}
       {...otherProps}
     >

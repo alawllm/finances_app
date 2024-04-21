@@ -37,13 +37,15 @@ const Navigation = () => {
   };
   return (
     <>
-      <div className="bg-blue-30 flex flex-col font-lato text-lg">
-        <div className="fixed top-0 flex w-full items-center justify-between bg-blue-100 py-3">
-          <div className="flex items-center">
+      <div className="flex h-full flex-col bg-white font-lato text-lg">
+        <div className="fixed top-0 flex w-full items-center justify-between bg-green-300 px-6">
+          <div className="flex items-center justify-start gap-8 py-3">
             {/* home link */}
-            <Link className="px-5" to="/">
-              💸
-            </Link>
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white">
+              <Link className="px-5" to="/">
+                💸
+              </Link>
+            </div>
             {/* hamburger menu links mobile state */}
             {currentUser && (
               <div className="md:hidden">
@@ -62,7 +64,7 @@ const Navigation = () => {
                     <Link
                       key={index}
                       to={link.redirectAddress}
-                      className="border border-solid p-2"
+                      className="px-4"
                     >
                       {link.name}
                     </Link>
@@ -75,7 +77,7 @@ const Navigation = () => {
           {currentUser && (
             <span
               onClick={signOut}
-              className="mr-5 cursor-pointer text-gray-700"
+              className="mr-5 cursor-pointer text-gray-600 hover:text-gray-900"
             >
               Sign out
             </span>

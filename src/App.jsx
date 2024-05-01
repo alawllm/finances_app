@@ -17,7 +17,6 @@ function App() {
       <Route index element={<Home />} />
       <Route path="/" element={<Navigation />}>
         <Route path="/authentication" element={<Authentication />} />
-        {/* consider private routes  */}
         <Route element={<PrivateRoutes />}>
           <Route path="/spaces" element={<Spaces />} />
           <Route path="/spaces-records" element={<SpacesRecords />} />

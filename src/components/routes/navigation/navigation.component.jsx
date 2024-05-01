@@ -39,9 +39,9 @@ const Navigation = () => {
     <>
       <div className="flex h-full flex-col bg-white font-lato text-lg">
         <div className="fixed top-0 flex w-full items-center justify-between bg-green-300 px-6">
-          <div className="flex items-center justify-start gap-8 py-3">
+          <div className="flex items-center justify-start gap-8 py-1">
             {/* home link */}
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white">
               <Link className="px-5" to="/">
                 💸
               </Link>
@@ -83,7 +83,7 @@ const Navigation = () => {
             </span>
           )}
         </div>
-        <div className="mt-12 flex min-h-screen flex-col items-center justify-center">
+        <div className="mt-20 sm:mt-36 items-center flex min-h-screen flex-col">
           <Outlet />
         </div>
       </div>

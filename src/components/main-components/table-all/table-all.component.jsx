@@ -72,7 +72,7 @@ const TableAllRecords = () => {
 
   return (
     <>
-      <div className="m-10 flex h-full flex-col justify-start text-center">
+      <div className="mx-4 flex h-full flex-col justify-start text-center">
         <Table
           records={allRecords}
           handleClickUpdate={handleClickUpdate}

@@ -77,7 +77,7 @@ const Spaces = () => {
                 onClick={() => {
                   onClick(space.id, space.title);
                 }}
-                className="mx-8 my-4 flex h-20 w-28 cursor-pointer items-center justify-center rounded-md bg-green-200 text-center text-xl text-green-900 hover:bg-green-400"
+                className="mx-4 border-2 border-solid border-green-800 my-2 flex h-20 w-28 cursor-pointer items-center justify-center rounded-md bg-green-200 text-center text-xl text-green-900 hover:bg-green-400"
                 key={space.id}
               >
                 {space.title}
@@ -85,7 +85,7 @@ const Spaces = () => {
               <ButtonWhite
                 hoverBg="hover:bg-red-200"
                 hoverBorder="hover:border-red-700"
-                width="w-16"
+                width="w-28"
                 onClick={() => handleClickDelete(space.id)}
               >
                 delete

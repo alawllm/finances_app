@@ -1,7 +1,7 @@
-const TableHeader = ({ text, textColor, isSortable, onClick }) => {
+const TableHeader = ({ text, textColor, isSortable, onClick, margin }) => {
   return (
     <th
-      className={`p-2  text-base ${textColor} ${
+      className={`px-2 py-1 text-left  text-base ${textColor} ${margin} ${
         isSortable ? "cursor-pointer hover:text-green-600" : ""
       }`}
       onClick={isSortable ? () => onClick(text.toLowerCase()) : undefined}

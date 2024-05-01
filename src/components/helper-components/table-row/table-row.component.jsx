@@ -25,7 +25,7 @@ const TableRow = ({ record, handleDeleteAndUpdate, handleClickUpdate }) => {
       <TableCell bgColor="bg-white">{item}</TableCell>
       <TableCell bgColor="bg-white">{price} €</TableCell>
       <TableCell bgColor="bg-white">{shortDate}</TableCell>
-      <td className="w-auto py-1 text-center">
+      <td className="w-auto py-1 ml-2 text-center">
         <ButtonWhite
           hoverBg="hover:bg-blue-200"
           hoverBorder="hover:border-blue-700"
